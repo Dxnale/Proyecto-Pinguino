@@ -2,12 +2,70 @@ button:focus {  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
+ }
+
+icon {
+    font-size: 40pt;
 }
 
-body {
-  margin-bottom: 60px;
-  padding-left: 60px;
-  padding-right: 60px;
+#home-container {
+    align-content: center;
+}
+
+#main-title {
+    padding-bottom: 50px;
+    text-align: center;
+}
+.chapter {
+    color: var(--pico-chapter-color);
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: .0625em;
+    text-transform: uppercase
+}
+.card:is(:hover){
+    transition: transform 0.3s ease;
+    transform: scale(1.1);
+    z-index: 1;
+}
+
+.card:not(:hover) {
+    transition: transform 0.3s ease;
+    transform: scale(1);
+    z-index: 0;
+}
+
+footer {
+    
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+}
+
+nav {
+    margin:0px 10dvw 0px 10dvw;
+}
+
+@media (min-width: 1024px) {
+    body > header.is-fixed-above-lg {
+        z-index: 2;
+        position: sticky;
+        top: 0;
+        -webkit-backdrop-filter: blur(1rem);
+        backdrop-filter: blur(1rem);
+        background-color: var(--pico-header-background);
+        transition: border-top-color .4s ease-in-out, box-shadow .4s ease-in-out;
+    }
+}
+
+section.center {
+    justify-content: center;
+    align-items: center;
+    padding: 5dvh 10% 0 10%;
+
 }

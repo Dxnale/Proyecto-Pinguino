@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="~/css/pico.slate.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
+    <header class="is-fixed-above-lg">
         <nav>
             <ul>
                 <li><a asp-area="" asp-controller="Home" asp-action="Index"><strong>Bar Pinguino</strong></a></li>
@@ -21,18 +21,17 @@
                     <a asp-area="" asp-controller="Forms" asp-action="Contacto">Contacto</a>
                 </li>
                 <li>
-                    <a asp-area="" asp-controller="Taller" asp-action="Login"><button class="secondary">Login</button></a>
-                    
+                    <form asp-controller="Taller" asp-action="Login">
+                        <button>Login</button>
+                    </form>
                 </li>
-          </ul>
+            </ul>
         </nav>
     </header>
     <main class="container">
             @RenderBody()
     </main>
     <footer>
-        <div>
-        </div>
     </footer>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
