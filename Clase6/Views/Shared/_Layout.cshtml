@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Clase6</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/pico.slate.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a asp-area="" asp-controller="Home" asp-action="Index"><strong>Bar Pinguino</strong></a></li>
+            </ul>
+            <ul>
+                <li>
+                    <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li>
+                    <a asp-area="" asp-controller="Forms" asp-action="Contacto">Contacto</a>
+                </li>
+                <li>
+                    <a asp-area="" asp-controller="Taller" asp-action="Login"><button class="secondary">Login</button></a>
+                    
+                </li>
+          </ul>
+        </nav>
+    </header>
+    <main class="container">
+            @RenderBody()
+    </main>
+    <footer>
+        <div>
+        </div>
+    </footer>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
