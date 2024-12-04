@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "Venta";
+}
+<main>
+    <h1>Venta</h1>
+    <form method="post" asp-action="Venta">
+        <div>
+            <label for="txtProducto">Producto:</label>
+            <input type="text" id="txtProducto" name="txtProducto" />
+        </div>
+        <div>
+            <label for="txtCantidad">Cantidad:</label>
+            <input type="number" id="txtCantidad" name="txtCantidad" />
+        </div>
+        <div>
+            <label for="txtPrecio">Precio:</label>
+            <input type="number" id="txtPrecio" name="txtPrecio" />
+        </div>
+        <div>
+            <button type="submit">Vender</button>
+        </div>
+    </form>
+    <div>
+        <h2>Detalle de la venta</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            @if (ViewBag.producto != null)
+            {
+                <tbody>
+                    <tr> 
+                    <td>@ViewBag.producto</td> 
+                    <td>@ViewBag.cantidad</td> 
+                    <td>@ViewBag.precio</td> 
+                    <td><input type="checkbox"></td> </tr>
+                
+            </tbody>
+            }
+        </table>
+    </div>
+    <div>
+        <h3>DETALLES</h3>
+        <p>VENDEDOR: </p>
+        <p>CLIENTE: </p>
+        <p>PRODUCTOS: </p>
+        <p>DESCUENTO: </p>
+        <p>TOTAL: </p>
+        <button type="button">CANCELAR</button>
+        <button type="button">PAGAR</button>
+    </div>
+
+</main>
