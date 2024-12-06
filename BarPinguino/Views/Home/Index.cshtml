@@ -1,28 +1,44 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+
 <div id="home-container">
-<div id="main-title">
-    <icon>🐧</icon>
-    <h1>Bar Pinguino</h1>
-</div>
-
-<div class="grid">
-    <a asp-controller="Functions" asp-action="Venta" role="button" class="outline card">Venta</a>
-    <a asp-controller="" asp-action="" role="button" class="outline card">Inventario</a>
-    <a asp-controller="" asp-action="" role="button" class="outline card">Preparacion</a>
-    <a asp-controller="" asp-action="" role="button" class="outline card">Finanzas</a>
-    <a asp-controller="" asp-action="" role="button" class="outline card">Sistema</a>
+    <div id="main-title">
+        <icon>🐧</icon>
+        <h1>Bar Pinguino</h1>
     </div>
-</div>
 
-<section id="about-section">
-    <h2 id="about-tittle">Sobre nosotros</h2>
-    <div id="about-content">
-        <img src="/bar.png" alt="Imagen del bar" id="about-img"/>
-    <p id="about-me">
-        En <strong>Bar Pinguino</strong>, ofrecemos una experiencia única con bebidas de calidad y un ambiente inolvidable.
-    </p>
-    </div>
-    
-</section>
+    <section id="about-section">
+        <div id="about-content">
+            <p id="about-me">
+                <strong>Bienvenidos al Pinguino</strong>. <br />
+                Donde cada trago cuenta una historia y cada plato es una obra de arte. 🌟
+                Disfruta de un ambiente acogedor, una selección de bebidas cuidadosamente curadas
+                y sabores que te harán volver por más.
+                ¡Ven a vivir una experiencia única en Bar Pingüino! 🐧 Tu rincón perfecto para relajarte y celebrar.
+            </p>
+        </div>
+    </section>
+
+    <section id="features-section">
+        <div class="grid">
+            <article class="feature-card">
+                <h3>Menú Digital</h3>
+                <p>Explora nuestra carta completa con precios actualizados y fotos de nuestros platillos.</p>
+                <a asp-controller="Functions" asp-action="Venta" role="button" class="outline">Ver Menú</a>
+            </article>
+
+            <article class="feature-card">
+                <h3>Reservaciones</h3>
+                <p>Asegura tu mesa para una noche especial. Reserva fácil y rápido.</p>
+                <a asp-controller="Forms" asp-action="Contacto" role="button" class="outline">Reservar</a>
+            </article>
+
+            <article class="feature-card">
+                <h3>Eventos</h3>
+                <p>Celebra tus momentos especiales con nosotros. Organizamos eventos personalizados.</p>
+                <a asp-controller="Forms" asp-action="Contacto" role="button" class="outline">Consultar</a>
+            </article>
+        </div>
+    </section>
+</div>

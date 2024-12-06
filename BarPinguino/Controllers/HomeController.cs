@@ -13,13 +13,13 @@ namespace EVA2TI_BarPinguino.Controllers
             _logger = logger;
         }
 
-        public IActionResult Vista3()
+        public IActionResult Menu()
         {
             return View();
         }
         public IActionResult Index()
         {
-            return View("/Views/Home/Index - Copia.cshtml");
+            return View("/Views/Home/Index.cshtml");
         }
 
         public IActionResult Privacy()

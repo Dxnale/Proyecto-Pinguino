@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<div id="home-container">
+<div id="main-title">
+    <icon>🐧</icon>
+    <h1>Bar Pinguino</h1>
+</div>
+
+<div class="grid">
+    <a asp-controller="Functions" asp-action="Venta" role="button" class="outline card">Venta</a>
+    <a asp-controller="" asp-action="" role="button" class="outline card">Inventario</a>
+    <a asp-controller="" asp-action="" role="button" class="outline card">Preparacion</a>
+    <a asp-controller="" asp-action="" role="button" class="outline card">Finanzas</a>
+    <a asp-controller="" asp-action="" role="button" class="outline card">Sistema</a>
+    </div>
+</div>
+
+<section id="about-section">
+    <h2 id="about-tittle">Sobre nosotros</h2>
+    <div id="about-content">
+        <img src="/bar.png" alt="Imagen del bar" id="about-img"/>
+    <p id="about-me">
+        En <strong>Bar Pinguino</strong>, ofrecemos una experiencia única con bebidas de calidad y un ambiente inolvidable.
+    </p>
+    </div>
+    
+</section>
