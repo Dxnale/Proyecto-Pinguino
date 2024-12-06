@@ -1,4 +1,4 @@
-namespace Clase6.Models
+namespace EVA2TI_BarPinguino.Models
 {
     public class ErrorViewModel
     {

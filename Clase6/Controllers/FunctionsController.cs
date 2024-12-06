@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Clase6.Controllers
+namespace EVA2TI_BarPinguino.Controllers
 {
     public class FunctionsController : Controller
     {
@@ -12,11 +12,11 @@ namespace Clase6.Controllers
         [HttpPost]
         public IActionResult Venta(string txtproducto, int txtcantidad, double txtprecio)
         {
- 
-                ViewBag.producto = txtproducto;
-                ViewBag.cantidad = txtcantidad;
-                ViewBag.precio = txtprecio;
-                return View("/Views/Functions/Venta.cshtml");
+
+            ViewBag.producto = txtproducto;
+            ViewBag.cantidad = txtcantidad;
+            ViewBag.precio = txtprecio;
+            return View("/Views/Functions/Venta.cshtml");
         }
     }
 }
