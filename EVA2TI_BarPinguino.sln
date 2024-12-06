@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EVA2TI_BarPinguino", "Clase6\EVA2TI_BarPinguino.csproj", "{CB73E000-649B-4183-A367-D6176547650C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EVA2TI_BarPinguino", "BarPinguino\EVA2TI_BarPinguino.csproj", "{CB73E000-649B-4183-A367-D6176547650C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
