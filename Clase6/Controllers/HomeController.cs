@@ -1,8 +1,8 @@
-using Clase6.Models;
+using EVA2TI_BarPinguino.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace Clase6.Controllers
+namespace EVA2TI_BarPinguino.Controllers
 {
     public class HomeController : Controller
     {
@@ -19,7 +19,7 @@ namespace Clase6.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            return View("/Views/Home/Index - Copia.cshtml");
         }
 
         public IActionResult Privacy()

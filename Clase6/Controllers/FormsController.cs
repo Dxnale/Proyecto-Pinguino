@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Clase6.Controllers
+namespace EVA2TI_BarPinguino.Controllers
 {
     public class FormsController : Controller
     {
