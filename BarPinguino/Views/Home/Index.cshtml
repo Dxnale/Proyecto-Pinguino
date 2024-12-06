@@ -3,22 +3,25 @@
 }
 
 <div id="home-container">
-    <div id="main-title">
-        <icon>🐧</icon>
-        <h1>Bar Pinguino</h1>
-    </div>
-
-    <section id="about-section">
-        <div id="about-content">
-            <p id="about-me">
-                <strong>Bienvenidos al Pinguino</strong>. <br />
-                Donde cada trago cuenta una historia y cada plato es una obra de arte. 🌟
-                Disfruta de un ambiente acogedor, una selección de bebidas cuidadosamente curadas
-                y sabores que te harán volver por más.
-                ¡Ven a vivir una experiencia única en Bar Pingüino! 🐧 Tu rincón perfecto para relajarte y celebrar.
-            </p>
+    <div class="hero" id="about-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1><strong>Bienvenidos al Pinguino</strong> 🐧</h1>
+                <p class="hero-text">
+                    Donde cada trago cuenta una historia y cada plato es una obra de arte. 🌟
+                    Disfruta de un ambiente acogedor, una selección de bebidas cuidadosamente curadas
+                    y sabores que te harán volver por más.
+                </p>
+                <p class="hero-cta">
+                    ¡Ven a vivir una experiencia única en Bar Pingüino! Tu rincón perfecto para relajarte y celebrar.
+                </p>
+                <div class="hero-buttons">
+                    <a asp-controller="Forms" asp-action="Contacto" role="button" class="primary">Reservar Mesa</a>
+                    <a asp-controller="Functions" asp-action="Venta" role="button" class="outline">Ver Menú</a>
+                </div>
+            </div>
         </div>
-    </section>
+    </div>
 
     <section id="features-section">
         <div class="grid">
