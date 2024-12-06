@@ -19,7 +19,7 @@ namespace Clase6.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            return View("/Views/Home/Index - Copia.cshtml");
         }
 
         public IActionResult Privacy()

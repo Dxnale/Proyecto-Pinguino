@@ -18,6 +18,7 @@ icon {
     padding-bottom: 50px;
     text-align: center;
 }
+
 .chapter {
     color: var(--pico-chapter-color);
     font-weight: 600;
@@ -63,9 +64,60 @@ nav {
     }
 }
 
+/* Centrar todo el contenido dentro del section */
 section.center {
     justify-content: center;
     align-items: center;
     padding: 5dvh 10% 0 10%;
+}
 
+/* Título alineado en el centro */
+#about-tittle {
+    text-align: center;
+    margin-bottom: 1rem;
+    margin-top: 8rem;
+}
+
+/* Texto centrado para pantallas pequeñas */
+#about-me {
+    text-align: left; /* Cambia esto a 'left' para mantener el alineado con la imagen */
+    margin: 0;
+}
+
+/* Contenedor principal del contenido */
+.about-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    margin: 2rem auto;
+    text-align: center;
+    gap: 2rem;
+}
+
+/* Contenedor de la imagen y el texto */
+#about-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    text-align: left;
+    max-width: 800px;
+    margin: auto;
+}
+
+/* Imagen a la izquierda */
+#about-img {
+    width: 250px; /* Tamaño más pequeño */
+    height: auto;
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Diseño responsivo */
+@media (max-width: 768px) {
+    #about-content {
+        flex-direction: column; /* Apila imagen y texto en pantallas pequeñas */
+        text-align: center; /* Centra el texto */
+    }
 }
