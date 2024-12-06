@@ -39,7 +39,7 @@ icon {
 }
 
 footer {
-    
+
     position: fixed;
     left: 0;
     bottom: 0;
@@ -71,14 +71,14 @@ section.center {
     padding: 5dvh 10% 0 10%;
 }
 
-/* Título alineado en el centro */
+/* Tï¿½tulo alineado en el centro */
 #about-tittle {
     text-align: center;
     margin-bottom: 1rem;
     margin-top: 8rem;
 }
 
-/* Texto centrado para pantallas pequeñas */
+/* Texto centrado para pantallas pequeï¿½as */
 #about-me {
     text-align: left; /* Cambia esto a 'left' para mantener el alineado con la imagen */
     margin: 0;
@@ -108,16 +108,98 @@ section.center {
 
 /* Imagen a la izquierda */
 #about-img {
-    width: 250px; /* Tamaño más pequeño */
+    width: 250px; /* Tamaï¿½o mï¿½s pequeï¿½o */
     height: auto;
     border-radius: 10px; /* Bordes redondeados */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Diseño responsivo */
+/* Diseï¿½o responsivo */
 @media (max-width: 768px) {
     #about-content {
-        flex-direction: column; /* Apila imagen y texto en pantallas pequeñas */
+        flex-direction: column; /* Apila imagen y texto en pantallas pequeï¿½as */
         text-align: center; /* Centra el texto */
+    }
+}
+
+
+#home-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+#main-title {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+#main-title icon {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+#main-title h1 {
+    font-size: 3rem;
+    margin: 0;
+    color: var(--pico-primary);
+}
+
+#about-section {
+    text-align: center;
+    margin: 3rem 0;
+    padding: 2rem;
+    background: var(--pico-background-color);
+    border-radius: var(--pico-border-radius);
+}
+
+#about-me {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+#features-section {
+    margin: 4rem 0;
+}
+
+.feature-card {
+    padding: 2rem;
+    text-align: center;
+    background: var(--pico-background-color);
+    border-radius: var(--pico-border-radius);
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-card h3 {
+    color: var(--pico-primary);
+    margin-bottom: 1rem;
+}
+
+.feature-card p {
+    margin-bottom: 1.5rem;
+}
+
+.grid {
+    gap: 2rem;
+}
+
+@media (max-width: 768px) {
+    #main-title h1 {
+        font-size: 2rem;
+    }
+
+    #about-me {
+        font-size: 1rem;
+    }
+
+    .feature-card {
+        margin-bottom: 1rem;
     }
 }
