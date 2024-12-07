@@ -84,6 +84,14 @@ nav {
     }
 }
 
+@media (max-width: 1025px) {
+    body > header.is-fixed-above-lg {
+        backdrop-filter: blur(1rem);
+        background-color: rgba(19, 23, 31, 0.8);
+        transition: border-top-color .4s ease-in-out, box-shadow .4s ease-in-out;
+    }
+}
+
 
 section.center {
     justify-content: center;
@@ -159,6 +167,15 @@ section.center {
     margin: 0;
     color: var(--pico-primary);
 }
+
+#card-section {
+    text-decoration:none;
+    padding: 2rem;
+    margin: 1rem 0;
+    background-color: rgba(19, 23, 31, 0.7);
+    border-radius: var(--pico-border-radius);
+}
+
 
 #about-section {
     text-align: center;
