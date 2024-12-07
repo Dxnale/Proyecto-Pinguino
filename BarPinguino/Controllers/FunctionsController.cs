@@ -4,6 +4,9 @@ namespace EVA2TI_BarPinguino.Controllers
 {
     public class FunctionsController : Controller
     {
+        public IActionResult RegistrarUser() {
+            return View();
+        }
         [HttpGet]
         public IActionResult Venta()
         {
