@@ -4,7 +4,7 @@ namespace EVA2TI_BarPinguino.Controllers
 {
     public class FinanzaController : Controller
     {
-        public IActionResult Decuentos()
+        public IActionResult Descuentos()
         {
             return View();
         }
