@@ -1,3 +1,23 @@
-﻿@{
-    Layout = "_Layout";
+﻿@using Microsoft.AspNetCore.Http
+
+@{
+    var user = Context.User;
+    var isUserAuthenticated = user.Identity?.IsAuthenticated ?? false;
+    var isAdmin = user.IsInRole("Admin");
+
+    Layout = DetermineLayout(isUserAuthenticated, isAdmin);
+}
+
+@functions {
+    private string DetermineLayout(bool isAuthenticated, bool isAdmin)
+    {
+        if (!isAuthenticated)
+        {
+            return "~/Views/Shared/_LayoutPublico.cshtml";
+        }
+
+        return isAdmin
+            ? "~/Views/Shared/_LayoutAdmin.cshtml"
+            : "~/Views/Shared/_LayoutPrivado.cshtml";
+    }
 }
