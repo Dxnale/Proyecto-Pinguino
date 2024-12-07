@@ -15,6 +15,14 @@ html {
     overscroll-behavior: none;
 }
 
+img#logo {
+    filter: brightness(100) saturate(100%) invert(42%) sepia(8%) saturate(1321%) hue-rotate(183deg) brightness(100%) contrast(95%);
+    height: 50px;
+    width: 50px;
+    margin: 0 18px 0 0;
+    padding: 0 0 0 0;
+}
+
 body {
     min-height: 100vh;
     display: flex;
@@ -74,6 +82,14 @@ nav {
     margin: 0px 10dvw 0px 10dvw;
 }
 
+a#bar-title {
+
+}
+
+body > header.is-fixed-above-lg {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
 @media (min-width: 1024px) {
     body > header.is-fixed-above-lg {
         margin: 0 0 0 0;
@@ -93,6 +109,9 @@ nav {
         backdrop-filter: blur(1rem);
         background-color: rgba(19, 23, 31, 0.8);
         transition: border-top-color .4s ease-in-out, box-shadow .4s ease-in-out;
+    }
+    #bar-name{
+        display:none;
     }
 }
 
