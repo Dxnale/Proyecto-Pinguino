@@ -339,3 +339,38 @@ section.center {
 main {
     flex: 1 0 auto;
 }
+
+/* Estructura principal */
+.form-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 2rem;
+    backdrop-filter: blur(0.375rem);
+}
+
+/* Secciones del formulario */
+.form-section {
+    flex: 1;
+    max-width: 45%; /* Limita el ancho de cada columna */
+}
+
+/* Estilo del divisor */
+.divider {
+    height: 800px;
+    border: 1px solid #ccc;
+    border-radius:5px;
+}
+
+/* Etiquetas y campos de formulario */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+label {
+    font-weight: bold;
+    font-size: 1rem;
+}
