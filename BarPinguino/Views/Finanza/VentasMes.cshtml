@@ -1,7 +1,227 @@
-﻿
-@{
-    ViewData["Title"] = "Ventas del Mes";
+﻿@{
+ViewData["Title"] = "Ventas del mes";
 }
 
-<h1>Ventas del Mes</h1>
+<div class="mobile-message">
+    <h3>Por favor usar en modo escritorio</h3>
+    <p>Esta vista solo está disponible para pantallas más grandes.</p>
+</div>
 
+<div class="desktop-content">
+    <div class="side-panel">
+        <h3 class="title">Ventas del mes</h3>
+        <ul>
+            <li>
+                <a asp-controller="Finanza" asp-action="VentasDia" class="chapter">Ventas del Dia</a>
+            </li>
+            <li>
+                <a asp-controller="Finanza" asp-action="VentasMes" class="chapter">Ventas del mes</a>
+            </li>
+            <li>
+                <a asp-controller="Finanza" asp-action="Proveedores" class="chapter">Proveedores</a>
+            </li>
+            <li>
+                <a asp-controller="Finanza" asp-action="Stock" class="chapter">Stock</a>
+            </li>
+            <li>
+                <a asp-controller="Finanza" asp-action="Descuentos" class="chapter">Descuentos</a>
+            </li>
+            <li>
+                <a asp-controller="Finanza" asp-action="Insumos" class="chapter">Insumos</a>
+            </li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="grid">
+            <input type="search" name="search" placeholder="Search" aria-label="Search" />
+
+            <input type="date" name="date" aria-label="Date">
+
+            <input type="date" name="date" aria-label="Date">
+            <button class="outline contrast" style="height: fit-content">Filtrar</button>
+        </div>
+        <table class="sales-table">
+            <thead>
+                <tr>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Hora</th>
+                    <th scope="col">Cliente</th>
+                    <th scope="col">RUT</th>
+                    <th scope="col">Método de pago</th>
+                    <th scope="col">Detalles</th>
+                    <th scope="col">Ingreso</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td scope="row">06/07/23</td>
+                    <td>06:26</td>
+                    <td>José Martínez</td>
+                    <td>76.888.999-2</td>
+                    <td>Efectivo</td>
+                    <td>1 Pisco 100ml - 2 Ron 2L</td>
+                    <td>$135.000</td>
+                </tr>
+                <tr>
+                    <td scope="row">06/07/23</td>
+                    <td>06:26</td>
+                    <td>José Martínez</td>
+                    <td>76.888.999-2</td>
+                    <td>Efectivo</td>
+                    <td>1 Pisco 100ml - 2 Ron 2L</td>
+                    <td>$135.000</td>
+                </tr>
+                <tr>
+                    <td scope="row">06/07/23</td>
+                    <td>06:26</td>
+                    <td>José Martínez</td>
+                    <td>76.888.999-2</td>
+                    <td>Efectivo</td>
+                    <td>1 Pisco 100ml - 2 Ron 2L</td>
+                    <td>$135.000</td>
+                </tr>
+                <tr>
+                    <td scope="row">06/07/23</td>
+                    <td>06:26</td>
+                    <td>José Martínez</td>
+                    <td>76.888.999-2</td>
+                    <td>Efectivo</td>
+                    <td>1 Pisco 100ml - 2 Ron 2L</td>
+                    <td>$135.000</td>
+                </tr>
+                <tr>
+                    <td scope="row">06/07/23</td>
+                    <td>06:26</td>
+                    <td>José Martínez</td>
+                    <td>76.888.999-2</td>
+                    <td>Efectivo</td>
+                    <td>1 Pisco 100ml - 2 Ron 2L</td>
+                    <td>$135.000</td>
+                </tr>
+                <tr>
+                    <td scope="row">06/07/23</td>
+                    <td>06:26</td>
+                    <td>José Martínez</td>
+                    <td>76.888.999-2</td>
+                    <td>Efectivo</td>
+                    <td>1 Pisco 100ml - 2 Ron 2L</td>
+                    <td>$135.000</td>
+                </tr>
+                <tr>
+                    <td scope="row">06/07/23</td>
+                    <td>06:26</td>
+                    <td>José Martínez</td>
+                    <td>76.888.999-2</td>
+                    <td>Efectivo</td>
+                    <td>1 Pisco 100ml - 2 Ron 2L</td>
+                    <td>$135.000</td>
+                </tr>
+                <tr>
+                    <td scope="row">06/07/23</td>
+                    <td>06:26</td>
+                    <td>José Martínez</td>
+                    <td>76.888.999-2</td>
+                    <td>Efectivo</td>
+                    <td>1 Pisco 100ml - 2 Ron 2L</td>
+                    <td>$135.000</td>
+                </tr>
+                <tr>
+                    <td scope="row">06/07/23</td>
+                    <td>06:26</td>
+                    <td>José Martínez</td>
+                    <td>76.888.999-2</td>
+                    <td>Efectivo</td>
+                    <td>1 Pisco 100ml - 2 Ron 2L</td>
+                    <td>$135.000</td>
+                </tr>
+                <tr>
+                    <td scope="row">06/07/23</td>
+                    <td>06:26</td>
+                    <td>José Martínez</td>
+                    <td>76.888.999-2</td>
+                    <td>Efectivo</td>
+                    <td>1 Pisco 100ml - 2 Ron 2L</td>
+                    <td>$135.000</td>
+                </tr>
+                <tr>
+                    <td scope="row">06/07/23</td>
+                    <td>06:26</td>
+                    <td>José Martínez</td>
+                    <td>76.888.999-2</td>
+                    <td>Transferencia</td>
+                    <td>1 Pisco 100ml - 2 Ron 2L</td>
+                    <td>$135.000</td>
+                </tr>
+                <tr>
+                    <td scope="row">06/07/23</td>
+                    <td>06:26</td>
+                    <td>José Martínez</td>
+                    <td>76.888.999-2</td>
+                    <td>Efectivo</td>
+                    <td>1 Pisco 100ml - 2 Ron 2L</td>
+                    <td>$135.000</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6" style="text-align: right"><strong>TOTAL</strong></td>
+                    <td><strong>$810.000</strong></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+<style>
+    li :where(a, [role=link]):not(:hover) {
+        text-decoration: none;
+    }
+
+    .mobile-message {
+        display: none;
+        text-align: center;
+        padding: 2rem;
+        margin: 1rem;
+        border-radius: 8px;
+    }
+
+    @@media (max-width: 920px) {
+        .desktop-content {
+            display: none;
+        }
+
+        .mobile-message {
+            display: block;
+        }
+    }
+
+    @@media (min-width: 920px) {
+        .desktop-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 0px 6px;
+            grid-auto-flow: row;
+            grid-template-areas:
+                "side-panel content content content content"
+                "side-panel content content content content"
+                "side-panel content content content content";
+        }
+
+        .side-panel {
+            padding-top: 10px;
+            grid-area: side-panel;
+            position: fixed;
+        }
+
+        .content {
+            grid-area: content;
+        }
+    }
+
+    .side-panel ul li {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+</style>
