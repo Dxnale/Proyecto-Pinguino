@@ -17,6 +17,8 @@ li :where(a, [role=link]):not(:hover) {
 
     .mobile-message {
         display: block;
+        position: absolute;
+        top: 30dvh;
     }
 }
 

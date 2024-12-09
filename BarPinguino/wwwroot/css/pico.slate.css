@@ -664,11 +664,11 @@ section {
  */
 .container,
 .container-fluid {
-  width: 100%;
-  margin-right: auto;
-  margin-left: auto;
-  padding-right: var(--pico-spacing);
-  padding-left: var(--pico-spacing);
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 4dvw;
+    padding-left: 4dvw;
 }
 
 @media (min-width: 576px) {
@@ -2135,7 +2135,6 @@ details.dropdown[open] summary::before {
   display: block;
   z-index: 1;
   position: fixed;
-  width: 100vw;
   height: 100vh;
   inset: 0;
   background: none;
