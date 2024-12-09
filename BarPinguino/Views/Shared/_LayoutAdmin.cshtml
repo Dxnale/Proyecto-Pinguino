@@ -41,9 +41,17 @@
                 </ul>
             </div>
             <ul>
-                <li><a asp-area="" asp-controller="Home" asp-action="Index"><strong>Log Out</strong></a></li>
-                <span> | </span>
-                <li><a asp-area="" asp-controller="Home" asp-action="Index"><strong>Username</strong></a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="Index">Logout</a></li>
+                <li>
+                    <details class="dropdown">
+                        <summary>
+                            Usuario
+                        </summary>
+                        <ul dir="rtl">
+                            <li><a asp-area="" asp-controller="Home" asp-action="Index">Settings</a></li>
+                        </ul>
+                    </details>
+                </li>
             </ul>
         </nav>
     </header>
