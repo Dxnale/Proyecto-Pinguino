@@ -342,3 +342,40 @@ section.center {
 main {
     flex: 1 0 auto;
 }
+
+/* EStilo form registro cliente */
+
+.form-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 2rem;
+    backdrop-filter: blur(0.375rem);
+}
+
+
+.form-section {
+    flex: 1;
+    max-width: 45%;
+}
+
+
+.divider {
+    height: 800px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+label {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
