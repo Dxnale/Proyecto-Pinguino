@@ -8,6 +8,15 @@ namespace EVA2TI_BarPinguino.Controllers
         {
             return View();
         }
+        public IActionResult Registrado(string rut, string nombre, string apellido, string frecuencia, string descuento) 
+        {
+            ViewBag.rut = rut;
+            ViewBag.nombre = nombre;
+            ViewBag.apellido = apellido;
+            ViewBag.frecuencia = frecuencia;
+            ViewBag.descuento = descuento;
+            return View();
+        }
         [HttpGet]
         public IActionResult Venta()
         {
