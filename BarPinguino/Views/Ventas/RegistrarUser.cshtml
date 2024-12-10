@@ -22,16 +22,7 @@
             <input type="text" id="descuento" name="descuento" placeholder="Descuento" />
 
             <button type="submit" >Registrar</button>
-        </form>
-    </div>
-    <div class="divider"></div>
-    <div class="form-section consulta">
-        <h2>Consulta</h2>
-        <form method="post" asp-action="">
-            <label for="consulta-rut">RUT</label>
-            <input type="text" id="consulta-rut" name="consulta-rut" placeholder="Rut" />
-
-            <button type="submit">Consultar</button>
+            <button type="button" onclick="window.location.href = '@Url.Action("Consulta", "Ventas")'" id="btnCstar">Consultar</button>
         </form>
     </div>
 </section>

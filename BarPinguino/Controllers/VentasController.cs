@@ -4,10 +4,12 @@ namespace EVA2TI_BarPinguino.Controllers
 {
     public class VentasController : Controller
     {
+        [HttpGet]
         public IActionResult RegistrarUser()
         {
             return View();
         }
+        [HttpPost]
         public IActionResult Registrado(string rut, string nombre, string apellido, string frecuencia, string descuento) 
         {
             ViewBag.rut = rut;
@@ -16,6 +18,25 @@ namespace EVA2TI_BarPinguino.Controllers
             ViewBag.frecuencia = frecuencia;
             ViewBag.descuento = descuento;
             return View();
+        }
+        [HttpGet]
+        public IActionResult Consulta()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Consulta(string txtRut)
+        {
+            if (string.IsNullOrWhiteSpace(txtRut))
+            {
+                ViewBag.ErrorMessage = "El RUT es obligatorio.";
+                return View("Consulta");
+            }
+
+            ViewBag.ShowModal = true;
+            ViewBag.Rut = txtRut;
+
+            return View("Consulta");
         }
         [HttpGet]
         public IActionResult Venta()
@@ -29,7 +50,7 @@ namespace EVA2TI_BarPinguino.Controllers
             ViewBag.producto = txtproducto;
             ViewBag.cantidad = txtcantidad;
             ViewBag.precio = txtprecio;
-            return View("/Views/Functions/Venta.cshtml");
+            return View("/Views/Ventas/Venta.cshtml");
         }
     }
 }

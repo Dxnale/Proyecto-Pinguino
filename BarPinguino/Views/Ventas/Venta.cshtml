@@ -1,7 +1,9 @@
 ﻿@{
     ViewBag.Title = "Venta";
+    int precio = 10000;
 }
 <main>
+    <div id="main-venta">
     <h1>Venta</h1>
     <form method="post" asp-action="Venta">
         <div>
@@ -11,10 +13,6 @@
         <div>
             <label for="txtCantidad">Cantidad:</label>
             <input type="number" id="txtCantidad" name="txtCantidad" />
-        </div>
-        <div>
-            <label for="txtPrecio">Precio:</label>
-            <input type="number" id="txtPrecio" name="txtPrecio" />
         </div>
         <div>
             <button type="submit">Vender</button>
@@ -33,26 +31,53 @@
             </thead>
             @if (ViewBag.producto != null)
             {
+                precio *= @ViewBag.cantidad;
                 <tbody>
                     <tr> 
                     <td>@ViewBag.producto</td> 
-                    <td>@ViewBag.cantidad</td> 
-                    <td>@ViewBag.precio</td> 
-                    <td><input type="checkbox"></td> </tr>
-                
+                    <td>@ViewBag.cantidad</td>
+                    <td>$10000</td> 
+                    <td>@precio</td>
+                    </tr>
             </tbody>
             }
         </table>
     </div>
-    <div>
-        <h3>DETALLES</h3>
-        <p>VENDEDOR: </p>
-        <p>CLIENTE: </p>
-        <p>PRODUCTOS: </p>
-        <p>DESCUENTO: </p>
-        <p>TOTAL: </p>
-        <button type="button">CANCELAR</button>
-        <button type="button">PAGAR</button>
     </div>
+    <div class="container" >
+        <section class="overflow-auto" id="dv-detalle">
+            <h2>Detalles</h2>
+            <table role="grid">
+                <tbody>
+                    <tr>
+                        <td><strong>VENDEDOR:</strong></td>
+                        <td>VendedorPinguino</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CLIENTE:</strong></td>
+                        <td>Cliente Pinguino</td>
+                    </tr>
+                    <tr>
+                        <td><strong>PRODUCTOS:</strong></td>
+                        <td>@ViewBag.producto</td>
+                    </tr>
+                    <tr>
+                        <td><strong>DESCUENTO:</strong></td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TOTAL:</strong></td>
+                        <td>@precio</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="grid">
+                <button type="button" onclick="window.location.href = '@Url.Action("Venta", "Ventas")'">CANCELAR</button>
+                <button type="button" onclick="window.location.href = '@Url.Action("Venta", "Ventas")'">PAGAR</button>
+            </div>
+        </section>
+    </div>
+
+    
 
 </main>
