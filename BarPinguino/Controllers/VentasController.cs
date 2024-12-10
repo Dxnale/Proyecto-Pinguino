@@ -10,13 +10,12 @@ namespace EVA2TI_BarPinguino.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Registrado(string rut, string nombre, string apellido, string frecuencia, string descuento) 
+        public IActionResult Registrado(string rut, string nombre, string apellido, string frecuencia) 
         {
             ViewBag.rut = rut;
             ViewBag.nombre = nombre;
             ViewBag.apellido = apellido;
             ViewBag.frecuencia = frecuencia;
-            ViewBag.descuento = descuento;
             return View();
         }
         [HttpGet]
@@ -51,6 +50,10 @@ namespace EVA2TI_BarPinguino.Controllers
             ViewBag.cantidad = txtcantidad;
             ViewBag.precio = txtprecio;
             return View("/Views/Ventas/Venta.cshtml");
+        }
+        public IActionResult Boleta()
+        {
+            return View();
         }
     }
 }
