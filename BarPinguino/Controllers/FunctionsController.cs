@@ -18,5 +18,17 @@ namespace EVA2TI_BarPinguino.Controllers
             ViewBag.precio = txtprecio;
             return View("/Views/Functions/Venta.cshtml");
         }
+        public IActionResult Preparacion()
+        {
+            return View("/Views/Functions/Preparacion.cshtml");
+        }
+        public IActionResult Procedimiento()
+        {
+            return View("/Views/Functions/Procedimiento.cshtml");
+        }
+        public IActionResult Inventario()
+        {
+            return View("/Views/Functions/Inventario.cshtml");
+        }
     }
 }
