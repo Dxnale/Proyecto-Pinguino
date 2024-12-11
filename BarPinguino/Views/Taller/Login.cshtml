@@ -1,29 +1,31 @@
 ﻿@{
-    ViewData["Title"] = "Login";
+ViewData["Title"] = "Login";
 }
 
 <section class="center" id="card-section">
-<h1>Login</h1>
-<form class="campo-login" asp-controller="Home" asp-action="Index">
+    <h1>Login</h1>
+    <form class="campo-login" asp-controller="Home" asp-action="Index">
 
-    <fieldset>
-        <div>
-        <input type="text" name="login" placeholder="Login" aria-label="Login" autocomplete="username">
-        </div>
-        <div>
-        <input type="password" name="password" placeholder="Password" aria-label="Password" autocomplete="current-password">
-        </div>
-        <div>
-            <button type="submit">
-                Login
-            </button>
-        </div>
-    </fieldset>
-    <fieldset>
-        <label>
-            <input type="checkbox" role="switch" name="switch" checked=""> Estoy de acuerdo con las 
-            <a data-discover="true" asp-area="" asp-controller="Home" asp-action="Privacy">Politicas de Privacidad</a>
-        </label>
-    </fieldset>
-</form>
+        <fieldset>
+            <div>
+                <input type="text" name="login" placeholder="Login" aria-label="Login" autocomplete="username">
+            </div>
+            <div>
+                <input type="password" name="password" placeholder="Password" aria-label="Password"
+                    autocomplete="current-password">
+            </div>
+            <div>
+                <button type="submit">
+                    Login
+                </button>
+            </div>
+        </fieldset>
+        <fieldset>
+            <label>
+                <input type="checkbox" role="switch" name="switch" checked=""> Estoy de acuerdo con las
+                <a data-discover="true" asp-area="" asp-controller="Home" asp-action="Privacy">Politicas de
+                    Privacidad</a>
+            </label>
+        </fieldset>
+    </form>
 </section>

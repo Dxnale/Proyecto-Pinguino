@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,16 +9,16 @@
     <link rel="stylesheet" href="~/css/pico.slate.css" asp-append-version="true" />
     <link rel="icon" type="image/x-icon" href="~/img/pinguino-logo.svg">
 </head>
+
 <body>
     <header class="is-fixed-above-lg">
         <nav>
             <ul>
-                <li><a id="bar-title" asp-area="" asp-controller="Home" asp-action="Index"><img id="logo" src="~/img/pinguino-logo.svg" alt="Bar Pinguino Logo" /><strong id="bar-name">Bar Pinguino</strong></a></li>
+                <li><a id="bar-title" asp-area="" asp-controller="Home" asp-action="Index"><img id="logo"
+                            src="~/img/pinguino-logo.svg" alt="Bar Pinguino Logo" /><strong id="bar-name">Bar
+                            Pinguino</strong></a></li>
             </ul>
             <ul>
-                <li>
-                    <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                </li>
                 <li>
                     <a asp-area="" asp-controller="Forms" asp-action="Contacto">Contacto</a>
                 </li>
@@ -30,7 +31,7 @@
         </nav>
     </header>
     <main class="container">
-            @RenderBody()
+        @RenderBody()
     </main>
     <footer class="text-center">
         <p class="chapter">&copy; 2024 Bar Pingüino</p>
@@ -38,4 +39,5 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>

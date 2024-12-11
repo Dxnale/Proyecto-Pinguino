@@ -1,7 +1,115 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Descuentos";
 }
 
-<h1>Descuentos</h1>
+<div class="mobile-message">
+    <h3>Por favor usar en modo escritorio</h3>
+    <p>Esta vista solo está disponible para pantallas más grandes.</p>
+</div>
 
+<div class="desktop-content">
+    <div class="side-panel">
+        <h3 class="title">Descuentos</h3>
+        <ul>
+            <li>
+                <a asp-controller="Finanza" asp-action="VentasDia" class="chapter">Ventas del Dia</a>
+            </li>
+            <li>
+                <a asp-controller="Finanza" asp-action="VentasMes" class="chapter">Ventas del mes</a>
+            </li>
+            <li>
+                <a asp-controller="Finanza" asp-action="Proveedores" class="chapter">Proveedores</a>
+            </li>
+            <li>
+                <a asp-controller="Finanza" asp-action="Stock" class="chapter">Stock</a>
+            </li>
+            <li>
+                <a asp-controller="Finanza" asp-action="Descuentos" class="chapter">Descuentos</a>
+            </li>
+            <li>
+                <a asp-controller="Finanza" asp-action="Insumos" class="chapter">Insumos</a>
+            </li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="grid">
+            <form role="search">
+                <input name="search" type="search" placeholder="Search" />
+                <input type="submit" value="Search" />
+            </form>
+        </div>
+        <table class="sales-table">
+            <thead>
+                <tr>
+                    <th scope="col">Producto</th>
+                    <th scope="col">SKU</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Precio c/Descuento</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td scope="row">Vino Casillero del Diablo</td>
+                    <td>CAS9283</td>
+                    <td>$5.000</td>
+                    <td>$4.650</td>
+                </tr>
+                <tr>
+                    <td scope="row">Vino Casillero del Diablo</td>
+                    <td>CAS9283</td>
+                    <td>$5.000</td>
+                    <td>$4.650</td>
+                </tr><tr>
+                    <td scope="row">Vino Casillero del Diablo</td>
+                    <td>CAS9283</td>
+                    <td>$5.000</td>
+                    <td>$4.650</td>
+                </tr><tr>
+                    <td scope="row">Vino Casillero del Diablo</td>
+                    <td>CAS9283</td>
+                    <td>$5.000</td>
+                    <td>$4.650</td>
+                </tr><tr>
+                    <td scope="row">Vino Casillero del Diablo</td>
+                    <td>CAS9283</td>
+                    <td>$5.000</td>
+                    <td>$4.650</td>
+                </tr><tr>
+                    <td scope="row">Vino Casillero del Diablo</td>
+                    <td>CAS9283</td>
+                    <td>$5.000</td>
+                    <td>$4.650</td>
+                </tr>
+                <tr>
+                    <td scope="row">Vino Casillero del Diablo</td>
+                    <td>CAS9283</td>
+                    <td>$5.000</td>
+                    <td>$4.650</td>
+                </tr>
+                <tr>
+                    <td scope="row">Vino Casillero del Diablo</td>
+                    <td>CAS9283</td>
+                    <td>$5.000</td>
+                    <td>$4.650</td>
+                </tr>
+                <tr>
+                    <td scope="row">Vino Casillero del Diablo</td>
+                    <td>CAS9283</td>
+                    <td>$5.000</td>
+                    <td>$4.650</td>
+                </tr><tr>
+                    <td scope="row">Vino Casillero del Diablo</td>
+                    <td>CAS9283</td>
+                    <td>$5.000</td>
+                    <td>$4.650</td>
+                </tr>
+                <tr>
+                    <td scope="row">Vino Casillero del Diablo</td>
+                    <td>CAS9283</td>
+                    <td>$5.000</td>
+                    <td>$4.650</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

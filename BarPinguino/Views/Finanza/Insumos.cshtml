@@ -1,7 +1,128 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Insumos";
 }
 
-<h1>Insumos</h1>
+<div class="mobile-message">
+    <h3>Por favor usar en modo escritorio</h3>
+    <p>Esta vista solo está disponible para pantallas más grandes.</p>
+</div>
 
+<div class="desktop-content">
+    <div class="side-panel">
+        <h3 class="title">Insumos</h3>
+        <ul>
+            <li>
+                <a asp-controller="Finanza" asp-action="VentasDia" class="chapter">Ventas del Dia</a>
+            </li>
+            <li>
+                <a asp-controller="Finanza" asp-action="VentasMes" class="chapter">Ventas del mes</a>
+            </li>
+            <li>
+                <a asp-controller="Finanza" asp-action="Proveedores" class="chapter">Proveedores</a>
+            </li>
+            <li>
+                <a asp-controller="Finanza" asp-action="Stock" class="chapter">Stock</a>
+            </li>
+            <li>
+                <a asp-controller="Finanza" asp-action="Descuentos" class="chapter">Descuentos</a>
+            </li>
+            <li>
+                <a asp-controller="Finanza" asp-action="Insumos" class="chapter">Insumos</a>
+            </li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="grid">
+            <form role="search">
+                <input name="search" type="search" placeholder="Search" />
+                <input type="submit" value="Search" />
+            </form>
+        </div>
+        <table class="sales-table">
+            <thead>
+                <tr>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Cantidad solicitada</th>
+                    <th scope="col">Invoice</th>
+                    <th scope="col">Recepcion</th>
+                    <th scope="col">Pago</th>
+                    <th scope="col">Proveedor</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td scope="row">Ron 2L</td>
+                    <td>100</td>
+                    <td>1234</td>
+                    <td>06/07/23</td>
+                    <td>06/07/23</td>
+                    <td>Licores Pepe</td>
+                </tr>
+                <tr>
+                    <td scope="row">Pisco 100ml</td>
+                    <td>200</td>
+                    <td>1235</td>
+                    <td>06/07/23</td>
+                    <td>06/07/23</td>
+                    <td>Licores Pepe</td>
+                </tr>
+                <tr>
+                    <td scope="row">Vodka 1L</td>
+                    <td>50</td>
+                    <td>1236</td>
+                    <td>06/07/23</td>
+                    <td>06/07/23</td>
+                    <td>Licores Pepe</td>
+                </tr>
+                <tr>
+                    <td scope="row">Pisco 100ml</td>
+                    <td>200</td>
+                    <td>1235</td>
+                    <td>06/07/23</td>
+                    <td>06/07/23</td>
+                    <td>Licores Pepe</td>
+                </tr>
+                <tr>
+                    <td scope="row">Vodka 1L</td>
+                    <td>50</td>
+                    <td>1236</td>
+                    <td>06/07/23</td>
+                    <td>06/07/23</td>
+                    <td>Licores Pepe</td>
+                </tr>
+                <tr>
+                    <td scope="row">Pisco 100ml</td>
+                    <td>200</td>
+                    <td>1235</td>
+                    <td>06/07/23</td>
+                    <td>06/07/23</td>
+                    <td>Licores Pepe</td>
+                </tr>
+                <tr>
+                    <td scope="row">Vodka 1L</td>
+                    <td>50</td>
+                    <td>1236</td>
+                    <td>06/07/23</td>
+                    <td>06/07/23</td>
+                    <td>Licores Pepe</td>
+                </tr>
+                <tr>
+                    <td scope="row">Pisco 100ml</td>
+                    <td>200</td>
+                    <td>1235</td>
+                    <td>06/07/23</td>
+                    <td>06/07/23</td>
+                    <td>Licores Pepe</td>
+                </tr>
+                <tr>
+                    <td scope="row">Vodka 1L</td>
+                    <td>50</td>
+                    <td>1236</td>
+                    <td>06/07/23</td>
+                    <td>06/07/23</td>
+                    <td>Licores Pepe</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
