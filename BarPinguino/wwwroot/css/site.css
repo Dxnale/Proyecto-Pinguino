@@ -1,19 +1,111 @@
-.CarrilInv {
-    display:grid;
-    justify-content:center;
-    align-content:center;
-    align-items:center;
+.btnRegreso {
+    margin:0 0 0 0;
+    padding:0 0 0 0;
+}
+.labelCorreo {
+    padding: 90px 0 0 0;
+    display: grid;
+    height: 450px;
+    width: auto;
+    text-align: center;
+}
+.cardCorreo {
+    padding:0 10px 0 10px;
+    flex: 1;
+    display: grid;
+    flex-direction: row;
+    background-color: rgba(19, 23, 31, 0.8);
+    backdrop-filter: blur(0.375rem);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: auto;
+    height: 580px;
+}
+.blur {
+    padding:10px 10px 0 10px;
+    width:auto;
+    height:42vw;
     border-radius:15px;
+    backdrop-filter: blur(0.375rem);
+}
+.labelProveedores {
+    margin:0 0 0 0;
+    padding: 0 0 0 0;
+    text-align: center;
+}
+.TextCritico {
+    color: rgb(217, 53, 38);
+}
+.CarrilInv {
+    margin: 0 0 15px 0;
+    backdrop-filter: blur(0.375rem);
+    display: grid;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: center;
+    border-radius: 15px;
+    height: 150px;
+}
+.ProductoCritico {
+    color: rgb(217, 53, 38);
+    justify-content: flex-start;
+    align-content: center;
+    padding: 20px 0 30px 0px;
+    margin: 0 0 0 0px;
+    text-align: center;
+    flex: none; /* Deshabilita el comportamiento flexible */
+    width: 90px; /* Ancho fijo */
+    height: 90px; /* Altura fija */
+}
+.ProductoAceptable {
+    color: rgb(5, 134, 134);
+    justify-content: flex-start;
+    align-content: center;
+    padding: 20px 0 30px 0px;
+    margin: 0 0 0 0px;
+    text-align: center;
+    flex: none; /* Deshabilita el comportamiento flexible */
+    width: 90px; /* Ancho fijo */
+    height: 90px; /* Altura fija */
+}
+.ProductoNuevo {
+    color: rgb(112, 252, 186);
+    justify-content: flex-start;
+    align-content: center;
+    padding: 20px 0 30px 0px;
+    margin: 0 0 0 0px;
+    text-align: center;
+    flex: none; /* Deshabilita el comportamiento flexible */
+    width: 90px; /* Ancho fijo */
+    height: 90px; /* Altura fija */
+}
+.Bstock {
+    all: unset; /* Resetea los estilos predeterminados */
+    width: 100%; /* Ocupará todo el ancho del contenedor */
+    max-width: 120px; /* Máximo ancho del botón */
+    padding: 0 0 50px 0; /* Espaciado interno */
+    margin: -7px 45px -177px 0px; /* Sin margen adicional */
+    color: var(--pico-chapter-color, #ffffff);
+    background-color: var(--pico-primary-background, #007BFF);
+    border-radius: 6px; /* Bordes redondeados */
+    text-align: center;
+    cursor: pointer;
+}
+
+.cardInv {
+    filter: drop-shadow(7px 7px 7px rgba(0, 0, 0, 0.5));
+    display: flex; /* Usa flexbox para organizar el contenido */
+    flex-direction: column; /* Coloca elementos en columna */
+    justify-content: space-between; /* El texto arriba, el botón abajo */
+    align-items: center; /* Centra el contenido horizontalmente */
+    width: 150px;
     height: 150px;
     background-color: rgba(19, 23, 31, 0.8);
     backdrop-filter: blur(0.375rem);
-}
-.cardInv {
-    width:150px;
-    height:150px;
-    background-color:white;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 10px; /* Espaciado interno */
+    overflow: hidden; /* Asegura que el contenido no se desborde */
 }
 
 
