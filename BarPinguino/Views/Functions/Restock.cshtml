@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Restock";
+}
+<main>
+    <div class="blur">
+        <form asp-controller="Functions" asp-action="CorreoProveedores" method="post">
+            <button type="submit" class="CorreoProveedores">Informar sobre Restock de todos los productos <strong class="TextCritico">CRITICOS</strong>.</button>
+        </form>
+        <label class="labelProveedores">Selecciona el producto y cantidad de manera <strong class="TextCritico">ESPECIFICA</strong>.<br>⬇️</label>
+        <div>
+            <label>Producto:</label>
+            <input type="text" id="txtProducto" name="txtProducto" required />
+        </div>
+        <div>
+            <label>Cantidad:</label>
+            <input type="number" id="txtCantidad" name="txtCantidad" required />
+        </div>
+        <div>
+            <label>Proveedor:</label>
+            <input type="text" id="txtProveedor" name="txtProveedor" required />
+        </div>
+        <form asp-controller="Functions" asp-action="CorreoProveedores" method="post">
+            <button type="submit" class="CorreoProveedores">Informar Restock.</button>
+        </form>
+    </div>
+</main>
