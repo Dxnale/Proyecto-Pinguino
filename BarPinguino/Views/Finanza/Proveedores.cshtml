@@ -1,7 +1,100 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Proveedores";
 }
 
-<h1>Proveedores</h1>
+<div class="mobile-message">
+    <h3>Por favor usar en modo escritorio</h3>
+    <p>Esta vista solo está disponible para pantallas más grandes.</p>
+</div>
 
+<div class="desktop-content">
+    <div class="side-panel">
+        <h3 class="title">Proveedores</h3>
+        <ul>
+            <li>
+                <a asp-controller="Finanza" asp-action="VentasDia" class="chapter">Ventas del Dia</a>
+            </li>
+            <li>
+                <a asp-controller="Finanza" asp-action="VentasMes" class="chapter">Ventas del mes</a>
+            </li>
+            <li>
+                <a asp-controller="Finanza" asp-action="Proveedores" class="chapter">Proveedores</a>
+            </li>
+            <li>
+                <a asp-controller="Finanza" asp-action="Stock" class="chapter">Stock</a>
+            </li>
+            <li>
+                <a asp-controller="Finanza" asp-action="Descuentos" class="chapter">Descuentos</a>
+            </li>
+            <li>
+                <a asp-controller="Finanza" asp-action="Insumos" class="chapter">Insumos</a>
+            </li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="grid">
+            <form role="search">
+                <input name="search" type="search" placeholder="Search" />
+                <input type="submit" value="Search" />
+            </form>
+        </div>
+        <table class="sales-table">
+            <thead>
+                <tr>
+                    <th scope="col">Empresa</th>
+                    <th scope="col">RUT</th>
+                    <th scope="col">Giro</th>
+                    <th scope="col">Datos Bancarios</th>
+                    <th scope="col">Fono</th>
+                    <th scope="col">Contacto</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td scope="row">Licores Pepe</td>
+                    <td>78.234.564-3</td>
+                    <td>Venta al mayor de licores</td>
+                    <td>1-5634-8890-0 Falabella</td>
+                    <td>+56 9 1234 5678</td>
+                    <td>José</td>
+                </tr>                <tr>
+                    <td scope="row">Licores Pepe</td>
+                    <td>78.234.564-3</td>
+                    <td>Venta al mayor de licores</td>
+                    <td>1-5634-8890-0 Falabella</td>
+                    <td>+56 9 1234 5678</td>
+                    <td>José</td>
+                </tr>                <tr>
+                    <td scope="row">Licores Pepe</td>
+                    <td>78.234.564-3</td>
+                    <td>Venta al mayor de licores</td>
+                    <td>1-5634-8890-0 Falabella</td>
+                    <td>+56 9 1234 5678</td>
+                    <td>José</td>
+                </tr>                <tr>
+                    <td scope="row">Licores Pepe</td>
+                    <td>78.234.564-3</td>
+                    <td>Venta al mayor de licores</td>
+                    <td>1-5634-8890-0 Falabella</td>
+                    <td>+56 9 1234 5678</td>
+                    <td>José</td>
+                </tr>                <tr>
+                    <td scope="row">Licores Pepe</td>
+                    <td>78.234.564-3</td>
+                    <td>Venta al mayor de licores</td>
+                    <td>1-5634-8890-0 Falabella</td>
+                    <td>+56 9 1234 5678</td>
+                    <td>José</td>
+                </tr>
+                <tr>
+                    <td scope="row">Licores Pepe</td>
+                    <td>78.234.564-3</td>
+                    <td>Venta al mayor de licores</td>
+                    <td>1-5634-8890-0 Falabella</td>
+                    <td>+56 9 1234 5678</td>
+                    <td>José</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

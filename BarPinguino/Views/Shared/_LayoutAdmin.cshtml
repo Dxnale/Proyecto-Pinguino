@@ -1,46 +1,61 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Admin - Bar Pinguino</title>
     <link rel="stylesheet" href="~/css/pico.slate.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    @if (Context.Request.Path.StartsWithSegments("/Finanza"))
+    {
+        <link rel="stylesheet" href="~/css/private/finanza-styles.css" asp-append-version="true" />
+    }
     <link rel="icon" type="image/x-icon" href="~/img/pinguino-logo.svg">
 </head>
+
 <body>
     <header class="is-fixed-above-lg">
         <nav>
             <ul>
-                <li><a id="bar-title" asp-area="" asp-controller="Home" asp-action="Index"><img id="logo" src="~/img/pinguino-logo.svg" alt="Bar Pinguino Logo" /></a></li>
+                <li><a id="bar-title" asp-area="" asp-controller="Home" asp-action="Index"><img id="logo"
+                            src="~/img/pinguino-logo.svg" alt="Bar Pinguino Logo" /></a></li>
             </ul>
-                <div class="grid">
-            <ul>
-                <li>
-                    <a asp-controller="" asp-action="" class="card">Inventario</a>
-                </li>
-                <li>
-                    <a asp-controller="" asp-action="" class="card">Preparacion</a>
-                </li>
-                <li>
-                    <a asp-controller="" asp-action="" class="card">Finanzas</a>
-                </li>
-                <li>
-                    <a asp-controller="" asp-action="" class="card">Sistema</a>
-                </li>
-                <li>
-                    <a asp-controller="Functions" asp-action="Venta" class="card">Venta</a>
-                </li>
-            </ul>
-            </div>
-                <ul>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index"><strong>Log Out</strong></a></li>
-                    <span> | </span>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index"><strong>Username</strong></a></li>
+            <div class="grid">
+                <ul id="admin-nav-list">
+                    <li>
+                        <a asp-controller="" asp-action="" class="card">Inventario</a>
+                    </li>
+                    <li>
+                        <a asp-controller="" asp-action="" class="card">Preparacion</a>
+                    </li>
+                    <li>
+                        <a asp-controller="Finanza" asp-action="VentasMes" class="card">Finanzas</a>
+                    </li>
+                    <li>
+                        <a asp-controller="" asp-action="" class="card">Sistema</a>
+                    </li>
+                    <li>
+                        <a asp-controller="Functions" asp-action="Venta" class="card">Venta</a>
+                    </li>
                 </ul>
+            </div>
+            <ul>
+                <li><a asp-area="" asp-controller="Home" asp-action="Index">Logout</a></li>
+                <li>
+                    <details class="dropdown">
+                        <summary>
+                            Usuario
+                        </summary>
+                        <ul dir="rtl">
+                            <li><a asp-area="" asp-controller="Home" asp-action="Index">Settings</a></li>
+                        </ul>
+                    </details>
+                </li>
+            </ul>
         </nav>
     </header>
-    <main class="container">
+    <main class="container-fluid">
         @RenderBody()
     </main>
     <footer class="text-center">
@@ -48,10 +63,21 @@
     </footer>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
-</body>
     <style>
         body {
-        background-image: linear-gradient(rgba(19, 23, 31, 1), rgba(19, 23, 31, 0.7)), url("/img/background-image.jpeg") !important;
+            background-image: linear-gradient(rgba(19, 23, 31, 1), rgba(19, 23, 31, 0.7)), url("/img/background-image.jpeg") !important;
+        }
+
+        @@media (max-width: 900px) {
+            #admin-nav-list {
+                display: none;
+            }
+        }
+
+        footer {
+            display: none;
         }
     </style>
+</body>
+
 </html>

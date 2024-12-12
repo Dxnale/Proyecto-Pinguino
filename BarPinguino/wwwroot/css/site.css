@@ -1,3 +1,5 @@
+/* Reglas generales */
+
 * {
     margin: 0;
     padding: 0;
@@ -5,7 +7,7 @@
 }
 
 button:focus {
-    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem var(--pico-secondary);
 }
 
 html {
@@ -17,6 +19,21 @@ html {
     overscroll-behavior: none;
 }
 
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/img/background-image.jpeg");
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    overscroll-behavior-y: none;
+}
+
+/* Regla general logo pinguino */
 img#logo {
     filter: brightness(100) saturate(100%) invert(42%) sepia(8%) saturate(1321%) hue-rotate(183deg) brightness(100%) contrast(95%);
     height: 50px;
@@ -25,25 +42,12 @@ img#logo {
     padding: 0 0 0 0;
 }
 
-body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url("/img/background-image.jpeg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    margin: 0;
-    padding: 0;
-    overscroll-behavior-y: none;
-}
-
 icon {
     font-size: 40pt;
 }
 
 #main-title {
+    margin-bottom: 3rem;
     padding-bottom: 50px;
     text-align: center;
 }
@@ -85,15 +89,12 @@ nav {
     margin: 0px 10dvw 0px 10dvw;
 }
 
-a#bar-title {
-}
-
-body > header.is-fixed-above-lg {
+body>header.is-fixed-above-lg {
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 @media (min-width: 1024px) {
-    body > header.is-fixed-above-lg {
+    body>header.is-fixed-above-lg {
         margin: 0 0 0 0;
         padding: 0 0 0 0;
         z-index: 2;
@@ -107,7 +108,7 @@ body > header.is-fixed-above-lg {
 }
 
 @media (max-width: 1025px) {
-    body > header.is-fixed-above-lg {
+    body>header.is-fixed-above-lg {
         backdrop-filter: blur(1rem);
         background-color: rgba(19, 23, 31, 0.8);
         transition: border-top-color .4s ease-in-out, box-shadow .4s ease-in-out;
@@ -177,22 +178,19 @@ section.center {
 }
 
 
-#main-title {
-    text-align: center;
-    margin-bottom: 3rem;
+
+
+#main-title icon {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: 1rem;
 }
 
-    #main-title icon {
-        font-size: 4rem;
-        display: block;
-        margin-bottom: 1rem;
-    }
-
-    #main-title h1 {
-        font-size: 3rem;
-        margin: 0;
-        color: var(--pico-primary);
-    }
+#main-title h1 {
+    font-size: 3rem;
+    margin: 0;
+    color: var(--pico-primary);
+}
 
 #card-section {
     text-decoration: none;
@@ -230,18 +228,22 @@ section.center {
     transition: transform 0.3s ease;
 }
 
-    .feature-card:hover {
-        transform: translateY(-5px);
-    }
+.feature-card:hover {
+    transform: translateY(-5px);
+}
 
-    .feature-card h3 {
-        color: var(--pico-primary);
-        margin-bottom: 1rem;
-    }
+.feature-card h3 {
+    color: var(--pico-primary);
+    margin-bottom: 1rem;
+}
 
-    .feature-card p {
-        margin-bottom: 1.5rem;
-    }
+.feature-card p {
+    margin-bottom: 1.5rem;
+}
+
+h1 {
+    color: var(--pico-primary);
+}
 
 .grid {
     gap: 2rem;
@@ -269,15 +271,15 @@ section.center {
     overflow: hidden;
 }
 
-    .hero::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        opacity: 0.1;
-    }
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.1;
+}
 
 .hero-content {
     max-width: 800px;
@@ -311,18 +313,18 @@ section.center {
     justify-content: center;
 }
 
-    .hero-buttons a {
-        min-width: 150px;
-    }
+.hero-buttons a {
+    min-width: 150px;
+}
 
 @media (max-width: 768px) {
     .hero {
         padding: 4rem 0;
     }
 
-        .hero h1 {
-            font-size: 2rem;
-        }
+    .hero h1 {
+        font-size: 2rem;
+    }
 
     .hero-text {
         font-size: 1.1rem;
@@ -333,10 +335,10 @@ section.center {
         align-items: center;
     }
 
-        .hero-buttons a {
-            width: 100%;
-            max-width: 300px;
-        }
+    .hero-buttons a {
+        width: 100%;
+        max-width: 300px;
+    }
 }
 
 main {
@@ -387,6 +389,3 @@ label {
     padding: 2rem;
     backdrop-filter: blur(0.375rem);
 }
-
-
-
