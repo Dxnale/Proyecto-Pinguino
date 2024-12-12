@@ -81,8 +81,8 @@
 }
 .Bstock {
     all: unset; /* Resetea los estilos predeterminados */
-    width: 100%; /* Ocupará todo el ancho del contenedor */
-    max-width: 120px; /* Máximo ancho del botón */
+    width: 100%; /* Ocuparï¿½ todo el ancho del contenedor */
+    max-width: 120px; /* Mï¿½ximo ancho del botï¿½n */
     padding: 0 0 50px 0; /* Espaciado interno */
     margin: -7px 45px -177px 0px; /* Sin margen adicional */
     color: var(--pico-chapter-color, #ffffff);
@@ -96,7 +96,7 @@
     filter: drop-shadow(7px 7px 7px rgba(0, 0, 0, 0.5));
     display: flex; /* Usa flexbox para organizar el contenido */
     flex-direction: column; /* Coloca elementos en columna */
-    justify-content: space-between; /* El texto arriba, el botón abajo */
+    justify-content: space-between; /* El texto arriba, el botï¿½n abajo */
     align-items: center; /* Centra el contenido horizontalmente */
     width: 150px;
     height: 150px;
@@ -254,12 +254,7 @@
     }
 }
 
-
-
-
-
-
-
+/* Estilos generales */
 * {
     margin: 0;
     padding: 0;
