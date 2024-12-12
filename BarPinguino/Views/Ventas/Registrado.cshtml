@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Registro Consulta";
+}
+
+<dialog open>
+    <article>
+        <header>
+            <p>
+                <strong>🗓️ Gracias Por Registrar</strong>
+            </p>
+        </header>
+        <ul>
+            <strong>Datos Registrados</strong>
+            <li id="li-modal">Nombre: @ViewBag.nombre</li>
+            <li id="li-modal">Apellido: @ViewBag.apellido</li>
+            <li id="li-modal">Rut: @ViewBag.rut</li>
+            <li id="li-modal">Frecuencia: @ViewBag.frecuencia</li>
+        </ul>
+
+        <button type="button" onclick="window.location.href = '@Url.Action("Venta", "Ventas")'">Aceptar</button>
+    </article>
+</dialog>

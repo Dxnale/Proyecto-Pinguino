@@ -344,3 +344,48 @@ h1 {
 main {
     flex: 1 0 auto;
 }
+
+/* EStilo form registro cliente */
+
+.form-container {
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    backdrop-filter: blur(0.375rem);
+}
+
+#btnCstar{
+    width: 100%;
+}
+
+label {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+/* Estilo modal*/
+
+#li-modal {
+    margin-left: 20px;
+}
+
+#form-consulta {
+    padding: 2rem;
+    backdrop-filter: blur(0.375rem);
+}
+
+#main-venta{
+    padding: 2rem;
+    backdrop-filter: blur(0.375rem);
+}
+
+#dv-detalle{
+    margin-top: 2rem;
+    padding: 2rem;
+    backdrop-filter: blur(0.375rem);
+}
+
+#section-pagar{
+    padding: 2rem;
+    backdrop-filter: blur(0.375rem);
+}

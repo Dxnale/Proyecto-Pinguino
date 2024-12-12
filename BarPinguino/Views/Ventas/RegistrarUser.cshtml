@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Registrar Usuario";
+}
+
+<section class="form-container">
+    <div class="form-section registro">
+        <h2>Registro</h2>
+        <form method="post" asp-action="Registrado">
+            <label for="rut">RUT</label>
+            <input type="text" id="rut" name="rut" placeholder="Rut" />
+
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Nombre" />
+
+            <label for="apellido">Apellido</label>
+            <input type="text" id="apellido" name="apellido" placeholder="Apellido" />
+
+            <label for="frecuencia">Frecuencia</label>
+            <input type="text" id="frecuencia" name="frecuencia" placeholder="Frecuencia" />
+
+            <button type="submit" >Registrar</button>
+            <button type="button" onclick="window.location.href = '@Url.Action("Consulta", "Ventas")'" id="btnCstar">Consultar</button>
+        </form>
+    </div>
+</section>
