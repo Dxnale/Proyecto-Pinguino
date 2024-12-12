@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Inventario";
+}
+<main>
+    <h3 class="EstadoStock">CRITICOS:</h3>
+    <div class="CarrilInv">
+        <div class="cardInv">
+            <p class="ProductoCritico">MENTA</p>
+            <form asp-controller="Functions" asp-action="Restock" method="post">
+                <button type="submit" class="Bstock">RESTOCK</button>
+            </form>
+        </div>
+    </div> <!-- Lista con inventario critico -->
+    <h3 class="EstadoStock">ACEPTABLE PARA EL USO:</h3>
+    <div class="CarrilInv">
+        <div class="cardInv">
+            <p class="ProductoAceptable">MENTA</p>
+            <form asp-controller="Functions" asp-action="Restock" method="post">
+                <button type="submit" class="Bstock">RESTOCK</button>
+            </form>
+        </div>
+    </div> <!-- Lista con inventario aceptable -->
+    <h3 class="EstadoStock">NUEVOS:</h3>
+    <div class="CarrilInv">
+        <div class="cardInv">
+            <p class="ProductoNuevo">MENTA</p>
+            <form asp-controller="Functions" asp-action="Restock" method="post">
+                <button type="submit" class="Bstock">RESTOCK</button>
+            </form>
+        </div>
+    </div> <!-- Lista con inventario nuevo -->
+</main>

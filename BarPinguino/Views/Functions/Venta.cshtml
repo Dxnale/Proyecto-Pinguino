@@ -1,0 +1,75 @@
+@{
+    ViewBag.Title = "Venta";
+}
+<main>
+    <h1>Venta</h1>
+    <form method="post" asp-controller="Functions" asp-action="Venta">
+        <div>
+            <label for="txtProducto">Producto:</label>
+            <input type="text" id="txtProducto" name="txtProducto" />
+            <input type="text" id="txtProducto" name="txtProducto" required />
+        </div>
+        <div>
+            <label for="txtCantidad">Cantidad:</label>
+            <input type="number" id="txtCantidad" name="txtCantidad" />
+            <input type="number" id="txtCantidad" name="txtCantidad" min="1" required />
+        </div>
+        <div>
+            <label for="txtPrecio">Precio:</label>
+            <input type="number" id="txtPrecio" name="txtPrecio" />
+            <input type="number" id="txtPrecio" name="txtPrecio" min="0" step="0.01" required />
+        </div>
+        <div>
+            <button type="submit">Vender</button>
+        </div>
+    </form>
+    <div>
+        <h2>Detalle de la venta</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (ViewBag.producto != null)
+                {
+                    <tr>
+                        <td>@ViewBag.producto</td>
+                        <td>@ViewBag.cantidad</td>
+                        <td>@ViewBag.precio</td>
+                        <td>@(Convert.ToDouble(ViewBag.cantidad) * Convert.ToDouble(ViewBag.precio))</td>
+                    </tr>
+                } else {
+                    <tr>
+                        <td colspan="4">No hay datos para mostrar.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <h3>DETALLES</h3>
+        <p>VENDEDOR: </p>
+        <p>CLIENTE: </p>
+        <p>PRODUCTOS: </p>
+        <p>PRODUCTOS: @ViewBag.producto</p>
+        <p>DESCUENTO: </p>
+        <p>TOTAL: </p>
+        <p>
+            TOTAL: @if (ViewBag.cantidad != null && ViewBag.precio != null)
+            {
+                @(Convert.ToDouble(ViewBag.cantidad) * Convert.ToDouble(ViewBag.precio))
+            }
+        </p>
+        <button type="button">CANCELAR</button>
+        <button type="button">PAGAR</button>
+        <button type="button" class="btn btn-primary"
+                onclick="window.location.href='@Url.Action("Preparacion", "Functions")'">
+            PAGAR
+        </button>
+    </div>
+</main>

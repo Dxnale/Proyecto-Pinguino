@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -24,19 +24,22 @@
             <div class="grid">
                 <ul id="admin-nav-list">
                     <li>
-                        <a asp-controller="" asp-action="" class="card">Inventario</a>
+                        <a asp-controller="Ventas" asp-action="RegistrarUser" class="card">Registro</a>
                     </li>
                     <li>
-                        <a asp-controller="" asp-action="" class="card">Preparacion</a>
+                        <a asp-controller="Ventas" asp-action="Venta" class="card">Venta</a>
+                    </li>
+                    <li>
+                        <a asp-controller="Functions" asp-action="Inventario" class="card">Inventario</a>
+                    </li>
+                    <li>
+                        <a asp-controller="Functions" asp-action="Preparacion" class="card">Preparacion</a>
                     </li>
                     <li>
                         <a asp-controller="Finanza" asp-action="VentasMes" class="card">Finanzas</a>
                     </li>
                     <li>
                         <a asp-controller="" asp-action="" class="card">Sistema</a>
-                    </li>
-                    <li>
-                        <a asp-controller="Functions" asp-action="Venta" class="card">Venta</a>
                     </li>
                 </ul>
             </div>
