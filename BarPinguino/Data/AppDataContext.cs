@@ -10,9 +10,20 @@ namespace EVA2TI_BarPinguino.Data
         }
         public DbSet<Clientes> Clientes { get; set; }
 
-        private void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Clientes>(tb => 
+            {
+                tb.HasKey(c => c.Rut);
+
+                tb.Property(c => c.Rut).UseIdentityColumn().ValueGeneratedOnAdd();
+
+                tb.Property(c => c.Nombre).HasMaxLength(50).IsRequired();
+                tb.Property(c => c.Apellido).HasMaxLength(50).IsRequired();
+                tb.Property(c => c.Frecuente).HasMaxLength(10).IsRequired();
+            });
+
+            modelBuilder.Entity<Clientes>().ToTable("Clientes");
         }
     }
 }
