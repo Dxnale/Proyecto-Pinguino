@@ -9,6 +9,8 @@ namespace EVA2TI_BarPinguino.Data
         {
         }
         public DbSet<Clientes> Clientes { get; set; }
+        public DbSet<Usuarios> Usuarios { get; set; }
+        public DbSet<Venta> Venta { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
