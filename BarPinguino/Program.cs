@@ -1,7 +1,15 @@
+using EVA2TI_BarPinguino.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<AppDataContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnec"));
+});
 
 var app = builder.Build();
 
