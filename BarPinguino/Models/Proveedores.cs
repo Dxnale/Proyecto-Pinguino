@@ -8,5 +8,6 @@
         public string datos_bancarios { get; set; }
         public int Fono { get; set; }
         public string direccion { get; set; }
+        public virtual ICollection<Stock> Stock { get; set; }
     }
 }

@@ -5,5 +5,6 @@
         public int Sku { get; set; }
         public string Precio_original { get; set; }
         public string Precio_descuento { get; set; }
+        public virtual ICollection<Stock> Stock { get; set; }
     }
 }
