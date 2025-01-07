@@ -22,8 +22,6 @@ namespace EVA2TI_BarPinguino.Data
             {
                 tb.HasKey(c => c.Rut);
 
-                tb.Property(c => c.Rut).UseIdentityColumn();
-
                 tb.Property(c => c.Nombre).HasMaxLength(50).IsRequired();
                 tb.Property(c => c.Apellido).HasMaxLength(50).IsRequired();
                 tb.Property(c => c.Frecuente).HasMaxLength(10).IsRequired();
@@ -44,26 +42,26 @@ namespace EVA2TI_BarPinguino.Data
 
             modelBuilder.Entity<Usuarios>().ToTable("Usuarios");
 
-            modelBuilder.Entity<Venta>(static tb =>
+            modelBuilder.Entity<Venta>(tb =>
             {
                 tb.HasKey(v => v.Num_Boleta);
-
-                tb.Property(v => v.Num_Boleta).UseIdentityColumn();
 
                 tb.Property(v => v.Credencial_v).IsRequired();
                 tb.Property(v => v.Detalles).HasMaxLength(200).IsRequired();
                 tb.Property(v => v.cliente_rut).IsRequired();
                 tb.Property(v => v.TotalPedido).IsRequired();
-                
+
+                tb.HasOne(v => v.Clientes)
+                  .WithMany(c => c.Venta)
+                  .HasForeignKey(v => v.cliente_rut)
+                  .HasPrincipalKey(c => c.Rut);
             });
 
             modelBuilder.Entity<Venta>().ToTable("Venta");
 
             modelBuilder.Entity<Descuentos>(tb =>
             {
-                tb.HasKey(d => d.Sku);
-
-                tb.Property(d => d.Sku).UseIdentityColumn();
+                tb.HasKey(d => d.SKU);
 
                 tb.Property(d => d.Precio_original).HasMaxLength(50).IsRequired();
                 tb.Property(d => d.Precio_descuento).HasMaxLength(50).IsRequired();
@@ -74,16 +72,19 @@ namespace EVA2TI_BarPinguino.Data
 
             modelBuilder.Entity<Finanzas>(tb =>
             {
-                tb.HasKey(f => f.Informe_stock);
-
-                tb.Property(f => f.Informe_stock).UseIdentityColumn();
+                tb.HasKey(f => f.I_stock);
 
                 tb.Property(f => f.Fecha).IsRequired();
                 tb.Property(f => f.Gasto).IsRequired();
                 tb.Property(f => f.ingreso).HasMaxLength(50).IsRequired();
                 tb.Property(f => f.Detalles).HasMaxLength(200).IsRequired();
-                tb.Property(f => f.n_documento).HasMaxLength(50).IsRequired();
+                
                 tb.Property(f => f.tipo_documento).HasMaxLength(50).IsRequired();
+
+                tb.HasOne(f => f.Venta)
+                  .WithMany(v => v.Finanzas)
+                  .HasForeignKey(f => f.n_documento) // Clave externa
+                  .HasPrincipalKey(v => v.Num_Boleta); // Clave primaria
             });
 
             modelBuilder.Entity<Finanzas>().ToTable("Finanzas");
@@ -91,8 +92,6 @@ namespace EVA2TI_BarPinguino.Data
             modelBuilder.Entity<Proveedores>(tb =>
             {
                 tb.HasKey(p => p.Rut);
-
-                tb.Property(p => p.Rut).UseIdentityColumn();
 
                 tb.Property(p => p.Giro).HasMaxLength(50).IsRequired();
                 tb.Property(p => p.razon_social).HasMaxLength(100).IsRequired();
@@ -105,15 +104,18 @@ namespace EVA2TI_BarPinguino.Data
 
             modelBuilder.Entity<Stock>(tb =>
             {
-                tb.HasKey(s => s.SKu);
+                tb.HasKey(s => s.Sku);
 
-                tb.Property(s => s.SKu).UseIdentityColumn();
-
-                tb.Property(s => s.Provedor).HasMaxLength(50).IsRequired();
+                tb.Property(s => s.Provedor);
                 tb.Property(s => s.stock).IsRequired();
                 tb.Property(s => s.Stock_critico).IsRequired();
                 tb.Property(s => s.precio).IsRequired();
                 tb.Property(s => s.Informe_stock).HasMaxLength(50).IsRequired();
+
+                tb.HasOne(s => s.Proveedores)
+                  .WithMany(p => p.Stock)
+                  .HasForeignKey(s => s.Provedor) 
+                  .HasPrincipalKey(p => p.Rut); 
             });
 
             modelBuilder.Entity<Stock>().ToTable("Stock");

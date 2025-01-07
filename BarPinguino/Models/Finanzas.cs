@@ -4,8 +4,8 @@ namespace EVA2TI_BarPinguino.Models
 {
     public class Finanzas
     {
-        public string Informe_stock { get; set; }
-        [ForeignKey("Inferme_stock")]
+        public string I_stock { get; set; }
+        [ForeignKey("Informe_stock")]
         public virtual Stock Stock { get; set; }
         public string Fecha { get; set; }
         public int Gasto { get; set; }
