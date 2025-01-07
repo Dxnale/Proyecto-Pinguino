@@ -6,5 +6,6 @@
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string Frecuente { get; set; }
+        public virtual ICollection<Venta> Venta { get; set; }
     }
 }

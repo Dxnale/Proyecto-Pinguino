@@ -22,7 +22,7 @@ namespace EVA2TI_BarPinguino.Data
             {
                 tb.HasKey(c => c.Rut);
 
-                tb.Property(c => c.Rut).UseIdentityColumn().ValueGeneratedOnAdd();
+                tb.Property(c => c.Rut).UseIdentityColumn();
 
                 tb.Property(c => c.Nombre).HasMaxLength(50).IsRequired();
                 tb.Property(c => c.Apellido).HasMaxLength(50).IsRequired();
@@ -33,9 +33,9 @@ namespace EVA2TI_BarPinguino.Data
 
             modelBuilder.Entity<Usuarios>(tb =>
             {
-                tb.HasKey(u => u.Credencial);
+                tb.HasKey(u => u.Credencial_vendedor);
 
-                tb.Property(u => u.Credencial).UseIdentityColumn().ValueGeneratedOnAdd();
+                tb.Property(u => u.Credencial_vendedor).UseIdentityColumn();
 
                 tb.Property(u => u.clave).HasMaxLength(50).IsRequired();
                 tb.Property(u => u.Nombre).HasMaxLength(50).IsRequired();
@@ -44,16 +44,17 @@ namespace EVA2TI_BarPinguino.Data
 
             modelBuilder.Entity<Usuarios>().ToTable("Usuarios");
 
-            modelBuilder.Entity<Venta>(tb =>
+            modelBuilder.Entity<Venta>(static tb =>
             {
                 tb.HasKey(v => v.Num_Boleta);
 
-                tb.Property(v => v.Num_Boleta).UseIdentityColumn().ValueGeneratedOnAdd();
+                tb.Property(v => v.Num_Boleta).UseIdentityColumn();
 
-                tb.Property(v => v.Credencial).IsRequired();
+                tb.Property(v => v.Credencial_v).IsRequired();
                 tb.Property(v => v.Detalles).HasMaxLength(200).IsRequired();
                 tb.Property(v => v.cliente_rut).IsRequired();
                 tb.Property(v => v.TotalPedido).IsRequired();
+                
             });
 
             modelBuilder.Entity<Venta>().ToTable("Venta");
@@ -62,10 +63,11 @@ namespace EVA2TI_BarPinguino.Data
             {
                 tb.HasKey(d => d.Sku);
 
-                tb.Property(d => d.Sku).UseIdentityColumn().ValueGeneratedOnAdd();
+                tb.Property(d => d.Sku).UseIdentityColumn();
 
                 tb.Property(d => d.Precio_original).HasMaxLength(50).IsRequired();
                 tb.Property(d => d.Precio_descuento).HasMaxLength(50).IsRequired();
+
             });
 
             modelBuilder.Entity<Descuentos>().ToTable("Descuentos");
@@ -74,7 +76,7 @@ namespace EVA2TI_BarPinguino.Data
             {
                 tb.HasKey(f => f.Informe_stock);
 
-                tb.Property(f => f.Informe_stock).UseIdentityColumn().ValueGeneratedOnAdd();
+                tb.Property(f => f.Informe_stock).UseIdentityColumn();
 
                 tb.Property(f => f.Fecha).IsRequired();
                 tb.Property(f => f.Gasto).IsRequired();
@@ -90,7 +92,7 @@ namespace EVA2TI_BarPinguino.Data
             {
                 tb.HasKey(p => p.Rut);
 
-                tb.Property(p => p.Rut).UseIdentityColumn().ValueGeneratedOnAdd();
+                tb.Property(p => p.Rut).UseIdentityColumn();
 
                 tb.Property(p => p.Giro).HasMaxLength(50).IsRequired();
                 tb.Property(p => p.razon_social).HasMaxLength(100).IsRequired();
@@ -105,7 +107,7 @@ namespace EVA2TI_BarPinguino.Data
             {
                 tb.HasKey(s => s.SKu);
 
-                tb.Property(s => s.SKu).UseIdentityColumn().ValueGeneratedOnAdd();
+                tb.Property(s => s.SKu).UseIdentityColumn();
 
                 tb.Property(s => s.Provedor).HasMaxLength(50).IsRequired();
                 tb.Property(s => s.stock).IsRequired();
