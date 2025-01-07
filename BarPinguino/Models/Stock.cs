@@ -4,11 +4,11 @@ namespace EVA2TI_BarPinguino.Models
 {
     public class Stock
     {
-        public int SKu { get; set; }
+        public int Sku { get; set; }
         [ForeignKey("Sku")]
         public virtual Descuentos Descuentos { get; set; }
         public string Provedor { get; set; }
-        [ForeignKey("Rut")]
+        [ForeignKey("Provedor")]
         public virtual Proveedores Proveedores { get; set; }
         public int stock { get; set; }
         public int Stock_critico { get; set; }
