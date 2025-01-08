@@ -22,7 +22,7 @@ namespace EVA2TI_BarPinguino.Controllers
         [HttpPost]
         public IActionResult Registrado(Clientes clientes)
         {
-            
+
                 var newuser = new Clientes
                 {
                     Rut = clientes.Rut,

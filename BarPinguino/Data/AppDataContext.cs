@@ -34,7 +34,7 @@ namespace EVA2TI_BarPinguino.Data
             {
                 tb.HasKey(u => u.Credencial_vendedor);
 
-                tb.Property(u => u.Credencial_vendedor).UseIdentityColumn();
+                tb.Property(u => u.Credencial_vendedor).ValueGeneratedNever();
 
                 tb.Property(u => u.clave).HasMaxLength(50).IsRequired();
                 tb.Property(u => u.Nombre).HasMaxLength(50).IsRequired();
@@ -84,8 +84,8 @@ namespace EVA2TI_BarPinguino.Data
 
                 tb.HasOne(f => f.Venta)
                   .WithMany(v => v.Finanzas)
-                  .HasForeignKey(f => f.n_documento) // Clave externa
-                  .HasPrincipalKey(v => v.Num_Boleta); // Clave primaria
+                  .HasForeignKey(f => f.n_documento) 
+                  .HasPrincipalKey(v => v.Num_Boleta); 
             });
 
             modelBuilder.Entity<Finanzas>().ToTable("Finanzas");

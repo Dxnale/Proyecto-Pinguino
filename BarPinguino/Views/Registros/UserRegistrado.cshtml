@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Registro de Usuario Empleado";
+}
+@model EVA2TI_BarPinguino.Models.Usuarios;
+<dialog open>
+    <article>
+        <header>
+            <p>
+                <strong>🗓️ Gracias Por Registrar</strong>
+            </p>
+        </header>
+        <ul>
+            <strong>Datos Registrados</strong>
+            <li id="li-modal">Credencial: @Model.Credencial_vendedor</li>
+            <li id="li-modal">Nombre: @Model.Nombre</li>
+            <li id="li-modal">TipoDeUsuario: @Model.TipoDeUsuario</li>
+        </ul>
+
+        <button type="button" onclick="window.location.href = '@Url.Action("Venta", "Ventas")'">Aceptar</button>
+    </article>
+</dialog>
