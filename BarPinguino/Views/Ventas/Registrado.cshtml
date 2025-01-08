@@ -1,7 +1,7 @@
 ﻿@{
     ViewBag.Title = "Registro Consulta";
 }
-
+@model EVA2TI_BarPinguino.Models.Clientes;
 <dialog open>
     <article>
         <header>
@@ -11,10 +11,10 @@
         </header>
         <ul>
             <strong>Datos Registrados</strong>
-            <li id="li-modal">Nombre: @ViewBag.nombre</li>
-            <li id="li-modal">Apellido: @ViewBag.apellido</li>
-            <li id="li-modal">Rut: @ViewBag.rut</li>
-            <li id="li-modal">Frecuencia: @ViewBag.frecuencia</li>
+            <li id="li-modal">Nombre: @Model.Nombre</li>
+            <li id="li-modal">Apellido: @Model.Apellido</li>
+            <li id="li-modal">Rut: @Model.Rut</li>
+            <li id="li-modal">Frecuencia: @Model.Frecuente</li>
         </ul>
 
         <button type="button" onclick="window.location.href = '@Url.Action("Venta", "Ventas")'">Aceptar</button>

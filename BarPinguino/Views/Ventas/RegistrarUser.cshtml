@@ -1,22 +1,23 @@
 ﻿@{
     ViewBag.Title = "Registrar Usuario";
 }
+@model EVA2TI_BarPinguino.Models.Clientes;
 
 <section class="form-container">
     <div class="form-section registro">
         <h2>Registro</h2>
-        <form method="post" asp-action="Registrado">
+        <form method="post" asp-controller="Ventas" asp-action="Registrado">
             <label for="rut">RUT</label>
-            <input type="text" id="rut" name="rut" placeholder="Rut" />
+            <input type="text" id="rut" name="rut" placeholder="Rut" asp-for="Rut"/>
 
             <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" name="nombre" placeholder="Nombre" />
+            <input type="text" id="nombre" name="nombre" placeholder="Nombre" asp-for="Nombre"/>
 
             <label for="apellido">Apellido</label>
-            <input type="text" id="apellido" name="apellido" placeholder="Apellido" />
+            <input type="text" id="apellido" name="apellido" placeholder="Apellido" asp-for="Apellido" />
 
             <label for="frecuencia">Frecuencia</label>
-            <input type="text" id="frecuencia" name="frecuencia" placeholder="Frecuencia" />
+            <input type="text" id="frecuencia" name="frecuente" placeholder="Frecuencia" asp-for="Frecuente" />
 
             <button type="submit" >Registrar</button>
             <button type="button" onclick="window.location.href = '@Url.Action("Consulta", "Ventas")'" id="btnCstar">Consultar</button>
