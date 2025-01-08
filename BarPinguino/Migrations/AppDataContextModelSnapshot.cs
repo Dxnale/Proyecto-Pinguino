@@ -181,10 +181,7 @@ namespace EVA2TI_BarPinguino.Migrations
             modelBuilder.Entity("EVA2TI_BarPinguino.Models.Usuarios", b =>
                 {
                     b.Property<int>("Credencial_vendedor")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Credencial_vendedor"));
 
                     b.Property<string>("Nombre")
                         .IsRequired()

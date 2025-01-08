@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EVA2TI_BarPinguino.Migrations
 {
     [DbContext(typeof(AppDataContext))]
-    [Migration("20250107204918_onem")]
-    partial class onem
+    [Migration("20250108203127_corregirUsuarios")]
+    partial class corregirUsuarios
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -184,10 +184,7 @@ namespace EVA2TI_BarPinguino.Migrations
             modelBuilder.Entity("EVA2TI_BarPinguino.Models.Usuarios", b =>
                 {
                     b.Property<int>("Credencial_vendedor")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Credencial_vendedor"));
 
                     b.Property<string>("Nombre")
                         .IsRequired()

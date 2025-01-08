@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Registro de Usuario Empleado";
+}
+@model EVA2TI_BarPinguino.Models.Usuarios;
+
+<section class="form-container">
+    <div class="form-section registro">
+        <h2>Registro</h2>
+        <form method="post" asp-controller="Registros" asp-action="UserRegistrado">
+            <label for="credencial_vendedor">Credencial Vendedor</label>
+            <input type="text" id="credencial_vendedor" name="credencial_vendedor" placeholder="Credencial Vendedor" asp-for="Credencial_vendedor" />
+
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Nombre" asp-for="Nombre" />
+
+            <label for="clave">Clave</label>
+            <input type="password" id="clave" name="clave" placeholder="Clave" asp-for="clave" />
+
+            <label for="tipoDeUsuario">Tipo de Usuario</label>
+            <input type="text" id="tipoDeUsuario" name="tipoDeUsuario" placeholder="Tipo de Usuario" asp-for="TipoDeUsuario" />
+
+            <button type="submit">Registrar</button>
+            <button type="button" onclick="window.location.href = '@Url.Action("Consulta", "Ventas")'" id="btnCstar">Consultar</button>
+        </form>
+    </div>
+</section>
