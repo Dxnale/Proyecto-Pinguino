@@ -1,11 +1,8 @@
-﻿@{
-    ViewBag.Title = "Consulta";
-}
-
+﻿
 @{
     ViewBag.Title = "Consulta";
 }
-
+@model EVA2TI_BarPinguino.Models.Clientes;
 <main>
     
     <form method="post" asp-action="Consulta" id="form-consulta">
@@ -30,9 +27,15 @@
                     </p>
                 </header>
                 <p>
-                    El RUT ingresado es: <strong>@ViewBag.Rut</strong>
+                    El RUT ingresado es: <strong>@ViewBag.UserList</strong>
                     <!-- Esto es en pro a modificar, Para mostrar todos los datos registrados, del cliente...-->
                 </p>
+                <ul>
+                    <li>@Model.Rut</li>
+                    <li>@Model.Nombre</li>
+                    <li>@Model.Apellido</li>
+                    <li>@Model.Frecuente</li>
+                </ul>
                 <div>
                     <button onclick="window.location.href = '@Url.Action("Consulta", "Ventas")'">Volver</button>
                     <button onclick="window.location.href = '@Url.Action("Venta", "Ventas")'">Aceptar</button>

@@ -5,6 +5,7 @@ namespace EVA2TI_BarPinguino.Data
 {
     public class AppDataContext : DbContext
     {
+       
         public AppDataContext(DbContextOptions<AppDataContext> options) : base(options)
         {
         }
