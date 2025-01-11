@@ -7,7 +7,7 @@
     <title>@ViewData["Title"] - Admin - Bar Pinguino</title>
     <link rel="stylesheet" href="~/css/pico.slate.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    @if (Context.Request.Path.StartsWithSegments("/Finanza"))
+    @if (Context.Request.Path.StartsWithSegments("/Finanza") || Context.Request.Path.StartsWithSegments("/Eva3"))
     {
         <link rel="stylesheet" href="~/css/private/finanza-styles.css" asp-append-version="true" />
     }
@@ -24,22 +24,10 @@
             <div class="grid">
                 <ul id="admin-nav-list">
                     <li>
-                        <a asp-controller="Ventas" asp-action="RegistrarUser" class="card">Registro</a>
+                        <a asp-controller="Eva3" asp-action="Frases" class="card">Ver Frases</a>
                     </li>
                     <li>
-                        <a asp-controller="Ventas" asp-action="Venta" class="card">Venta</a>
-                    </li>
-                    <li>
-                        <a asp-controller="Functions" asp-action="Inventario" class="card">Inventario</a>
-                    </li>
-                    <li>
-                        <a asp-controller="Functions" asp-action="Preparacion" class="card">Preparacion</a>
-                    </li>
-                    <li>
-                        <a asp-controller="Finanza" asp-action="VentasMes" class="card">Finanzas</a>
-                    </li>
-                    <li>
-                        <a asp-controller="" asp-action="" class="card">Sistema</a>
+                        <a asp-controller="Eva3" asp-action="VerPerfiles" class="card">Panel Admin</a>
                     </li>
                 </ul>
             </div>

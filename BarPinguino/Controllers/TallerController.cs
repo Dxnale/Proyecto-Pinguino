@@ -8,10 +8,8 @@ using System.Security.Claims;
 
 namespace EVA2TI_BarPinguino.Controllers
 {
-    public class TallerController : Controller
+    public class TallerController : BaseController
     {
-        private readonly string _connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=taller_eva3;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
-
         [HttpGet]
         public async Task<IActionResult> Login(string login, string password, string checker)
         {
@@ -20,21 +18,17 @@ namespace EVA2TI_BarPinguino.Controllers
                 return View();
             }
 
-            string rut = login;
-            string pass = password;
-
-            using (SqlConnection connection = new(_connectionString))
+            SqlQueryBuilder sqlBuilder = new();
+            using (SqlDataReader reader = await sqlBuilder.SetQuery("SELECT Rut, Nombre, ApPat, ApMat, Edad, Clave, Nivel FROM danielTorrealba_PERFILES WHERE Rut = @Rut AND Clave = @Clave")
+                                                           .AddParameter("@Rut", login)
+                                                           .AddParameter("@Clave", password)
+                                                           .ExecuteReaderAsync())
             {
-                string query = "SELECT Rut, Nombre, ApPat, ApMat, Edad, Clave, Nivel FROM danielTorrealba_PERFILES WHERE Rut = @Rut AND Clave = @Clave";
-                SqlCommand command = new(query, connection);
-                command.Parameters.AddWithValue("@Rut", rut);
-                command.Parameters.AddWithValue("@Clave", pass);
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
+                while (await reader.ReadAsync())
                 {
-                    string nombre = reader["Nombre"]?.ToString();
+                    string nombre = reader["Nombre"].ToString();
+                    nombre = char.ToUpper(nombre[0]) + nombre.Substring(1).ToLower();
+                    
                     int nivel = Convert.ToInt32(reader["Nivel"]);
 
                     var claims = new List<Claim>
@@ -46,9 +40,8 @@ namespace EVA2TI_BarPinguino.Controllers
                     var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     var authProperties = new AuthenticationProperties
                     {
-                        IsPersistent = false
+                        IsPersistent = true
                     };
-
                     ViewBag.nombre = nombre;
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
                     return RedirectToAction("Index", "Home");

@@ -1,0 +1,40 @@
+﻿<div class="desktop-content">
+    <div class="side-panel">
+        <h3 class="title">Panel Admin</h3>
+        <ul>
+            <li>
+                <a asp-controller="Eva3" asp-action="AgregarPerfil" class="chapter">
+                    1. Agregar Perfil
+                </a>
+            </li>
+            <li>
+                <a asp-controller="Eva3" asp-action="VerPerfiles" class="chapter">
+                    2. Ver Todos los Perfiles
+                </a>
+            </li>
+            <li>
+                <a asp-controller="Eva3" asp-action="EliminarPerfil" class="chapter">
+                    3. Eliminar un Perfil
+                </a>
+            </li>
+            <li>
+                <a asp-controller="Eva3" asp-action="ModificarPerfil" class="chapter">
+                    4. Modificar un Perfil
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="content">
+        <section class="form-container">
+            <div class="form-section eliminar">
+                <h2>Eliminar Usuario</h2>
+                <form method="post" asp-action="EliminarPerfil">
+                    <label for="rut">RUT</label>
+                    <input type="text" id="rut" name="rut" placeholder="Ingresa el RUT del usuario a eliminar" required />
+
+                    <button type="submit" class="btn-delete">Eliminar</button>
+                </form>
+            </div>
+        </section>
+    </div>
+</div>

@@ -2,7 +2,7 @@
 
 namespace EVA2TI_BarPinguino.Controllers
 {
-    public class FunctionsController : Controller
+    public class FunctionsController : BaseController
     {
         public IActionResult Preparacion()
         {

@@ -2,7 +2,7 @@
 
 namespace EVA2TI_BarPinguino.Controllers
 {
-    public class VentasController : Controller
+    public class VentasController : BaseController
     {
         [HttpGet]
         public IActionResult RegistrarUser()

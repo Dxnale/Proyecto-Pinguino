@@ -2,39 +2,31 @@
 
 namespace EVA2TI_BarPinguino.Controllers
 {
-    public class FinanzaController : Controller
+    public class FinanzaController : BaseController
     {
-        private IActionResult ViewIfIsAdmin()
-        {
-            if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
-                return View();
-            
-            return RedirectToAction("Login", "Taller");
-        }
-
         public IActionResult Descuentos()
         {
-            return ViewIfIsAdmin();
+            return ViewIfIsRole("Admin");
         }
         public IActionResult Insumos()
         {
-            return ViewIfIsAdmin();
+            return ViewIfIsRole("Admin");
         }
         public IActionResult Proveedores()
         {
-            return ViewIfIsAdmin();
+            return ViewIfIsRole("Admin");
         }
         public IActionResult Stock()
         {
-            return ViewIfIsAdmin();
+            return ViewIfIsRole("Admin");
         }
         public IActionResult VentasDia()
         {
-            return ViewIfIsAdmin();
+            return ViewIfIsRole("Admin");
         }
         public IActionResult VentasMes()
         {
-            return ViewIfIsAdmin();
+            return ViewIfIsRole("Admin");
         }
     }
 }

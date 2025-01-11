@@ -2,7 +2,7 @@
 
 namespace EVA2TI_BarPinguino.Controllers
 {
-    public class FormsController : Controller
+    public class FormsController : BaseController
     {
         public IActionResult Contacto()
         {
