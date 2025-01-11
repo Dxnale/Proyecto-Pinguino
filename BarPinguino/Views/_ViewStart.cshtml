@@ -5,7 +5,7 @@
     var isUserAuthenticated = user.Identity?.IsAuthenticated ?? false;
     var isAdmin = user.IsInRole("Admin");
 
-    Layout = DetermineLayout(isUserAuthenticated=true, isAdmin=true);
+    Layout = DetermineLayout(isUserAuthenticated, isAdmin);
 }
 
 @functions {

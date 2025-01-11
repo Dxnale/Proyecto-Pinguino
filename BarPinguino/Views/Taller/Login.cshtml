@@ -1,10 +1,11 @@
 ﻿@{
-ViewData["Title"] = "Login";
+    ViewData["Title"] = "Login";
+    string invalidCredentialsMessage = ViewBag.InvalidCredentialsMessage;
 }
 
 <section class="center" id="card-section">
     <h1>Login</h1>
-    <form class="campo-login" asp-controller="Home" asp-action="Index">
+    <form class="campo-login" asp-controller="Taller" asp-action="Login" method="GET">
 
         <fieldset>
             <div>
@@ -18,11 +19,12 @@ ViewData["Title"] = "Login";
                 <button type="submit">
                     Login
                 </button>
+                <div class="chapter">@invalidCredentialsMessage</div>
             </div>
         </fieldset>
         <fieldset>
             <label>
-                <input type="checkbox" role="switch" name="switch" checked=""> Estoy de acuerdo con las
+                <input type="checkbox" role="switch" name="checker" checked=""> Estoy de acuerdo con las
                 <a data-discover="true" asp-area="" asp-controller="Home" asp-action="Privacy">Politicas de
                     Privacidad</a>
             </label>

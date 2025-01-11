@@ -44,11 +44,11 @@
                 </ul>
             </div>
             <ul>
-                <li><a asp-area="" asp-controller="Home" asp-action="Index">Logout</a></li>
+                <li><a asp-area="" asp-controller="Taller" asp-action="Logout">Logout</a></li>
                 <li>
                     <details class="dropdown">
                         <summary>
-                            Usuario
+                            @Context.User.Identity?.Name
                         </summary>
                         <ul dir="rtl">
                             <li><a asp-area="" asp-controller="Home" asp-action="Index">Settings</a></li>
