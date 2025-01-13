@@ -18,15 +18,30 @@
                             src="~/img/pinguino-logo.svg" alt="Bar Pinguino Logo" /><strong id="bar-name">Bar
                             Pinguino</strong></a></li>
             </ul>
+                <div class="grid">
+                    <partial name="_DynamicNavbar" />
+                </div>
             <ul>
-                <li>
-                    <a asp-area="" asp-controller="Forms" asp-action="Contacto">Contacto</a>
-                </li>
-                <li>
-                    <form asp-controller="Taller" asp-action="Login">
-                        <button>Login</button>
-                    </form>
-                </li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li>
+                        <details class="dropdown">
+                            <summary>@User.Identity.Name</summary>
+                            <ul dir="rtl">
+                                <li><a asp-area="" asp-controller="Registros" asp-action="Logout">Logout</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a role="button" asp-controller="Forms" asp-action="Contacto">Contacto</a>
+                    </li>
+                    <li>
+                        <a role="button" asp-controller="Registros" asp-action="Login">Login</a>
+                    </li>
+                }
             </ul>
         </nav>
     </header>

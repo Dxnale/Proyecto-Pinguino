@@ -20,7 +20,10 @@
             <input type="text" id="tipoDeUsuario" name="tipoDeUsuario" placeholder="Tipo de Usuario" asp-for="TipoDeUsuario" />
 
             <button type="submit">Registrar</button>
-            <button type="button" onclick="window.location.href = '@Url.Action("Consulta", "Ventas")'" id="btnCstar">Consultar</button>
+            @if (ViewData["Error"] != null)
+            {
+                <p>@ViewData["Error"]</p>
+            }
         </form>
     </div>
 </section>

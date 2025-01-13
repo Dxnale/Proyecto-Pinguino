@@ -19,6 +19,7 @@ namespace EVA2TI_BarPinguino.Controllers
         }
         public IActionResult Index()
         {
+            var tipoDeUsuario = User.Claims.FirstOrDefault(c => c.Type == "TipoDeUsuario")?.Value;
             return View("/Views/Home/Index.cshtml");
         }
 

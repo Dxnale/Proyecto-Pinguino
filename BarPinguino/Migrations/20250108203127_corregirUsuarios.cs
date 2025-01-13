@@ -15,7 +15,7 @@ namespace EVA2TI_BarPinguino.Migrations
                 columns: table => new
                 {
                     Credencial_vendedor = table.Column<int>(nullable: false),
-                    clave = table.Column<string>(maxLength: 50, nullable: false),
+                    clave = table.Column<string>(maxLength: 70, nullable: false),
                     Nombre = table.Column<string>(maxLength: 50, nullable: false),
                     TipoDeUsuario = table.Column<string>(maxLength: 50, nullable: false)
                 },
