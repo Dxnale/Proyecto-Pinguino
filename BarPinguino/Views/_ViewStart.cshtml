@@ -3,7 +3,7 @@
 @{
     var user = Context.User;
     var isUserAuthenticated = user.Identity?.IsAuthenticated ?? false;
-    var isAdmin = user.IsInRole("Admin");
+    var isAdmin = user.IsInRole("");
 
     Layout = DetermineLayout(isUserAuthenticated=true, isAdmin=true);
 }
