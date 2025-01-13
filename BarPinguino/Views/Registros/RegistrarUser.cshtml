@@ -6,7 +6,7 @@
 <section class="form-container">
     <div class="form-section registro">
         <h2>Registro</h2>
-        <form method="post" asp-controller="Ventas" asp-action="Registrado">
+        <form method="post" asp-controller="Registros" asp-action="Registrado">
             <label for="rut">RUT</label>
             <input type="text" id="rut" name="rut" placeholder="Rut" asp-for="Rut"/>
 
@@ -20,7 +20,7 @@
             <input type="text" id="frecuencia" name="frecuente" placeholder="Frecuencia" asp-for="Frecuente" />
 
             <button type="submit" >Registrar</button>
-            <button type="button" onclick="window.location.href = '@Url.Action("Consulta", "Ventas")'" id="btnCstar">Consultar</button>
+            <button type="button" onclick="window.location.href = '@Url.Action("Consulta", "Registros")'" id="btnCstar">Consultar</button>
         </form>
     </div>
 </section>
