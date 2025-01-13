@@ -1,5 +1,6 @@
 using EVA2TI_BarPinguino.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,15 @@ builder.Services.AddDbContext<AppDataContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnec"));
 });
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Registros/Login";
+        options.LogoutPath = "/Registros/Logout";
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(10);
+    });
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
@@ -26,6 +36,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
