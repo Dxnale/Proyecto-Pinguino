@@ -3,9 +3,10 @@ using EVA2TI_BarPinguino.Data;
 using Microsoft.AspNetCore.Mvc;
 using System.Text;
 using System.Security.Cryptography;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace EVA2TI_BarPinguino.Controllers
 {
@@ -16,11 +17,13 @@ namespace EVA2TI_BarPinguino.Controllers
         {
             _context = context;
         }
+        [Authorize]
         [HttpGet]
         public IActionResult RegistroUserEmpleado()
         {
             return View();
         }
+        [Authorize]
         [HttpPost]
         public IActionResult UserRegistrado(Usuarios usuario)
         {
@@ -40,11 +43,13 @@ namespace EVA2TI_BarPinguino.Controllers
             ViewData["Error"] = "Error al registrar usuario";
             return View();
         }
+        [Authorize]
         [HttpGet]
         public IActionResult RegistrarUser()
         {
             return View();
         }
+        [Authorize]
         [HttpPost]
         public IActionResult Registrado(Clientes clientes)
         {
@@ -62,12 +67,13 @@ namespace EVA2TI_BarPinguino.Controllers
 
             return View("Registrado", clientes);
         }
-
+        [Authorize]
         [HttpGet]
         public IActionResult Consulta()
         {
             return View();
         }
+        [Authorize]
         [HttpPost]
         public IActionResult Consulta(string txtRut)
         {
@@ -113,9 +119,13 @@ namespace EVA2TI_BarPinguino.Controllers
             ViewBag.Error = "Credenciales incorrectas. Por favor, intente nuevamente. "+HashPassword(clave);
             return View();
         }
+        [Authorize]
         public IActionResult Logout()
         {
             HttpContext.SignOutAsync("Cookies");
+            HttpContext.Response.Headers["Cache-Control"] = "no-cache, no-store, must-revalidate";
+            HttpContext.Response.Headers["Pragma"] = "no-cache";
+            HttpContext.Response.Headers["Expires"] = "0";
             return RedirectToAction("Login", "Registros");
         }
 
