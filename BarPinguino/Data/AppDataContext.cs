@@ -36,7 +36,7 @@ namespace EVA2TI_BarPinguino.Data
 
                 tb.Property(u => u.Credencial_vendedor).ValueGeneratedNever();
 
-                tb.Property(u => u.clave).HasMaxLength(50).IsRequired();
+                tb.Property(u => u.clave).HasMaxLength(70).IsRequired();
                 tb.Property(u => u.Nombre).HasMaxLength(50).IsRequired();
                 tb.Property(u => u.TipoDeUsuario).HasMaxLength(50).IsRequired();
             });
