@@ -24,18 +24,18 @@ namespace EVA2TI_BarPinguino.Controllers
         [HttpPost]
         public IActionResult UserRegistrado(Usuarios usuario)
         {
-            string hashedPassword = HashPassword(usuario.clave);
+            string hashedPassword = HashPassword(usuario.Clave);
             var newUser = new Usuarios
             {
-                Credencial_vendedor = usuario.Credencial_vendedor,
-                clave = hashedPassword,
+                CredencialVendedor = usuario.CredencialVendedor,
+                Clave = hashedPassword,
                 Nombre = usuario.Nombre,
-                TipoDeUsuario = usuario.TipoDeUsuario
+                TipoUsuario = usuario.TipoUsuario
             };
             _context.Usuarios.Add(newUser);
             _context.SaveChanges();
 
-            if (usuario.Credencial_vendedor != 0) return View("UserRegistrado", usuario);
+            if (usuario.CredencialVendedor != 0) return View("UserRegistrado", usuario);
 
             ViewData["Error"] = "Error al registrar usuario";
             return View();
@@ -89,16 +89,17 @@ namespace EVA2TI_BarPinguino.Controllers
         public async Task<IActionResult> Login(string credencial, string clave)
         {
             // Buscar el usuario en la base de datos
-            var usuario = _context.Usuarios.FirstOrDefault(u => u.clave == HashPassword(clave));
+            var usuario = _context.Usuarios.FirstOrDefault(u => u.Clave == HashPassword(clave));
 
             // Verificar si el usuario existe y la clave es correcta
-            if (usuario != null && usuario.Credencial_vendedor == int.Parse(credencial))
+            if (usuario != null && usuario.CredencialVendedor == int.Parse(credencial))
             {
                 // Crear la cookie con información del usuario
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, usuario.Nombre),
-                    new Claim("TipoDeUsuario", usuario.TipoDeUsuario)
+                    new Claim("CredencialVendedor", usuario.CredencialVendedor.ToString()),
+                    new Claim("TipoUsuario", usuario.TipoUsuario)
                 };
 
                 var identity = new ClaimsIdentity(claims, "Cookies");

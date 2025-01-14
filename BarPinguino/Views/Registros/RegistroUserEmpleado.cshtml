@@ -8,16 +8,16 @@
         <h2>Registro</h2>
         <form method="post" asp-controller="Registros" asp-action="UserRegistrado">
             <label for="credencial_vendedor">Credencial Vendedor</label>
-            <input type="text" id="credencial_vendedor" name="credencial_vendedor" placeholder="Credencial Vendedor" asp-for="Credencial_vendedor" />
+            <input type="text" id="CredencialVendedor" name="credencialVendedor" placeholder="CredencialVendedor" asp-for="CredencialVendedor" />
 
             <label for="nombre">Nombre</label>
             <input type="text" id="nombre" name="nombre" placeholder="Nombre" asp-for="Nombre" />
 
             <label for="clave">Clave</label>
-            <input type="password" id="clave" name="clave" placeholder="Clave" asp-for="clave" />
+            <input type="password" id="clave" name="clave" placeholder="Clave" asp-for="Clave" />
 
             <label for="tipoDeUsuario">Tipo de Usuario</label>
-            <input type="text" id="tipoDeUsuario" name="tipoDeUsuario" placeholder="Tipo de Usuario" asp-for="TipoDeUsuario" />
+            <input type="text" id="tipoUsuario" name="tipoUsuario" placeholder="Tipo de Usuario" asp-for="TipoUsuario" />
 
             <button type="submit">Registrar</button>
             @if (ViewData["Error"] != null)

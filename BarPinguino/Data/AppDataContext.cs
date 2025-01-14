@@ -5,122 +5,75 @@ namespace EVA2TI_BarPinguino.Data
 {
     public class AppDataContext : DbContext
     {
-       
-        public AppDataContext(DbContextOptions<AppDataContext> options) : base(options)
-        {
-        }
-        public DbSet<Clientes> Clientes { get; set; }
+        public AppDataContext(DbContextOptions<AppDataContext> options) : base(options) { }
+
         public DbSet<Usuarios> Usuarios { get; set; }
-        public DbSet<Venta> Venta { get; set; }
-        public DbSet<Descuentos> Descuentos { get; set; }
-        public DbSet<Finanzas> Finanzas { get; set; }
+        public DbSet<Clientes> Clientes { get; set; }
         public DbSet<Proveedores> Proveedores { get; set; }
-        public DbSet<Stock> Stock { get; set; }
+        public DbSet<Stock> Stocks { get; set; }
+        public DbSet<Descuentos> Descuentos { get; set; }
+        public DbSet<Venta> Ventas { get; set; }
+        public DbSet<Finanzas> Finanzas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Clientes>(tb =>
-            {
-                tb.HasKey(c => c.Rut);
+            base.OnModelCreating(modelBuilder);
 
-                tb.Property(c => c.Nombre).HasMaxLength(50).IsRequired();
-                tb.Property(c => c.Apellido).HasMaxLength(50).IsRequired();
-                tb.Property(c => c.Frecuente).HasMaxLength(10).IsRequired();
-            });
+            modelBuilder.Entity<Stock>()
+                .HasOne(s => s.ProveedorNavigation)
+                .WithMany(p => p.Stocks)
+                .HasForeignKey(s => s.Proveedor)
+                .HasPrincipalKey(p => p.Rut);
 
-            modelBuilder.Entity<Clientes>().ToTable("Clientes");
+            modelBuilder.Entity<Venta>()
+                .HasOne(v => v.Usuario)
+                .WithMany(u => u.Ventas)
+                .HasForeignKey(v => v.CredencialVendedor);
 
-            modelBuilder.Entity<Usuarios>(tb =>
-            {
-                tb.HasKey(u => u.Credencial_vendedor);
+            modelBuilder.Entity<Venta>()
+                .HasOne(v => v.Cliente)
+                .WithMany(c => c.Ventas)
+                .HasForeignKey(v => v.ClienteRut);
 
-                tb.Property(u => u.Credencial_vendedor).ValueGeneratedNever();
+            modelBuilder.Entity<Descuentos>()
+                .HasOne(d => d.Stock)
+                .WithOne()
+                .HasForeignKey<Descuentos>(d => d.SKU);
 
-                tb.Property(u => u.clave).HasMaxLength(70).IsRequired();
-                tb.Property(u => u.Nombre).HasMaxLength(50).IsRequired();
-                tb.Property(u => u.TipoDeUsuario).HasMaxLength(50).IsRequired();
-            });
+            // Seed data
+            modelBuilder.Entity<Stock>().HasData(
+                new Stock { SKU = 123, Proveedor = "33333333-3", CantidadStock = 100, StockCritico = 10, Precio = 500, InformeDeStock = "Suficiente" },
+                new Stock { SKU = 234, Proveedor = "44444444-4", CantidadStock = 50, StockCritico = 5, Precio = 100, InformeDeStock = "Bajo" }
+            );
+            modelBuilder.Entity<Usuarios>().HasData(
+                new Usuarios { CredencialVendedor = 111, Clave = "1234", Nombre = "Juan Perez", TipoUsuario = "Admin" },
+                new Usuarios { CredencialVendedor = 222, Clave = "abcd", Nombre = "Maria Lopez", TipoUsuario = "Ventas" }
+            );
 
-            modelBuilder.Entity<Usuarios>().ToTable("Usuarios");
+            modelBuilder.Entity<Clientes>().HasData(
+                new Clientes { Rut = "11111111-1", Nombre = "Carlos", Apellido = "Diaz", Frecuente = "Si" },
+                new Clientes { Rut = "22222222-2", Nombre = "Ana", Apellido = "Soto", Frecuente = "No" }
+            );
 
-            modelBuilder.Entity<Venta>(tb =>
-            {
-                tb.HasKey(v => v.Num_Boleta);
+            modelBuilder.Entity<Proveedores>().HasData(
+                new Proveedores { Rut = "33333333-3", Giro = "Bebidas", RazonSocial = "Coke", DatosBanco = "Banco1", Fono = 12345678, Direccion = "Calle Falsa 123" },
+                new Proveedores { Rut = "44444444-4", Giro = "Licer", RazonSocial = "FoodInc", DatosBanco = "Banco2", Fono = 87654321, Direccion = "Calle Verdadera 456" }
+            );
 
-                tb.Property(v => v.Credencial_v).IsRequired();
-                tb.Property(v => v.Detalles).HasMaxLength(200).IsRequired();
-                tb.Property(v => v.cliente_rut).IsRequired();
-                tb.Property(v => v.TotalPedido).IsRequired();
+            modelBuilder.Entity<Descuentos>().HasData(
+                new Descuentos { SKU = 123, PrecioOriginal = "500", PrecioConDescuento = "450" },
+                new Descuentos { SKU = 234, PrecioOriginal = "100", PrecioConDescuento = "90" }
+            );
 
-                tb.HasOne(v => v.Clientes)
-                  .WithMany(c => c.Venta)
-                  .HasForeignKey(v => v.cliente_rut)
-                  .HasPrincipalKey(c => c.Rut);
-            });
+            modelBuilder.Entity<Venta>().HasData(
+                new Venta { NumBoleta = "B001", CredencialVendedor = 111, Detalles = "Compra de Mojito", ClienteRut = "11111111-1", TotalDelPedido = 5000 },
+                new Venta { NumBoleta = "B002", CredencialVendedor = 222, Detalles = "Compra de Daikiri", ClienteRut = "22222222-2", TotalDelPedido = 1000 }
+            );
 
-            modelBuilder.Entity<Venta>().ToTable("Venta");
-
-            modelBuilder.Entity<Descuentos>(tb =>
-            {
-                tb.HasKey(d => d.SKU);
-
-                tb.Property(d => d.Precio_original).HasMaxLength(50).IsRequired();
-                tb.Property(d => d.Precio_descuento).HasMaxLength(50).IsRequired();
-
-            });
-
-            modelBuilder.Entity<Descuentos>().ToTable("Descuentos");
-
-            modelBuilder.Entity<Finanzas>(tb =>
-            {
-                tb.HasKey(f => f.I_stock);
-
-                tb.Property(f => f.Fecha).IsRequired();
-                tb.Property(f => f.Gasto).IsRequired();
-                tb.Property(f => f.ingreso).HasMaxLength(50).IsRequired();
-                tb.Property(f => f.Detalles).HasMaxLength(200).IsRequired();
-                
-                tb.Property(f => f.tipo_documento).HasMaxLength(50).IsRequired();
-
-                tb.HasOne(f => f.Venta)
-                  .WithMany(v => v.Finanzas)
-                  .HasForeignKey(f => f.n_documento) 
-                  .HasPrincipalKey(v => v.Num_Boleta); 
-            });
-
-            modelBuilder.Entity<Finanzas>().ToTable("Finanzas");
-
-            modelBuilder.Entity<Proveedores>(tb =>
-            {
-                tb.HasKey(p => p.Rut);
-
-                tb.Property(p => p.Giro).HasMaxLength(50).IsRequired();
-                tb.Property(p => p.razon_social).HasMaxLength(100).IsRequired();
-                tb.Property(p => p.datos_bancarios).HasMaxLength(100).IsRequired();
-                tb.Property(p => p.Fono).IsRequired();
-                tb.Property(p => p.direccion).HasMaxLength(100).IsRequired();
-            });
-
-            modelBuilder.Entity<Proveedores>().ToTable("Proveedores");
-
-            modelBuilder.Entity<Stock>(tb =>
-            {
-                tb.HasKey(s => s.Sku);
-
-                tb.Property(s => s.Provedor);
-                tb.Property(s => s.stock).IsRequired();
-                tb.Property(s => s.Stock_critico).IsRequired();
-                tb.Property(s => s.precio).IsRequired();
-                tb.Property(s => s.Informe_stock).HasMaxLength(50).IsRequired();
-
-                tb.HasOne(s => s.Proveedores)
-                  .WithMany(p => p.Stock)
-                  .HasForeignKey(s => s.Provedor) 
-                  .HasPrincipalKey(p => p.Rut); 
-            });
-
-            modelBuilder.Entity<Stock>().ToTable("Stock");
+            modelBuilder.Entity<Finanzas>().HasData(
+                new Finanzas { InformeDeStock = "Stock1", Fecha = "2025-01-01", Gasto = 2000, Ingreso = "3000", Detalles = "Ganancia", NDocumento = "D001", TipoDeDocumento = "Factura" },
+                new Finanzas { InformeDeStock = "Stock2", Fecha = "2025-01-02", Gasto = 1000, Ingreso = "1500", Detalles = "Ganancia", NDocumento = "D002", TipoDeDocumento = "Boleta" }
+            );
         }
-
     }
 }
