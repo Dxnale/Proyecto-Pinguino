@@ -1,13 +1,24 @@
-﻿namespace EVA2TI_BarPinguino.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace EVA2TI_BarPinguino.Models
 {
     public class Proveedores
     {
+        [Key]
         public string Rut { get; set; }
+
+        [Required]
         public string Giro { get; set; }
-        public string razon_social { get; set; }
-        public string datos_bancarios { get; set; }
+
+        [Required]
+        public string RazonSocial { get; set; }
+
+        public string DatosBanco { get; set; }
+
         public int Fono { get; set; }
-        public string direccion { get; set; }
-        public virtual ICollection<Stock> Stock { get; set; }
+
+        public string Direccion { get; set; }
+
+        public ICollection<Stock> Stocks { get; set; }
     }
 }

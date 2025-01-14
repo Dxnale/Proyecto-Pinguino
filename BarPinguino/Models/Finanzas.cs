@@ -1,19 +1,22 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace EVA2TI_BarPinguino.Models
 {
     public class Finanzas
     {
-        public string I_stock { get; set; }
-        [ForeignKey("Informe_stock")]
-        public virtual Stock Stock { get; set; }
+        [Key]
+        public string InformeDeStock { get; set; }
+
         public string Fecha { get; set; }
-        public int Gasto { get; set; }
-        public string ingreso { get; set; }
+
+        public decimal Gasto { get; set; }
+
+        public string Ingreso { get; set; }
+
         public string Detalles { get; set; }
-        public string n_documento { get; set; }
-        [ForeignKey("Num_Boleta")]
-        public virtual Venta Venta { get; set; }
-        public string tipo_documento { get; set; }
+
+        public string NDocumento { get; set; }
+
+        public string TipoDeDocumento { get; set; }
     }
 }

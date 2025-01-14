@@ -2,6 +2,7 @@
 using EVA2TI_BarPinguino.Models;
 using EVA2TI_BarPinguino.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 
 namespace EVA2TI_BarPinguino.Controllers
@@ -22,10 +23,7 @@ namespace EVA2TI_BarPinguino.Controllers
         [HttpPost]
         public IActionResult Venta(string txtproducto, int txtcantidad, double txtprecio)
         {
-
-            ViewBag.producto = txtproducto;
-            ViewBag.cantidad = txtcantidad;
-            ViewBag.precio = txtprecio;
+            var credencial = User.FindFirst("Credencial_Vendedor")!.Value;
             return View("/Views/Ventas/Venta.cshtml");
         }
         public IActionResult Boleta()

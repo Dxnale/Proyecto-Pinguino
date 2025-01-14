@@ -1,11 +1,21 @@
-﻿namespace EVA2TI_BarPinguino.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace EVA2TI_BarPinguino.Models
 {
     public class Usuarios
     {
-        public int Credencial_vendedor { get; set; }
-        public string clave { get; set; }
+        [Key]
+        public int CredencialVendedor { get; set; }
+
+        [Required]
+        public string Clave { get; set; }
+
+        [Required]
         public string Nombre { get; set; }
-        public string TipoDeUsuario { get; set; }
-        public virtual ICollection<Venta> Venta { get; set; }
+
+        [Required]
+        public string TipoUsuario { get; set; }
+
+        public ICollection<Venta> Ventas { get; set; }
     }
 }
