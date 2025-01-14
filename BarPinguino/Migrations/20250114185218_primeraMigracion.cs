@@ -175,8 +175,8 @@ namespace EVA2TI_BarPinguino.Migrations
                 columns: new[] { "CredencialVendedor", "Clave", "Nombre", "TipoUsuario" },
                 values: new object[,]
                 {
-                    { 111, "1234", "Juan Perez", "Admin" },
-                    { 222, "abcd", "Maria Lopez", "Ventas" }
+                    { 111, "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4", "Juan Perez", "Admin" },
+                    { 222, "88d4266fd4e6338d13b845fcf289579d209c897823b9217da3e161936f031589", "Maria Lopez", "Ventas" }
                 });
 
             migrationBuilder.InsertData(

@@ -46,8 +46,8 @@ namespace EVA2TI_BarPinguino.Data
                 new Stock { SKU = 234, Proveedor = "44444444-4", CantidadStock = 50, StockCritico = 5, Precio = 100, InformeDeStock = "Bajo" }
             );
             modelBuilder.Entity<Usuarios>().HasData(
-                new Usuarios { CredencialVendedor = 111, Clave = "1234", Nombre = "Juan Perez", TipoUsuario = "Admin" },
-                new Usuarios { CredencialVendedor = 222, Clave = "abcd", Nombre = "Maria Lopez", TipoUsuario = "Ventas" }
+                new Usuarios { CredencialVendedor = 111, Clave = "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4", Nombre = "Juan Perez", TipoUsuario = "Admin" },
+                new Usuarios { CredencialVendedor = 222, Clave = "88d4266fd4e6338d13b845fcf289579d209c897823b9217da3e161936f031589", Nombre = "Maria Lopez", TipoUsuario = "Ventas" }
             );
 
             modelBuilder.Entity<Clientes>().HasData(

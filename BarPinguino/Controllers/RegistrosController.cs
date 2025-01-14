@@ -110,7 +110,7 @@ namespace EVA2TI_BarPinguino.Controllers
                 return RedirectToAction("Index", "Home"); // Redirigir al Home
             }
             // Si las credenciales son incorrectas, retornar la vista de login
-            ViewBag.Error = "Credenciales incorrectas. Por favor, intente nuevamente. "+credencial+clave;
+            ViewBag.Error = "Credenciales incorrectas. Por favor, intente nuevamente. "+HashPassword(clave);
             return View();
         }
         public IActionResult Logout()
