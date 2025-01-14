@@ -275,14 +275,14 @@ namespace EVA2TI_BarPinguino.Migrations
                         new
                         {
                             CredencialVendedor = 111,
-                            Clave = "1234",
+                            Clave = "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
                             Nombre = "Juan Perez",
                             TipoUsuario = "Admin"
                         },
                         new
                         {
                             CredencialVendedor = 222,
-                            Clave = "abcd",
+                            Clave = "88d4266fd4e6338d13b845fcf289579d209c897823b9217da3e161936f031589",
                             Nombre = "Maria Lopez",
                             TipoUsuario = "Ventas"
                         });

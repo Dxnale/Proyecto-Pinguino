@@ -1,33 +1,33 @@
 ﻿@using System.Security.Claims
 @{
     var user = User.Identity.IsAuthenticated ? (ClaimsPrincipal)User : null;
-    var tipoDeUsuario = user?.Claims.FirstOrDefault(c => c.Type == "TipoDeUsuario")?.Value;
+    var tipoUsuario = user?.Claims.FirstOrDefault(c => c.Type == "TipoUsuario")?.Value;
 }
 
 <ul>
    
-        @if (tipoDeUsuario == "Ventas")
+        @if (tipoUsuario == "Ventas")
         {
             
         <li><a role="button" asp-controller="Registros" asp-action="RegistrarUser">Registro</a></li>
         <li><a role="button" asp-controller="Ventas" asp-action="Venta">Venta</a></li>
           
         }
-        else if (tipoDeUsuario == "Preparacion")
+        else if (tipoUsuario == "Preparacion")
         {
         <li><a role="button" asp-controller="Preparacion" asp-action="Index">Preparación</a></li>
         }
-        else if (tipoDeUsuario == "Inventario")
+        else if (tipoUsuario == "Inventario")
         {
         <li><a role="button" asp-controller="Inventario" asp-action="Index">Inventario</a></li>
         }
-        else if (tipoDeUsuario == "Admin")
+        else if (tipoUsuario == "Admin")
         {
         <li><a role="button" asp-controller="Registros" asp-action="RegistrarUser">Registro</a></li>
         <li><a role="button" asp-controller="Ventas" asp-action="Venta">Venta</a></li>
         <li><a role="button" asp-controller="Functions" asp-action="Inventario">Inventario</a></li>
         <li><a role="button" asp-controller="Functions" asp-action="Preparacion">Preparación</a></li>
         <li><a role ="button" asp-controller="Finanza" asp-action="VentasMes">Finanzas</a></li>
-        <li><a role="button" asp-controller="Registros" asp-action="RegistroUserEmpleado">Registro Empleado</a></li>
+        <li><a role="button" asp-controller="Registros" asp-action="RegistroUserEmpleado">Empleado</a></li>
         }
 </ul>
