@@ -5,32 +5,32 @@ namespace EVA2TI_BarPinguino.Controllers
 {
     public class FinanzaController : Controller
     {
-        [Authorize]
+        [Authorize(Roles ="Admin")]
         public IActionResult Descuentos()
         {
             return View();
         }
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IActionResult Insumos()
         {
             return View();
         }
-        [Authorize]
+        [Authorize(Roles  ="Admin")]
         public IActionResult Proveedores()
         {
             return View();
         }
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IActionResult Stock()
         {
             return View();
         }
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IActionResult VentasDia()
         {
             return View();
         }
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IActionResult VentasMes()
         {
             return View();

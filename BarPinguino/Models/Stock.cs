@@ -8,6 +8,10 @@ namespace EVA2TI_BarPinguino.Models
         public int SKU { get; set; }
 
         [Required]
+        [MaxLength(50)] 
+        public string NombreProducto { get; set; } 
+
+        [Required]
         public string Proveedor { get; set; }
 
         public int CantidadStock { get; set; }

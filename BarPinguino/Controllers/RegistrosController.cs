@@ -17,7 +17,7 @@ namespace EVA2TI_BarPinguino.Controllers
         {
             _context = context;
         }
-        [Authorize]
+        [Authorize(Roles ="Admin")]
         [HttpGet]
         public IActionResult RegistroUserEmpleado()
         {
@@ -43,13 +43,13 @@ namespace EVA2TI_BarPinguino.Controllers
             ViewData["Error"] = "Error al registrar usuario";
             return View();
         }
-        [Authorize]
+        [Authorize(Roles = "Admin,Ventas")]
         [HttpGet]
         public IActionResult RegistrarUser()
         {
             return View();
         }
-        [Authorize]
+        [Authorize(Roles = "Admin,Ventas")]
         [HttpPost]
         public IActionResult Registrado(Clientes clientes)
         {
@@ -67,13 +67,13 @@ namespace EVA2TI_BarPinguino.Controllers
 
             return View("Registrado", clientes);
         }
-        [Authorize]
+        [Authorize(Roles = "Admin,Ventas")]
         [HttpGet]
         public IActionResult Consulta()
         {
             return View();
         }
-        [Authorize]
+        [Authorize(Roles = "Admin,Ventas")]
         [HttpPost]
         public IActionResult Consulta(string txtRut)
         {
@@ -89,40 +89,44 @@ namespace EVA2TI_BarPinguino.Controllers
         [HttpGet]
         public IActionResult Login()
         {
+            if(User.Identity!.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
         [HttpPost]
         public async Task<IActionResult> Login(string credencial, string clave)
         {
-            // Buscar el usuario en la base de datos
+            
             var usuario = _context.Usuarios.FirstOrDefault(u => u.Clave == HashPassword(clave));
 
-            // Verificar si el usuario existe y la clave es correcta
+            
             if (usuario != null && usuario.CredencialVendedor == int.Parse(credencial))
             {
-                // Crear la cookie con información del usuario
+                
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, usuario.Nombre),
                     new Claim("CredencialVendedor", usuario.CredencialVendedor.ToString()),
-                    new Claim("TipoUsuario", usuario.TipoUsuario)
+                    new Claim(ClaimTypes.Role, usuario.TipoUsuario)
                 };
 
                 var identity = new ClaimsIdentity(claims, "Cookies");
                 var principal = new ClaimsPrincipal(identity);
 
-                await HttpContext.SignInAsync("Cookies", principal);
+                await HttpContext.SignInAsync("Cookies", principal, new AuthenticationProperties { IsPersistent = false});
 
-                return RedirectToAction("Index", "Home"); // Redirigir al Home
+                return RedirectToAction("Index", "Home"); 
             }
-            // Si las credenciales son incorrectas, retornar la vista de login
+         
             ViewBag.Error = "Credenciales incorrectas. Por favor, intente nuevamente. "+HashPassword(clave);
             return View();
         }
         [Authorize]
-        public IActionResult Logout()
+        public async Task<IActionResult> Logout()
         {
-            HttpContext.SignOutAsync("Cookies");
+            await HttpContext.SignOutAsync("Cookies");
             HttpContext.Response.Headers["Cache-Control"] = "no-cache, no-store, must-revalidate";
             HttpContext.Response.Headers["Pragma"] = "no-cache";
             HttpContext.Response.Headers["Expires"] = "0";

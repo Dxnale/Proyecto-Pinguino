@@ -12,9 +12,15 @@ namespace EVA2TI_BarPinguino.Models
 
         [Required]
         public string Nombre { get; set; }
+        
+        [Required]
+        [MaxLength(100)] 
+        public string Correo { get; set; }
 
         [Required]
         public string TipoUsuario { get; set; }
+
+        
 
         public ICollection<Venta> Ventas { get; set; }
     }
