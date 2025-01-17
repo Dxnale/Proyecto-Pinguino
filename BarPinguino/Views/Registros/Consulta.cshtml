@@ -11,6 +11,10 @@
             <h1>Consulta</h1>
             <label for="txtRut">RUT:</label>
             <input type="text" id="txtRut" name="txtRut" required />
+            @if (ViewBag.Error != null)
+            {
+                <span>@ViewBag.Error</span>
+            }
         </div>
         <div>
             <button type="submit">Consultar</button>
@@ -31,14 +35,14 @@
                     <!-- Esto es en pro a modificar, Para mostrar todos los datos registrados, del cliente...-->
                 </p>
                 <ul>
-                    <li>@Model.Rut</li>
-                    <li>@Model.Nombre</li>
-                    <li>@Model.Apellido</li>
-                    <li>@Model.Frecuente</li>
+                    <li>Rut: @Model.Rut</li>
+                    <li>Nombre: @Model.Nombre</li>
+                    <li>Apellido: @Model.Apellido</li>
+                    <li>Frecuencia: @Model.Frecuente</li>
                 </ul>
                 <div>
                     <button onclick="window.location.href = '@Url.Action("Consulta", "Ventas")'">Volver</button>
-                    <button onclick="window.location.href = '@Url.Action("Venta", "Ventas")'">Aceptar</button>
+                    <button onclick="window.location.href = '@Url.Action("Venta", "Ventas", new {clienterut = Model.Rut})'">Aceptar</button>
                 </div>
             </article>
         </dialog>

@@ -33,7 +33,8 @@ namespace EVA2TI_BarPinguino.Controllers
                 CredencialVendedor = usuario.CredencialVendedor,
                 Clave = hashedPassword,
                 Nombre = usuario.Nombre,
-                TipoUsuario = usuario.TipoUsuario
+                TipoUsuario = usuario.TipoUsuario,
+                Correo = usuario.Correo
             };
             _context.Usuarios.Add(newUser);
             _context.SaveChanges();
@@ -120,7 +121,7 @@ namespace EVA2TI_BarPinguino.Controllers
                 return RedirectToAction("Index", "Home"); 
             }
          
-            ViewBag.Error = "Credenciales incorrectas. Por favor, intente nuevamente. "+HashPassword(clave);
+            ViewBag.Error = "Credenciales incorrectas. Por favor, intente nuevamente. ";
             return View();
         }
         [Authorize]

@@ -1,11 +1,13 @@
 ﻿@{
     ViewBag.Title = "Venta";
-    int precio = 10000;
+    var venta = new EVA2TI_BarPinguino.Models.Venta();
 }
+@model EVA2TI_BarPinguino.Models.Venta;
 <main>
     <div id="main-venta">
     <h1>Venta</h1>
     <form method="post" asp-action="Venta">
+            <input type="hidden" id="clienterut" name="clienterut" value="@ViewBag.rut" />
         <div>
             <label for="txtProducto">Producto:</label>
             <input type="text" id="txtProducto" name="txtProducto" />
@@ -31,13 +33,12 @@
             </thead>
             @if (ViewBag.producto != null)
             {
-                precio *= @ViewBag.cantidad;
                 <tbody>
-                    <tr> 
-                    <td>@ViewBag.producto</td> 
-                    <td>@ViewBag.cantidad</td>
-                    <td>$10000</td> 
-                    <td>@precio</td>
+                    <tr>
+                            <td>@ViewBag.Producto</td>
+                            <td>@ViewBag.Cantidad</td>
+                            <td>$@String.Format("{0:0.00}", ViewBag.Precio)</td>
+                            <td>$@String.Format("{0:0.00}", ViewBag.Total)</td>
                     </tr>
             </tbody>
             }
@@ -51,11 +52,11 @@
                 <tbody>
                     <tr>
                         <td><strong>VENDEDOR:</strong></td>
-                        <td>VendedorPinguino</td>
+                        <td>@User.FindFirst("CredencialVendedor")!.Value</td>
                     </tr>
                     <tr>
                         <td><strong>CLIENTE:</strong></td>
-                        <td>Cliente Pinguino</td>
+                        <td>@ViewBag.rut</td>
                     </tr>
                     <tr>
                         <td><strong>PRODUCTOS:</strong></td>
@@ -63,21 +64,30 @@
                     </tr>
                     <tr>
                         <td><strong>DESCUENTO:</strong></td>
-                        <td>-</td>
+                        <td>-@ViewBag.guid</td>
                     </tr>
                     <tr>
                         <td><strong>TOTAL:</strong></td>
-                        <td>@precio</td>
+                        <td>@ViewBag.Total</td>
                     </tr>
                 </tbody>
             </table>
             <div class="grid">
                 <button type="button" onclick="window.location.href = '@Url.Action("Venta", "Ventas")'">CANCELAR</button>
-                <button type="button" onclick="window.location.href = '@Url.Action("Boleta", "Ventas")'">PAGAR</button>
+                <button type="button"
+                        onclick="window.location.href = '@Url.Action("Boleta", "Ventas", new {
+                        NumBoleta = ViewBag.guid,
+                        CredencialVendedor = User.FindFirst("CredencialVendedor")?.Value,
+                        Detalles = ViewBag.Producto + " x " + ViewBag.Cantidad,
+                        ViewBag.Producto,
+                        ViewBag.Cantidad,
+                        ClienteRut = ViewBag.rut,
+                        TotalDelPedido = ViewBag.Total
+                        })'">
+                    PAGAR
+                </button>
+
             </div>
         </section>
     </div>
-
-    
-
 </main>
