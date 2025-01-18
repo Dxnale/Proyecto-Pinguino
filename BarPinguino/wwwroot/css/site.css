@@ -290,7 +290,7 @@ body {
 
 /* Regla general logo pinguino */
 img#logo {
-    filter: brightness(100) saturate(100%) invert(42%) sepia(8%) saturate(1321%) hue-rotate(183deg) brightness(100%) contrast(95%);
+    filter: brightness(100) saturate(100%) invert(42%) sepia(8%) saturate(1321%) hue-rotate(183deg) brightness(var(--pico-brightness)) contrast(95%);
     height: 50px;
     width: 50px;
     margin: 0 18px 0 0;
