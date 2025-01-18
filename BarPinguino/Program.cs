@@ -38,6 +38,8 @@ builder.Services.AddHostedService<BackupService>();
 
 var app = builder.Build();
 
+app.MigrateDatabase();
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
