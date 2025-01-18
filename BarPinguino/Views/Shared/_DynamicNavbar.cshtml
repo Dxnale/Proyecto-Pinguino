@@ -2,25 +2,25 @@
 <ul>
     @if (User.IsInRole("Ventas"))
     {
-        <li><a role="button" asp-controller="Registros" asp-action="RegistrarUser">Registro</a></li>
-        <li><a role="button" asp-controller="Ventas" asp-action="Venta">Venta</a></li>
+        <li><a asp-controller="Registros" asp-action="RegistrarUser">Registro</a></li>
+        <li><a asp-controller="Ventas" asp-action="Venta">Venta</a></li>
     }
     else if (User.IsInRole("Preparacion"))
     {
-        <li><a role="button" asp-controller="Preparacion" asp-action="Index">Preparación</a></li>
+        <li><a asp-controller="Preparacion" asp-action="Index">Preparación</a></li>
     }
     else if (User.IsInRole("Inventario"))
     {
-        <li><a role="button" asp-controller="Inventario" asp-action="Index">Inventario</a></li>
+        <li><a asp-controller="Inventario" asp-action="Index">Inventario</a></li>
     }
     else if (User.IsInRole("Admin"))
     {
-        <li><a role="button" asp-controller="Registros" asp-action="RegistrarUser">Registro</a></li>
-        <li><a role="button" asp-controller="Ventas" asp-action="Venta">Venta</a></li>
-        <li><a role="button" asp-controller="Functions" asp-action="Inventario">Inventario</a></li>
-        <li><a role="button" asp-controller="Functions" asp-action="Preparacion">Preparación</a></li>
-        <li><a role="button" asp-controller="Finanza" asp-action="VentasMes">Finanzas</a></li>
-        <li><a role="button" asp-controller="Registros" asp-action="RegistroUserEmpleado">Empleado</a></li>
+        <li><a asp-controller="Registros" asp-action="RegistrarUser">Registro</a></li>
+        <li><a asp-controller="Ventas" asp-action="Venta">Venta</a></li>
+        <li><a asp-controller="Functions" asp-action="Inventario">Inventario</a></li>
+        <li><a asp-controller="Functions" asp-action="Preparacion">Preparación</a></li>
+        <li><a asp-controller="Finanza" asp-action="VentasMes">Finanzas</a></li>
+        <li><a asp-controller="Registros" asp-action="RegistroUserEmpleado">Empleado</a></li>
     }
 </ul>
 

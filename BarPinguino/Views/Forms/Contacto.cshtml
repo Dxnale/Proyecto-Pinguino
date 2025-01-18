@@ -3,19 +3,17 @@
     ViewData["Title"] = "Contacto";
 }
 
-<h1>Contacto</h1>
 <div id="card-section">
+<h1>Contacto</h1>
 <form method="get" asp-action="SaveForm">
     <fieldset>
         <label>
-            Nombre
             <input name="nom" 
                    required
                    placeholder="Nombre"
                    autocomplete="given-name" />
         </label>
         <label>
-            Email
             <input type="email"
                    required
                    name="mail"
