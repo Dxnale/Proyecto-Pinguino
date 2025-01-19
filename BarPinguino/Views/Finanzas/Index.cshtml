@@ -1,7 +1,7 @@
-﻿@model IEnumerable<EVA2TI_BarPinguino.Models.Proveedores>
+﻿@model IEnumerable<EVA2TI_BarPinguino.Models.Finanzas>
 
 @{
-    ViewData["Title"] = "Proveedores";
+    ViewData["Title"] = "Finanzas";
 }
 
 <div class="mobile-message">
@@ -29,19 +29,22 @@
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.Giro)
+                        @Html.DisplayNameFor(model => model.Fecha)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.RazonSocial)
+                        @Html.DisplayNameFor(model => model.Gasto)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.DatosBanco)
+                        @Html.DisplayNameFor(model => model.Ingreso)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Fono)
+                        @Html.DisplayNameFor(model => model.Detalles)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Direccion)
+                        @Html.DisplayNameFor(model => model.NDocumento)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TipoDeDocumento)
                     </th>
                     <th></th>
                 </tr>
@@ -51,24 +54,27 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Giro)
+                            @Html.DisplayFor(modelItem => item.Fecha)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.RazonSocial)
+                            @Html.DisplayFor(modelItem => item.Gasto)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.DatosBanco)
+                            @Html.DisplayFor(modelItem => item.Ingreso)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Fono)
+                            @Html.DisplayFor(modelItem => item.Detalles)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Direccion)
+                            @Html.DisplayFor(modelItem => item.NDocumento)
                         </td>
                         <td>
-                            <a asp-action="Edit" asp-route-id="@item.Rut">Edit</a> |
-                            <a asp-action="Details" asp-route-id="@item.Rut">Details</a> |
-                            <a asp-action="Delete" asp-route-id="@item.Rut">Delete</a>
+                            @Html.DisplayFor(modelItem => item.TipoDeDocumento)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.InformeDeStock">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.InformeDeStock">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.InformeDeStock">Delete</a>
                         </td>
                     </tr>
                 }

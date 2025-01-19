@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EVA2TI_BarPinguino.Data;
 using EVA2TI_BarPinguino.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EVA2TI_BarPinguino.Controllers
 {
@@ -20,6 +21,7 @@ namespace EVA2TI_BarPinguino.Controllers
         }
 
         // GET: Stocks
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             var appDataContext = _context.Stocks.Include(s => s.ProveedorNavigation);
@@ -27,6 +29,7 @@ namespace EVA2TI_BarPinguino.Controllers
         }
 
         // GET: Stocks/Details/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -46,6 +49,7 @@ namespace EVA2TI_BarPinguino.Controllers
         }
 
         // GET: Stocks/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             ViewData["Proveedor"] = new SelectList(_context.Proveedores, "Rut", "Rut");
@@ -57,6 +61,7 @@ namespace EVA2TI_BarPinguino.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("SKU,NombreProducto,Proveedor,CantidadStock,StockCritico,Precio,InformeDeStock")] Stock stock)
         {
             if (ModelState.IsValid)
@@ -70,6 +75,7 @@ namespace EVA2TI_BarPinguino.Controllers
         }
 
         // GET: Stocks/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -91,6 +97,7 @@ namespace EVA2TI_BarPinguino.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("SKU,NombreProducto,Proveedor,CantidadStock,StockCritico,Precio,InformeDeStock")] Stock stock)
         {
             if (id != stock.SKU)
@@ -123,6 +130,7 @@ namespace EVA2TI_BarPinguino.Controllers
         }
 
         // GET: Stocks/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -144,6 +152,7 @@ namespace EVA2TI_BarPinguino.Controllers
         // POST: Stocks/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var stock = await _context.Stocks.FindAsync(id);

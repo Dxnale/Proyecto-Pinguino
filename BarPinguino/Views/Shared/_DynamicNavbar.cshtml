@@ -3,7 +3,7 @@
     @if (User.IsInRole("Ventas"))
     {
         <li><a asp-controller="Registros" asp-action="RegistrarUser">Registro</a></li>
-        <li><a asp-controller="Ventas" asp-action="Venta">Venta</a></li>
+        <li><a asp-controller="ProcesoVenta" asp-action="Venta">Venta</a></li>
     }
     else if (User.IsInRole("Preparacion"))
     {
@@ -16,11 +16,11 @@
     else if (User.IsInRole("Admin"))
     {
         <li><a asp-controller="Registros" asp-action="RegistrarUser">Registro</a></li>
-        <li><a asp-controller="Ventas" asp-action="Venta">Venta</a></li>
+        <li><a asp-controller="ProcesoVenta" asp-action="Venta">Venta</a></li>
         <li><a asp-controller="Functions" asp-action="Inventario">Inventario</a></li>
         <li><a asp-controller="Functions" asp-action="Preparacion">Preparación</a></li>
-        <li><a asp-controller="Finanza" asp-action="VentasMes">Finanzas</a></li>
-        <li><a asp-controller="Registros" asp-action="RegistroUserEmpleado">Empleado</a></li>
+        <li><a asp-controller="Reporte" asp-action="VentasMes">Finanzas</a></li>
+        <li><a asp-controller="Maestro" asp-action="Menu">Maestro</a></li>
     }
 </ul>
 

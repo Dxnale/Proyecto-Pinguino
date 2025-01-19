@@ -2,26 +2,7 @@
     <div class="side-panel">
         <h3 class="title">Panel Admin</h3>
         <ul>
-            <li>
-                <a asp-controller="Eva3" asp-action="AgregarPerfil" class="chapter">
-                    1. Agregar Perfil
-                </a>
-            </li>
-            <li>
-                <a asp-controller="Eva3" asp-action="VerPerfiles" class="chapter">
-                    2. Ver Todos los Perfiles
-                </a>
-            </li>
-            <li>
-                <a asp-controller="Eva3" asp-action="EliminarPerfil" class="chapter">
-                    3. Eliminar un Perfil
-                </a>
-            </li>
-            <li>
-                <a asp-controller="Eva3" asp-action="ModificarPerfil" class="chapter">
-                    4. Modificar un Perfil
-                </a>
-            </li>
+            <partial name="_PanelAdminSidebar" />
         </ul>
     </div>
     <div class="content">
