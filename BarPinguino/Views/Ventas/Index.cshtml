@@ -14,9 +14,7 @@
     <div class="side-panel">
         <h3 class="title">@ViewData["Title"]</h3>
         <ul>
-            <li>
-                <a role="button" asp-action="Create">Crear nuevo</a>
-            </li>
+            <partial name="_MaestroSidebar" />
         </ul>
     </div>
     <div class="content">
@@ -36,7 +34,7 @@
                         @Html.DisplayNameFor(model => model.TotalDelPedido)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Usuario)
+                        @Html.DisplayNameFor(model => model.Usuario )
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.Cliente)
@@ -55,7 +53,7 @@
                             @Html.DisplayFor(modelItem => item.TotalDelPedido)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Usuario.Clave)
+                            @Html.DisplayFor(modelItem => item.Usuario.Nombre)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Cliente.Rut)
@@ -69,4 +67,5 @@
                 }
             </tbody>
         </table>
+        <a role="button" asp-action="Create">Crear nuevo</a>
     </div>

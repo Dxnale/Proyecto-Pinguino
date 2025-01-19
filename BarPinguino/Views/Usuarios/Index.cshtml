@@ -14,9 +14,7 @@
     <div class="side-panel">
         <h3 class="title">@ViewData["Title"]</h3>
         <ul>
-            <li>
-                <a role="button" asp-action="Create">Crear nuevo</a>
-            </li>
+            <partial name="_MaestroSidebar" />
         </ul>
     </div>
     <div class="content">
@@ -29,9 +27,6 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Clave)
-                    </th>
                     <th>
                         @Html.DisplayNameFor(model => model.Nombre)
                     </th>
@@ -48,9 +43,6 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Clave)
-                        </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Nombre)
                         </td>
@@ -69,4 +61,5 @@
                 }
             </tbody>
         </table>
+        <a role="button" asp-action="Create">Crear nuevo</a>
     </div>
