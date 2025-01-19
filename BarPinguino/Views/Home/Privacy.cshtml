@@ -1,6 +1,39 @@
 ﻿@{
-    ViewData["Title"] = "Privacy Policy";
+    ViewData["Title"] = "Política de Privacidad";
 }
-<h1>@ViewData["Title"]</h1>
+<div id="home-container">
+    <div class="hero" id="about-section">
+        <div class="hero-content">
+            <h1><strong>@ViewData["Title"]</strong></h1>
+            <p class="hero-text">
+                En Bar Pinguino, valoramos tu privacidad y nos comprometemos a proteger tus datos personales.
 
-<p>Use this page to detail your site's privacy policy.</p>
+                <h2>Recopilación de Información</h2>
+                Recopilamos información personal que nos proporcionas directamente, como tu nombre, dirección de correo electrónico y número de teléfono cuando realizas una reserva o te suscribes a nuestro boletín informativo.
+
+                <h2>Uso de la Información</h2>
+                Utilizamos tu información para:
+                <ul>
+                    <li>Procesar y gestionar tus reservas.</li>
+                    <li>Enviarte actualizaciones y promociones.</li>
+                    <li>Mejorar nuestros servicios y la experiencia del usuario.</li>
+                </ul>
+
+                <h2>Protección de la Información</h2>
+                Implementamos medidas de seguridad adecuadas para proteger tu información personal contra el acceso no autorizado, la alteración, divulgación o destrucción.
+
+                <h2>Compartir Información</h2>
+                No compartimos tu información personal con terceros, excepto cuando sea necesario para cumplir con la ley o proteger nuestros derechos.
+
+                <h2>Tus Derechos</h2>
+                Tienes derecho a acceder, corregir o eliminar tu información personal. Para ejercer estos derechos, por favor contáctanos a través de nuestro formulario de contacto.
+
+                <h2>Contacto</h2>
+                Si tienes alguna pregunta sobre nuestra política de privacidad, no dudes en contactarnos en info@barpinguino.com.
+            </p>
+            <div class="hero-buttons">
+                <a asp-controller="Home" asp-action="Index" role="button" class="outline">Volver</a>
+            </div>
+        </div>
+    </div>
+</div>
