@@ -4,56 +4,49 @@
     ViewData["Title"] = "Edit";
 }
 
+<div id="card-section">
 <h1>Edit</h1>
-
 <h4>Stock</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
         <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div asp-validation-summary="ModelOnly"></div>
             <input type="hidden" asp-for="SKU" />
-            <div class="form-group">
-                <label asp-for="NombreProducto" class="control-label"></label>
-                <input asp-for="NombreProducto" class="form-control" />
-                <span asp-validation-for="NombreProducto" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Proveedor" class="control-label"></label>
-                <select asp-for="Proveedor" class="form-control" asp-items="ViewBag.Proveedor"></select>
-                <span asp-validation-for="Proveedor" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CantidadStock" class="control-label"></label>
-                <input asp-for="CantidadStock" class="form-control" />
-                <span asp-validation-for="CantidadStock" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="StockCritico" class="control-label"></label>
-                <input asp-for="StockCritico" class="form-control" />
-                <span asp-validation-for="StockCritico" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Precio" class="control-label"></label>
-                <input asp-for="Precio" class="form-control" />
-                <span asp-validation-for="Precio" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="InformeDeStock" class="control-label"></label>
-                <input asp-for="InformeDeStock" class="form-control" />
-                <span asp-validation-for="InformeDeStock" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+            <fieldset>
+                <label asp-for="NombreProducto"></label>
+                <input asp-for="NombreProducto" />
+                <span asp-validation-for="NombreProducto"></span>
+            </fieldset>
+            <fieldset>
+                <label asp-for="Proveedor"></label>
+                <select asp-for="Proveedor" asp-items="ViewBag.Proveedor"></select>
+                <span asp-validation-for="Proveedor"></span>
+            </fieldset>
+            <fieldset>
+                <label asp-for="CantidadStock"></label>
+                <input asp-for="CantidadStock" />
+                <span asp-validation-for="CantidadStock"></span>
+            </fieldset>
+            <fieldset>
+                <label asp-for="StockCritico"></label>
+                <input asp-for="StockCritico" />
+                <span asp-validation-for="StockCritico"></span>
+            </fieldset>
+            <fieldset>
+                <label asp-for="Precio"></label>
+                <input asp-for="Precio" />
+                <span asp-validation-for="Precio"></span>
+            </fieldset>
+            <fieldset>
+                <label asp-for="InformeDeStock"></label>
+                <input asp-for="InformeDeStock" />
+                <span asp-validation-for="InformeDeStock"></span>
+            </fieldset>
+            <div>
+                <input type="submit" value="Save"rimary" />
             </div>
         </form>
-    </div>
-</div>
-
-<div>
     <a asp-action="Index">Back to List</a>
 </div>
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

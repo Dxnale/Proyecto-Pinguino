@@ -4,43 +4,36 @@
     ViewData["Title"] = "Edit";
 }
 
+<div id="card-section">
 <h1>Edit</h1>
-
 <h4>Venta</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
         <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div asp-validation-summary="ModelOnly"></div>
             <input type="hidden" asp-for="NumBoleta" />
-            <div class="form-group">
-                <label asp-for="CredencialVendedor" class="control-label"></label>
-                <select asp-for="CredencialVendedor" class="form-control" asp-items="ViewBag.CredencialVendedor"></select>
-                <span asp-validation-for="CredencialVendedor" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Detalles" class="control-label"></label>
-                <input asp-for="Detalles" class="form-control" />
-                <span asp-validation-for="Detalles" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ClienteRut" class="control-label"></label>
-                <select asp-for="ClienteRut" class="form-control" asp-items="ViewBag.ClienteRut"></select>
-                <span asp-validation-for="ClienteRut" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TotalDelPedido" class="control-label"></label>
-                <input asp-for="TotalDelPedido" class="form-control" />
-                <span asp-validation-for="TotalDelPedido" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+            <fiedlset>
+                <label asp-for="CredencialVendedor"></label>
+                <select asp-for="CredencialVendedor" asp-items="ViewBag.CredencialVendedor"></select>
+                <span asp-validation-for="CredencialVendedor" ></span>
+        </fiedlset>
+            <fiedlset>
+                <label asp-for="Detalles"></label>
+                <input asp-for="Detalles" />
+                <span asp-validation-for="Detalles"></span>
+        </fiedlset>
+            <fiedlset>
+                <label asp-for="ClienteRut"></label>
+                <select asp-for="ClienteRut" asp-items="ViewBag.ClienteRut"></select>
+                <span asp-validation-for="ClienteRut"></span>
+            </fiedlset>
+            <fiedlset>
+                <label asp-for="TotalDelPedido"></label>
+                <input asp-for="TotalDelPedido" />
+                <span asp-validation-for="TotalDelPedido"></span>
+            </fiedlset>
+            <div>
+                <input type="submit" value="Guardar" />
             </div>
         </form>
-    </div>
+    <a asp-action="Index">Volver</a>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
