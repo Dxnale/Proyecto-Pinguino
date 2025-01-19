@@ -4,46 +4,45 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
 
+<div id="card-section">
+<h1>Edit</h1>
 <h4>Usuarios</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
         <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div asp-validation-summary="ModelOnly"></div>
             <input type="hidden" asp-for="CredencialVendedor" />
-            <div class="form-group">
-                <label asp-for="Clave" class="control-label"></label>
-                <input asp-for="Clave" class="form-control" />
-                <span asp-validation-for="Clave" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Nombre" class="control-label"></label>
-                <input asp-for="Nombre" class="form-control" />
-                <span asp-validation-for="Nombre" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Correo" class="control-label"></label>
-                <input asp-for="Correo" class="form-control" />
-                <span asp-validation-for="Correo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TipoUsuario" class="control-label"></label>
-                <input asp-for="TipoUsuario" class="form-control" />
-                <span asp-validation-for="TipoUsuario" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+            <fieldset>
+                <label asp-for="Clave"></label>
+                <input asp-for="Clave" />
+                <span asp-validation-for="Clave"></span>
+            </fieldset>
+            <fieldset>
+                <label asp-for="Nombre"></label>
+                <input asp-for="Nombre" />
+                <span asp-validation-for="Nombre"></span>
+            </fieldset>
+            <fieldset>
+                <label asp-for="Correo"></label>
+                <input asp-for="Correo" />
+                <span asp-validation-for="Correo"></span>
+            </fieldset>
+            <fieldset>
+                <label asp-for="TipoUsuario"></label>
+                <select asp-for="TipoUsuario">
+                <option value="Ventas">Ventas</option>
+                <option value="Preparacion">Preparacion</option>
+                <option value="Inventario">Inventario</option>
+                <option value="Admin">Admin</option>
+                </select>
+                <span asp-validation-for="TipoUsuario"></span>
+            </fieldset>
+            <div>
+                <input type="submit" value="Save"/>
             </div>
         </form>
-    </div>
+    <a asp-action="Index">Volver</a>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
