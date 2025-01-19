@@ -9,26 +9,25 @@ using EVA2TI_BarPinguino.Data;
 using EVA2TI_BarPinguino.Models;
 using Microsoft.AspNetCore.Authorization;
 
-namespace EVA2TI_BarPinguino.Controllers
+namespace EVA2TI_BarPinguino.Controllers.Maestro
 {
-    public class StocksController : Controller
+    public class UsuariosController : Controller
     {
         private readonly AppDataContext _context;
 
-        public StocksController(AppDataContext context)
+        public UsuariosController(AppDataContext context)
         {
             _context = context;
         }
 
-        // GET: Stocks
+        // GET: Usuarios
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
-            var appDataContext = _context.Stocks.Include(s => s.ProveedorNavigation);
-            return View(await appDataContext.ToListAsync());
+            return View(await _context.Usuarios.ToListAsync());
         }
 
-        // GET: Stocks/Details/5
+        // GET: Usuarios/Details/5
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(int? id)
         {
@@ -37,44 +36,41 @@ namespace EVA2TI_BarPinguino.Controllers
                 return NotFound();
             }
 
-            var stock = await _context.Stocks
-                .Include(s => s.ProveedorNavigation)
-                .FirstOrDefaultAsync(m => m.SKU == id);
-            if (stock == null)
+            var usuarios = await _context.Usuarios
+                .FirstOrDefaultAsync(m => m.CredencialVendedor == id);
+            if (usuarios == null)
             {
                 return NotFound();
             }
 
-            return View(stock);
+            return View(usuarios);
         }
 
-        // GET: Stocks/Create
+        // GET: Usuarios/Create
         [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
-            ViewData["Proveedor"] = new SelectList(_context.Proveedores, "Rut", "Rut");
             return View();
         }
 
-        // POST: Stocks/Create
+        // POST: Usuarios/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Create([Bind("SKU,NombreProducto,Proveedor,CantidadStock,StockCritico,Precio,InformeDeStock")] Stock stock)
+        public async Task<IActionResult> Create([Bind("CredencialVendedor,Clave,Nombre,Correo,TipoUsuario")] Usuarios usuarios)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(stock);
+                _context.Add(usuarios);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Proveedor"] = new SelectList(_context.Proveedores, "Rut", "Rut", stock.Proveedor);
-            return View(stock);
+            return View(usuarios);
         }
 
-        // GET: Stocks/Edit/5
+        // GET: Usuarios/Edit/5
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
@@ -83,24 +79,23 @@ namespace EVA2TI_BarPinguino.Controllers
                 return NotFound();
             }
 
-            var stock = await _context.Stocks.FindAsync(id);
-            if (stock == null)
+            var usuarios = await _context.Usuarios.FindAsync(id);
+            if (usuarios == null)
             {
                 return NotFound();
             }
-            ViewData["Proveedor"] = new SelectList(_context.Proveedores, "Rut", "Rut", stock.Proveedor);
-            return View(stock);
+            return View(usuarios);
         }
 
-        // POST: Stocks/Edit/5
+        // POST: Usuarios/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Edit(int id, [Bind("SKU,NombreProducto,Proveedor,CantidadStock,StockCritico,Precio,InformeDeStock")] Stock stock)
+        public async Task<IActionResult> Edit(int id, [Bind("CredencialVendedor,Clave,Nombre,Correo,TipoUsuario")] Usuarios usuarios)
         {
-            if (id != stock.SKU)
+            if (id != usuarios.CredencialVendedor)
             {
                 return NotFound();
             }
@@ -109,12 +104,12 @@ namespace EVA2TI_BarPinguino.Controllers
             {
                 try
                 {
-                    _context.Update(stock);
+                    _context.Update(usuarios);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!StockExists(stock.SKU))
+                    if (!UsuariosExists(usuarios.CredencialVendedor))
                     {
                         return NotFound();
                     }
@@ -125,11 +120,10 @@ namespace EVA2TI_BarPinguino.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Proveedor"] = new SelectList(_context.Proveedores, "Rut", "Rut", stock.Proveedor);
-            return View(stock);
+            return View(usuarios);
         }
 
-        // GET: Stocks/Delete/5
+        // GET: Usuarios/Delete/5
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
@@ -138,36 +132,35 @@ namespace EVA2TI_BarPinguino.Controllers
                 return NotFound();
             }
 
-            var stock = await _context.Stocks
-                .Include(s => s.ProveedorNavigation)
-                .FirstOrDefaultAsync(m => m.SKU == id);
-            if (stock == null)
+            var usuarios = await _context.Usuarios
+                .FirstOrDefaultAsync(m => m.CredencialVendedor == id);
+            if (usuarios == null)
             {
                 return NotFound();
             }
 
-            return View(stock);
+            return View(usuarios);
         }
 
-        // POST: Stocks/Delete/5
+        // POST: Usuarios/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var stock = await _context.Stocks.FindAsync(id);
-            if (stock != null)
+            var usuarios = await _context.Usuarios.FindAsync(id);
+            if (usuarios != null)
             {
-                _context.Stocks.Remove(stock);
+                _context.Usuarios.Remove(usuarios);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool StockExists(int id)
+        private bool UsuariosExists(int id)
         {
-            return _context.Stocks.Any(e => e.SKU == id);
+            return _context.Usuarios.Any(e => e.CredencialVendedor == id);
         }
     }
 }

@@ -9,25 +9,26 @@ using EVA2TI_BarPinguino.Data;
 using EVA2TI_BarPinguino.Models;
 using Microsoft.AspNetCore.Authorization;
 
-namespace EVA2TI_BarPinguino.Controllers
+namespace EVA2TI_BarPinguino.Controllers.Maestro
 {
-    public class FinanzasController : Controller
+    public class VentasController : Controller
     {
         private readonly AppDataContext _context;
 
-        public FinanzasController(AppDataContext context)
+        public VentasController(AppDataContext context)
         {
             _context = context;
         }
 
-        // GET: Finanzas
+        // GET: Ventas1
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Finanzas.ToListAsync());
+            var appDataContext = _context.Ventas.Include(v => v.Cliente).Include(v => v.Usuario);
+            return View(await appDataContext.ToListAsync());
         }
 
-        // GET: Finanzas/Details/5
+        // GET: Ventas1/Details/5
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(string id)
         {
@@ -36,41 +37,47 @@ namespace EVA2TI_BarPinguino.Controllers
                 return NotFound();
             }
 
-            var finanzas = await _context.Finanzas
-                .FirstOrDefaultAsync(m => m.InformeDeStock == id);
-            if (finanzas == null)
+            var venta = await _context.Ventas
+                .Include(v => v.Cliente)
+                .Include(v => v.Usuario)
+                .FirstOrDefaultAsync(m => m.NumBoleta == id);
+            if (venta == null)
             {
                 return NotFound();
             }
 
-            return View(finanzas);
+            return View(venta);
         }
 
-        // GET: Finanzas/Create
+        // GET: Ventas1/Create
         [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
+            ViewData["ClienteRut"] = new SelectList(_context.Clientes, "Rut", "Rut");
+            ViewData["CredencialVendedor"] = new SelectList(_context.Usuarios, "CredencialVendedor", "Clave");
             return View();
         }
 
-        // POST: Finanzas/Create
+        // POST: Ventas1/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Create([Bind("InformeDeStock,Fecha,Gasto,Ingreso,Detalles,NDocumento,TipoDeDocumento")] Finanzas finanzas)
+        public async Task<IActionResult> Create([Bind("NumBoleta,CredencialVendedor,Detalles,ClienteRut,TotalDelPedido")] Venta venta)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(finanzas);
+                _context.Add(venta);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(finanzas);
+            ViewData["ClienteRut"] = new SelectList(_context.Clientes, "Rut", "Rut", venta.ClienteRut);
+            ViewData["CredencialVendedor"] = new SelectList(_context.Usuarios, "CredencialVendedor", "Clave", venta.CredencialVendedor);
+            return View(venta);
         }
 
-        // GET: Finanzas/Edit/5
+        // GET: Ventas1/Edit/5
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(string id)
         {
@@ -79,23 +86,25 @@ namespace EVA2TI_BarPinguino.Controllers
                 return NotFound();
             }
 
-            var finanzas = await _context.Finanzas.FindAsync(id);
-            if (finanzas == null)
+            var venta = await _context.Ventas.FindAsync(id);
+            if (venta == null)
             {
                 return NotFound();
             }
-            return View(finanzas);
+            ViewData["ClienteRut"] = new SelectList(_context.Clientes, "Rut", "Rut", venta.ClienteRut);
+            ViewData["CredencialVendedor"] = new SelectList(_context.Usuarios, "CredencialVendedor", "Clave", venta.CredencialVendedor);
+            return View(venta);
         }
 
-        // POST: Finanzas/Edit/5
+        // POST: Ventas1/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Edit(string id, [Bind("InformeDeStock,Fecha,Gasto,Ingreso,Detalles,NDocumento,TipoDeDocumento")] Finanzas finanzas)
+        public async Task<IActionResult> Edit(string id, [Bind("NumBoleta,CredencialVendedor,Detalles,ClienteRut,TotalDelPedido")] Venta venta)
         {
-            if (id != finanzas.InformeDeStock)
+            if (id != venta.NumBoleta)
             {
                 return NotFound();
             }
@@ -104,12 +113,12 @@ namespace EVA2TI_BarPinguino.Controllers
             {
                 try
                 {
-                    _context.Update(finanzas);
+                    _context.Update(venta);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!FinanzasExists(finanzas.InformeDeStock))
+                    if (!VentaExists(venta.NumBoleta))
                     {
                         return NotFound();
                     }
@@ -120,10 +129,12 @@ namespace EVA2TI_BarPinguino.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(finanzas);
+            ViewData["ClienteRut"] = new SelectList(_context.Clientes, "Rut", "Rut", venta.ClienteRut);
+            ViewData["CredencialVendedor"] = new SelectList(_context.Usuarios, "CredencialVendedor", "Clave", venta.CredencialVendedor);
+            return View(venta);
         }
 
-        // GET: Finanzas/Delete/5
+        // GET: Ventas1/Delete/5
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(string id)
         {
@@ -132,36 +143,37 @@ namespace EVA2TI_BarPinguino.Controllers
                 return NotFound();
             }
 
-            var finanzas = await _context.Finanzas
-                .FirstOrDefaultAsync(m => m.InformeDeStock == id);
-            if (finanzas == null)
+            var venta = await _context.Ventas
+                .Include(v => v.Cliente)
+                .Include(v => v.Usuario)
+                .FirstOrDefaultAsync(m => m.NumBoleta == id);
+            if (venta == null)
             {
                 return NotFound();
             }
 
-            return View(finanzas);
+            return View(venta);
         }
 
-        // POST: Finanzas/Delete/5
+        // POST: Ventas1/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var finanzas = await _context.Finanzas.FindAsync(id);
-            if (finanzas != null)
+            var venta = await _context.Ventas.FindAsync(id);
+            if (venta != null)
             {
-                _context.Finanzas.Remove(finanzas);
+                _context.Ventas.Remove(venta);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        [Authorize(Roles = "Admin")]
-        private bool FinanzasExists(string id)
+        private bool VentaExists(string id)
         {
-            return _context.Finanzas.Any(e => e.InformeDeStock == id);
+            return _context.Ventas.Any(e => e.NumBoleta == id);
         }
     }
 }

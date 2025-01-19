@@ -9,7 +9,7 @@ using EVA2TI_BarPinguino.Data;
 using EVA2TI_BarPinguino.Models;
 using Microsoft.AspNetCore.Authorization;
 
-namespace EVA2TI_BarPinguino.Controllers
+namespace EVA2TI_BarPinguino.Controllers.Maestro
 {
     public class ProveedoresController : Controller
     {
