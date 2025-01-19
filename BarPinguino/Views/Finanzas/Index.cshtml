@@ -13,9 +13,7 @@
     <div class="side-panel">
         <h3 class="title">@ViewData["Title"]</h3>
         <ul>
-            <li>
-                <a role="button" asp-action="Create">Crear nuevo</a>
-            </li>
+            <partial name="_MaestroSidebar" />
         </ul>
     </div>
     <div class="content">
@@ -80,4 +78,5 @@
                 }
             </tbody>
         </table>
+        <a role="button" asp-action="Create">Crear nuevo</a>
     </div>
