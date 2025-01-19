@@ -1,0 +1,61 @@
+﻿<div class="desktop-content">
+    <div class="side-panel">
+        <h3 class="title">Panel Admin</h3>
+        <ul>
+            <li>
+                <a asp-controller="" asp-action="" class="chapter">
+                    1. Agregar Perfiles
+                </a>
+            </li>
+            <li>
+                <a asp-controller="" asp-action="" class="chapter">
+                    2. Ver Todos los Perfiles
+                </a>
+            </li>
+            <li>
+                <a asp-controller="" asp-action="" class="chapter">
+                    3. Eliminar un Perfil
+                </a>
+            </li>
+            <li>
+                <a asp-controller="" asp-action="" class="chapter">
+                    4. Modificar un Perfil
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="grid">
+            <form role="search">
+                <input name="search" type="search" placeholder="Search" />
+                <input type="submit" value="Search" />
+            </form>
+        </div>
+        <table class="sales-table">
+            <thead>
+                <tr>
+                    <th scope="col">Rut</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido Paterno</th>
+                    <th scope="col">Apellido Materno</th>
+                    <th scope="col">Edad</th>
+                    <th scope="col">Nivel</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var perfil in Model)
+
+                {
+                    <tr>
+                        <td>@perfil.Rut</td>
+                        <td>@perfil.Nombre</td>
+                        <td>@perfil.ApPat</td>
+                        <td>@perfil.ApMat</td>
+                        <td>@perfil.Edad</td>
+                        <td>@perfil.Nivel</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
