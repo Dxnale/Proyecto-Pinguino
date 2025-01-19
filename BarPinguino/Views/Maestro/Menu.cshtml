@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Menu";
+}
+<div id="home-container">
+    <div id="main-title">
+        <icon>🐧</icon>
+        <h1>Maestro de Tablas</h1>
+    </div>
+    <div class="grid">
+        <a asp-controller="Clientes" asp-action="Index" role="button" class="card">Clientes</a>
+        <a asp-controller="Usuarios" asp-action="Index" role="button" class="card">Usuarios</a>
+        <a asp-controller="Stocks" asp-action="Index" role="button" class="card">Stocks</a>
+        <a asp-controller="Proveedores" asp-action="Index" role="button" class="card">Proveedores</a>
+        <a asp-controller="Ventas" asp-action="Index" role="button" class="card">Ventas</a>
+        <a asp-controller="Descuentos" asp-action="Index" role="button" class="card">Descuentos</a>
+        <a asp-controller="Finanzas" asp-action="Index" role="button" class="card">Finanzas</a>
+    </div>
+</div>

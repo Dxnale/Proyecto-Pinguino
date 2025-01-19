@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EVA2TI_BarPinguino.Data;
 using EVA2TI_BarPinguino.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EVA2TI_BarPinguino.Controllers
 {
@@ -20,12 +21,14 @@ namespace EVA2TI_BarPinguino.Controllers
         }
 
         // GET: Proveedores
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Proveedores.ToListAsync());
         }
 
         // GET: Proveedores/Details/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
@@ -44,6 +47,7 @@ namespace EVA2TI_BarPinguino.Controllers
         }
 
         // GET: Proveedores/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
@@ -54,6 +58,7 @@ namespace EVA2TI_BarPinguino.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("Rut,Giro,RazonSocial,DatosBanco,Fono,Direccion")] Proveedores proveedores)
         {
             if (ModelState.IsValid)
@@ -66,6 +71,7 @@ namespace EVA2TI_BarPinguino.Controllers
         }
 
         // GET: Proveedores/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -86,6 +92,7 @@ namespace EVA2TI_BarPinguino.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(string id, [Bind("Rut,Giro,RazonSocial,DatosBanco,Fono,Direccion")] Proveedores proveedores)
         {
             if (id != proveedores.Rut)
@@ -117,6 +124,7 @@ namespace EVA2TI_BarPinguino.Controllers
         }
 
         // GET: Proveedores/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -137,6 +145,7 @@ namespace EVA2TI_BarPinguino.Controllers
         // POST: Proveedores/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var proveedores = await _context.Proveedores.FindAsync(id);
@@ -149,6 +158,7 @@ namespace EVA2TI_BarPinguino.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize(Roles = "Admin")]
         private bool ProveedoresExists(string id)
         {
             return _context.Proveedores.Any(e => e.Rut == id);

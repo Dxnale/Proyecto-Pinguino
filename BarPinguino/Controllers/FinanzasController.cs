@@ -11,91 +11,91 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace EVA2TI_BarPinguino.Controllers
 {
-    public class UsuariosController : Controller
+    public class FinanzasController : Controller
     {
         private readonly AppDataContext _context;
 
-        public UsuariosController(AppDataContext context)
+        public FinanzasController(AppDataContext context)
         {
             _context = context;
         }
 
-        // GET: Usuarios
+        // GET: Finanzas
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Usuarios.ToListAsync());
+            return View(await _context.Finanzas.ToListAsync());
         }
 
-        // GET: Usuarios/Details/5
+        // GET: Finanzas/Details/5
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var usuarios = await _context.Usuarios
-                .FirstOrDefaultAsync(m => m.CredencialVendedor == id);
-            if (usuarios == null)
+            var finanzas = await _context.Finanzas
+                .FirstOrDefaultAsync(m => m.InformeDeStock == id);
+            if (finanzas == null)
             {
                 return NotFound();
             }
 
-            return View(usuarios);
+            return View(finanzas);
         }
 
-        // GET: Usuarios/Create
+        // GET: Finanzas/Create
         [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Usuarios/Create
+        // POST: Finanzas/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Create([Bind("CredencialVendedor,Clave,Nombre,Correo,TipoUsuario")] Usuarios usuarios)
+        public async Task<IActionResult> Create([Bind("InformeDeStock,Fecha,Gasto,Ingreso,Detalles,NDocumento,TipoDeDocumento")] Finanzas finanzas)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(usuarios);
+                _context.Add(finanzas);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(usuarios);
+            return View(finanzas);
         }
 
-        // GET: Usuarios/Edit/5
+        // GET: Finanzas/Edit/5
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var usuarios = await _context.Usuarios.FindAsync(id);
-            if (usuarios == null)
+            var finanzas = await _context.Finanzas.FindAsync(id);
+            if (finanzas == null)
             {
                 return NotFound();
             }
-            return View(usuarios);
+            return View(finanzas);
         }
 
-        // POST: Usuarios/Edit/5
+        // POST: Finanzas/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Edit(int id, [Bind("CredencialVendedor,Clave,Nombre,Correo,TipoUsuario")] Usuarios usuarios)
+        public async Task<IActionResult> Edit(string id, [Bind("InformeDeStock,Fecha,Gasto,Ingreso,Detalles,NDocumento,TipoDeDocumento")] Finanzas finanzas)
         {
-            if (id != usuarios.CredencialVendedor)
+            if (id != finanzas.InformeDeStock)
             {
                 return NotFound();
             }
@@ -104,12 +104,12 @@ namespace EVA2TI_BarPinguino.Controllers
             {
                 try
                 {
-                    _context.Update(usuarios);
+                    _context.Update(finanzas);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UsuariosExists(usuarios.CredencialVendedor))
+                    if (!FinanzasExists(finanzas.InformeDeStock))
                     {
                         return NotFound();
                     }
@@ -120,47 +120,48 @@ namespace EVA2TI_BarPinguino.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(usuarios);
+            return View(finanzas);
         }
 
-        // GET: Usuarios/Delete/5
+        // GET: Finanzas/Delete/5
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var usuarios = await _context.Usuarios
-                .FirstOrDefaultAsync(m => m.CredencialVendedor == id);
-            if (usuarios == null)
+            var finanzas = await _context.Finanzas
+                .FirstOrDefaultAsync(m => m.InformeDeStock == id);
+            if (finanzas == null)
             {
                 return NotFound();
             }
 
-            return View(usuarios);
+            return View(finanzas);
         }
 
-        // POST: Usuarios/Delete/5
+        // POST: Finanzas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var usuarios = await _context.Usuarios.FindAsync(id);
-            if (usuarios != null)
+            var finanzas = await _context.Finanzas.FindAsync(id);
+            if (finanzas != null)
             {
-                _context.Usuarios.Remove(usuarios);
+                _context.Finanzas.Remove(finanzas);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool UsuariosExists(int id)
+        [Authorize(Roles = "Admin")]
+        private bool FinanzasExists(string id)
         {
-            return _context.Usuarios.Any(e => e.CredencialVendedor == id);
+            return _context.Finanzas.Any(e => e.InformeDeStock == id);
         }
     }
 }

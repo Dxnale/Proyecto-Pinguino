@@ -1,7 +1,7 @@
-﻿@model IEnumerable<EVA2TI_BarPinguino.Models.Proveedores>
+﻿@model IEnumerable<EVA2TI_BarPinguino.Models.Descuentos>
 
 @{
-    ViewData["Title"] = "Proveedores";
+    ViewData["Title"] = "Descuentos";
 }
 
 <div class="mobile-message">
@@ -24,24 +24,17 @@
                 <input name="search" type="search" placeholder="Search" />
                 <input type="submit" value="Search" />
             </form>
-        </div>
-        <table class="table">
+        </div><table class="table">
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.Giro)
+                        @Html.DisplayNameFor(model => model.PrecioOriginal)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.RazonSocial)
+                        @Html.DisplayNameFor(model => model.PrecioConDescuento)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.DatosBanco)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Fono)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Direccion)
+                        @Html.DisplayNameFor(model => model.Stock)
                     </th>
                     <th></th>
                 </tr>
@@ -51,27 +44,22 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Giro)
+                            @Html.DisplayFor(modelItem => item.PrecioOriginal)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.RazonSocial)
+                            @Html.DisplayFor(modelItem => item.PrecioConDescuento)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.DatosBanco)
+                            @Html.DisplayFor(modelItem => item.Stock.NombreProducto)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Fono)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Direccion)
-                        </td>
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@item.Rut">Edit</a> |
-                            <a asp-action="Details" asp-route-id="@item.Rut">Details</a> |
-                            <a asp-action="Delete" asp-route-id="@item.Rut">Delete</a>
+                            <a asp-action="Edit" asp-route-id="@item.SKU">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.SKU">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.SKU">Delete</a>
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
+
     </div>

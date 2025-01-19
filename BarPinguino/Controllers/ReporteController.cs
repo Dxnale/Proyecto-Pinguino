@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EVA2TI_BarPinguino.Controllers
 {
-    public class FinanzaController : Controller
+    public class ReporteController : Controller
     {
         [Authorize(Roles ="Admin")]
         public IActionResult Descuentos()

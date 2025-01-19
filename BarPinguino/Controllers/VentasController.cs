@@ -1,15 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using EVA2TI_BarPinguino.Models;
-using EVA2TI_BarPinguino.Data;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Claims;
+using EVA2TI_BarPinguino.Data;
+using EVA2TI_BarPinguino.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.IdentityModel.Tokens;
-
 
 namespace EVA2TI_BarPinguino.Controllers
 {
-    [Authorize(Roles = "Admin,Ventas")]
     public class VentasController : Controller
     {
         private readonly AppDataContext _context;
@@ -18,73 +19,161 @@ namespace EVA2TI_BarPinguino.Controllers
         {
             _context = context;
         }
-        [HttpGet]
-        public IActionResult Venta(string clienterut)
+
+        // GET: Ventas1
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Index()
         {
-            if (string.IsNullOrEmpty(clienterut)) 
+            var appDataContext = _context.Ventas.Include(v => v.Cliente).Include(v => v.Usuario);
+            return View(await appDataContext.ToListAsync());
+        }
+
+        // GET: Ventas1/Details/5
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Details(string id)
+        {
+            if (id == null)
             {
-                ViewBag.Error = "Debe consultar un rut";
-                return RedirectToAction("Consulta", "Registros");
+                return NotFound();
             }
-            ViewBag.rut = clienterut;
+
+            var venta = await _context.Ventas
+                .Include(v => v.Cliente)
+                .Include(v => v.Usuario)
+                .FirstOrDefaultAsync(m => m.NumBoleta == id);
+            if (venta == null)
+            {
+                return NotFound();
+            }
+
+            return View(venta);
+        }
+
+        // GET: Ventas1/Create
+        [Authorize(Roles = "Admin")]
+        public IActionResult Create()
+        {
+            ViewData["ClienteRut"] = new SelectList(_context.Clientes, "Rut", "Rut");
+            ViewData["CredencialVendedor"] = new SelectList(_context.Usuarios, "CredencialVendedor", "Clave");
             return View();
         }
+
+        // POST: Ventas1/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public IActionResult Venta(string clienterut, string txtproducto, int txtcantidad)
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Create([Bind("NumBoleta,CredencialVendedor,Detalles,ClienteRut,TotalDelPedido")] Venta venta)
         {
-            if (string.IsNullOrEmpty(clienterut))
+            if (ModelState.IsValid)
             {
-                ViewBag.Error = "Debe consultar un rut";
-                return RedirectToAction("Consulta", "Registros");
+                _context.Add(venta);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
             }
-
-            var credencial = User.FindFirst("CredencialVendedor")!.Value;
-            if (string.IsNullOrEmpty(txtproducto) || txtcantidad == 0) return View();
-
-            var producto = _context.Stocks.FirstOrDefault(p => p.NombreProducto == txtproducto);
-            if (producto == null || producto.CantidadStock < txtcantidad)
-            {
-                ViewBag.Error = "Bebida agotada o no disponible";
-                return View();
-            }
-
-            decimal precio = producto.Precio;
-            decimal total = precio * txtcantidad;
-
-            string guid32 = Guid.NewGuid().ToString("N");
-
-            ViewBag.Producto = txtproducto;
-            ViewBag.Precio = precio;
-            ViewBag.Cantidad = txtcantidad;
-            ViewBag.Total = total;
-            ViewBag.rut = clienterut;
-            ViewBag.guid = guid32;
-
-            return View();
-        }
-        public IActionResult Boleta(string NumBoleta, int CredencialVendedor, string Detalles, string ClienteRut, decimal TotalDelPedido, string producto, int Cantidad)
-        {
-            var venta = new Venta
-            {
-                NumBoleta = NumBoleta,
-                CredencialVendedor = CredencialVendedor,
-                Detalles = Detalles,
-                ClienteRut = ClienteRut,
-                TotalDelPedido = TotalDelPedido
-            };
-
-            var productos = _context.Stocks.FirstOrDefault(p => p.NombreProducto == producto);
-
-            productos.CantidadStock -= Cantidad;
-            _context.Stocks.Update(productos);
-
-            _context.Ventas.Add(venta);
-            _context.SaveChanges();
-
-            return View();
+            ViewData["ClienteRut"] = new SelectList(_context.Clientes, "Rut", "Rut", venta.ClienteRut);
+            ViewData["CredencialVendedor"] = new SelectList(_context.Usuarios, "CredencialVendedor", "Clave", venta.CredencialVendedor);
+            return View(venta);
         }
 
+        // GET: Ventas1/Edit/5
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Edit(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            var venta = await _context.Ventas.FindAsync(id);
+            if (venta == null)
+            {
+                return NotFound();
+            }
+            ViewData["ClienteRut"] = new SelectList(_context.Clientes, "Rut", "Rut", venta.ClienteRut);
+            ViewData["CredencialVendedor"] = new SelectList(_context.Usuarios, "CredencialVendedor", "Clave", venta.CredencialVendedor);
+            return View(venta);
+        }
 
+        // POST: Ventas1/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Edit(string id, [Bind("NumBoleta,CredencialVendedor,Detalles,ClienteRut,TotalDelPedido")] Venta venta)
+        {
+            if (id != venta.NumBoleta)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(venta);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!VentaExists(venta.NumBoleta))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["ClienteRut"] = new SelectList(_context.Clientes, "Rut", "Rut", venta.ClienteRut);
+            ViewData["CredencialVendedor"] = new SelectList(_context.Usuarios, "CredencialVendedor", "Clave", venta.CredencialVendedor);
+            return View(venta);
+        }
+
+        // GET: Ventas1/Delete/5
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Delete(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var venta = await _context.Ventas
+                .Include(v => v.Cliente)
+                .Include(v => v.Usuario)
+                .FirstOrDefaultAsync(m => m.NumBoleta == id);
+            if (venta == null)
+            {
+                return NotFound();
+            }
+
+            return View(venta);
+        }
+
+        // POST: Ventas1/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> DeleteConfirmed(string id)
+        {
+            var venta = await _context.Ventas.FindAsync(id);
+            if (venta != null)
+            {
+                _context.Ventas.Remove(venta);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool VentaExists(string id)
+        {
+            return _context.Ventas.Any(e => e.NumBoleta == id);
+        }
     }
 }
