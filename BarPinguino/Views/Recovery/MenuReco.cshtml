@@ -1,0 +1,39 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<fieldset style="justify-items:center"></fieldset>
+    <div>
+        <button type="button" onclick="DF()">Ingresar con Mail</button>
+        <button type="button" onclick="RC()">Recuperar Clave</button>
+    </div>
+<fieldset>
+    <!-- Formulario para DobleFactor -->
+    <form style="display: none;" class="campo-login " id="Mail" asp-controller="Recovery" asp-action="EnvioCorreo" method="post">
+        <div>
+            <label for="credencial">Credencial</label>
+            <input type="text" id="credencial" name="credencial" placeholder="Ingresa tu credencial" aria-label="Credencial" autocomplete="username" required>
+        </div>
+        <div>
+            <button type="submit">Enviar Código</button>
+        </div>
+    </form>
+    <!-- Formulario para Recuperacion -->
+    <form style="display: none;" class="campo-login " id="Recu" asp-controller="Recovery" asp-action="DobleFactor" method="post">
+        <div>
+            <label for="credencial">Credencial</label>
+            <input type="text" id="credencial" name="credencial" placeholder="Ingresa tu credencial" aria-label="Credencial" autocomplete="username" required>
+        </div>
+        <div>
+            <button onclick="togglenex()" type="submit">Enviar Código</button>
+        </div>
+        <div>
+            <label for="codigo">CODIGO:</label>
+            <input type="text" id="codigo" name="codigo" placeholder="Ingresa código" aria-label="codigo" autocomplete="username" required>
+        </div>
+        <div>
+            <button type="submit">Confirmar</button>
+        </div>
+    </form>
+</fieldset>

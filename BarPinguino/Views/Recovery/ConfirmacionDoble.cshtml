@@ -1,0 +1,20 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<fieldset>
+    <!-- Botón para activar el formulario -->
+    <button type="button" onclick="toggleForm()">Ingresa con Email</button>
+
+    <!-- Formulario oculto inicialmente -->
+    <form class="campo-login" id="Mail" asp-controller="Recovery" asp-action="DobleFactor" method="post" style="display: none;">
+        <div>
+            <label for="credencial">Credencial</label>
+            <input type="text" id="credencial" name="credencial" placeholder="Ingresa tu credencial" aria-label="Credencial" autocomplete="username" required>
+        </div>
+        <div>
+            <button type="submit">Enviar Código</button>
+        </div>
+    </form>
+</fieldset>
