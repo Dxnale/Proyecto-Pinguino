@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace EVA2TI_BarPinguino.Controllers
+namespace EVA2TI_BarPinguino.Controllers.Maestro
 {
     public class MaestroController : Controller
     {
