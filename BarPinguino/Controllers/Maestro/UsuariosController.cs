@@ -8,16 +8,19 @@ using Microsoft.EntityFrameworkCore;
 using EVA2TI_BarPinguino.Data;
 using EVA2TI_BarPinguino.Models;
 using Microsoft.AspNetCore.Authorization;
+using EVA2TI_BarPinguino.Services;
 
 namespace EVA2TI_BarPinguino.Controllers.Maestro
 {
     public class UsuariosController : Controller
     {
         private readonly AppDataContext _context;
+        private AuthService _authService;
 
         public UsuariosController(AppDataContext context)
         {
             _context = context;
+            _authService = new AuthService(context);
         }
 
         // GET: Usuarios
@@ -59,15 +62,18 @@ namespace EVA2TI_BarPinguino.Controllers.Maestro
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Create([Bind("CredencialVendedor,Clave,Nombre,Correo,TipoUsuario")] Usuarios usuarios)
+        public async Task<IActionResult> Create([Bind("CredencialVendedor,Clave,Nombre,Correo,TipoUsuario")] Usuarios usuario)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _context.Add(usuarios);
-                await _context.SaveChangesAsync();
+                usuario.PasswordSalt = "dummy";
+                await _authService.RegisterUser(usuario);
                 return RedirectToAction(nameof(Index));
             }
-            return View(usuarios);
+            catch 
+            {
+                return View();
+            }
         }
 
         // GET: Usuarios/Edit/5

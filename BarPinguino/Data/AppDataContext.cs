@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using EVA2TI_BarPinguino.Models;
 using EVA2TI_BarPinguino.Services;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace EVA2TI_BarPinguino.Data
 {
@@ -19,7 +20,11 @@ namespace EVA2TI_BarPinguino.Data
         public DbSet<Descuentos> Descuentos { get; set; }
         public DbSet<Venta> Ventas { get; set; }
         public DbSet<Finanzas> Finanzas { get; set; }
-
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder
+                .ConfigureWarnings(w => w.Ignore(RelationalEventId.PendingModelChangesWarning));
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -44,6 +49,11 @@ namespace EVA2TI_BarPinguino.Data
                 .HasOne(d => d.Stock)
                 .WithOne()
                 .HasForeignKey<Descuentos>(d => d.SKU);
+
+            modelBuilder.Entity<Finanzas>()
+                        .Property(f => f.Gasto)
+                        .HasColumnType("decimal(18,2)");
+
 
             // Seed data
             modelBuilder.Entity<Stock>().HasData(
