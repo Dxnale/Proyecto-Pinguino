@@ -92,16 +92,16 @@ namespace EVA2TI_BarPinguino.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(string credencial, string clave)
         {
-            
-            var usuario = _context.Usuarios.FirstOrDefault(u => u.CredencialVendedor == int.Parse(credencial));
-
-            
-            if (usuario != null && usuario.CredencialVendedor == int.Parse(credencial))
+            try
             {
-                
+                var result = _authService.ValidateLogin(credencial, clave);
+
+                if (!result) throw new Exception();
+
+                var usuario = _context.Usuarios.FirstOrDefault(u => u.CredencialVendedor == int.Parse(credencial));
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, usuario.Nombre),
+                    new Claim(ClaimTypes.Name, usuario!.Nombre),
                     new Claim("CredencialVendedor", usuario.CredencialVendedor.ToString()),
                     new Claim(ClaimTypes.Role, usuario.TipoUsuario)
                 };
@@ -109,13 +109,15 @@ namespace EVA2TI_BarPinguino.Controllers
                 var identity = new ClaimsIdentity(claims, "Cookies");
                 var principal = new ClaimsPrincipal(identity);
 
-                await HttpContext.SignInAsync("Cookies", principal, new AuthenticationProperties { IsPersistent = false});
+                await HttpContext.SignInAsync("Cookies", principal, new AuthenticationProperties { IsPersistent = false });
 
-                return RedirectToAction("Index", "Home"); 
+                return RedirectToAction("Index", "Home");
             }
-         
-            ViewBag.Error = "Credenciales incorrectas. Por favor, intente nuevamente. ";
-            return View();
+            catch
+            {
+                ViewBag.Error = "Credenciales incorrectas.";
+                return View();
+            }
         }
         [Authorize]
         public async Task<IActionResult> Logout()

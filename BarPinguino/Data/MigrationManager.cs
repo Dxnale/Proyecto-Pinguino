@@ -9,18 +9,17 @@ namespace EVA2TI_BarPinguino.Data
         {
             using (var scope = app.Services.CreateScope())
             {
-                using (var context = scope.ServiceProvider.GetRequiredService<AppDataContext>())
+                using var context = scope.ServiceProvider.GetRequiredService<AppDataContext>();
+                try
                 {
-                    try
-                    {
+                    if (context.Database.GetPendingMigrations().Count() > 0)
                         context.Database.Migrate();
-                    }
-                    catch (Exception ex)
-                    {
-                        var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
-                        logger.LogError(ex, "Ha ocurrido un error aplicando las migraciones.");
-                        throw;
-                    }
+                }
+                catch (Exception ex)
+                {
+                    var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(ex, "Ha ocurrido un error aplicando las migraciones.");
+                    throw;
                 }
             }
             return app;
