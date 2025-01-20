@@ -1,8 +1,5 @@
 ﻿using Azure;
 using Microsoft.AspNetCore.Mvc;
-
-using Microsoft.AspNetCore.Mvc;
-
 namespace EVA2TI_BarPinguino.Controllers
 {
     public class ErrorController : Controller

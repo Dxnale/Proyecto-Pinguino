@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using EVA2TI_BarPinguino.Services;
 
 
 namespace EVA2TI_BarPinguino.Controllers
@@ -13,9 +14,11 @@ namespace EVA2TI_BarPinguino.Controllers
     public class RegistrosController : Controller
     {
         private readonly AppDataContext _context;
+        private AuthService _authService;
         public RegistrosController(AppDataContext context)
         {
             _context = context;
+            _authService = new AuthService(context);
         }
         [Authorize(Roles ="Admin")]
         [HttpGet]
@@ -25,19 +28,9 @@ namespace EVA2TI_BarPinguino.Controllers
         }
         [Authorize]
         [HttpPost]
-        public IActionResult UserRegistrado(Usuarios usuario)
+        public async Task<IActionResult> UserRegistrado(Usuarios usuario)
         {
-            string hashedPassword = HashPassword(usuario.Clave);
-            var newUser = new Usuarios
-            {
-                CredencialVendedor = usuario.CredencialVendedor,
-                Clave = hashedPassword,
-                Nombre = usuario.Nombre,
-                TipoUsuario = usuario.TipoUsuario,
-                Correo = usuario.Correo
-            };
-            _context.Usuarios.Add(newUser);
-            _context.SaveChanges();
+            await _authService.RegisterUser(usuario);
 
             if (usuario.CredencialVendedor != 0) return View("UserRegistrado", usuario);
 
@@ -100,7 +93,7 @@ namespace EVA2TI_BarPinguino.Controllers
         public async Task<IActionResult> Login(string credencial, string clave)
         {
             
-            var usuario = _context.Usuarios.FirstOrDefault(u => u.Clave == HashPassword(clave));
+            var usuario = _context.Usuarios.FirstOrDefault(u => u.CredencialVendedor == int.Parse(credencial));
 
             
             if (usuario != null && usuario.CredencialVendedor == int.Parse(credencial))
@@ -133,22 +126,5 @@ namespace EVA2TI_BarPinguino.Controllers
             HttpContext.Response.Headers["Expires"] = "0";
             return RedirectToAction("Login", "Registros");
         }
-
-
-        private string HashPassword(string password)
-        {
-            using (SHA256 sha256 = SHA256.Create())
-            {
-                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-                StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < bytes.Length; i++)
-                {
-                    builder.Append(bytes[i].ToString("x2"));
-                }
-                return builder.ToString();
-            }
-        }
-
-
     }
 }
