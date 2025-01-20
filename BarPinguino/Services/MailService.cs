@@ -1,7 +1,7 @@
 ﻿using MimeKit;
 using MailKit.Net.Smtp;
 
-namespace testMail
+namespace EVA2TI_BarPinguino.Services
 {
     public class Correo
     {

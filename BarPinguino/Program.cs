@@ -2,7 +2,7 @@ using EVA2TI_BarPinguino.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
-using testMail;
+using EVA2TI_BarPinguino.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

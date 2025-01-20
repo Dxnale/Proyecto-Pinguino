@@ -7,6 +7,7 @@ namespace EVA2TI_BarPinguino.Models
     {
         private int _credencialVendedor;
         private string _clave;
+        public string _passwordSalt;
         private string _nombre;
         private string _correo;
         private string _tipoUsuario;
@@ -25,6 +26,14 @@ namespace EVA2TI_BarPinguino.Models
             get => _clave;
             set => _clave = value;
         }
+
+        [Required]
+        public string PasswordSalt
+        {
+            get => _passwordSalt;
+            set => _passwordSalt = value;
+        }
+
 
         [Required]
         public string Nombre

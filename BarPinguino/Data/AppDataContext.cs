@@ -1,11 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using EVA2TI_BarPinguino.Models;
+using EVA2TI_BarPinguino.Services;
 
 namespace EVA2TI_BarPinguino.Data
 {
     public class AppDataContext : DbContext
     {
-        public AppDataContext(DbContextOptions<AppDataContext> options) : base(options) { }
+        HasherService _hasherService;
+        public AppDataContext(DbContextOptions<AppDataContext> options) : base(options)
+        {
+            _hasherService = new HasherService();
+        }
 
         public DbSet<Usuarios> Usuarios { get; set; }
         public DbSet<Clientes> Clientes { get; set; }
@@ -42,12 +47,14 @@ namespace EVA2TI_BarPinguino.Data
 
             // Seed data
             modelBuilder.Entity<Stock>().HasData(
-                new Stock { SKU = 123, NombreProducto ="Ron blanco", Proveedor = "33333333-3", CantidadStock = 100, StockCritico = 10, Precio = 500, InformeDeStock = "Suficiente" },
-                new Stock { SKU = 234, NombreProducto ="Agua mineral" ,Proveedor = "44444444-4", CantidadStock = 50, StockCritico = 5, Precio = 100, InformeDeStock = "Bajo" }
+                new Stock { SKU = 123, NombreProducto = "Ron blanco", Proveedor = "33333333-3", CantidadStock = 100, StockCritico = 10, Precio = 500, InformeDeStock = "Suficiente" },
+                new Stock { SKU = 234, NombreProducto = "Agua mineral", Proveedor = "44444444-4", CantidadStock = 50, StockCritico = 5, Precio = 100, InformeDeStock = "Bajo" }
             );
+
+            var hashResult = _hasherService.HashPassword("1234");
             modelBuilder.Entity<Usuarios>().HasData(
-                new Usuarios { CredencialVendedor = 111, Clave = "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4", Nombre = "Juan Perez", Correo ="javier.nieves@alumnos.ipleones.cl" ,TipoUsuario = "Admin" },
-                new Usuarios { CredencialVendedor = 222, Clave = "88d4266fd4e6338d13b845fcf289579d209c897823b9217da3e161936f031589", Nombre = "Maria Lopez", Correo ="benjamin.sequeida@alumnos.ipleones.cl" ,TipoUsuario = "Ventas" }
+                new Usuarios { CredencialVendedor = 111, Clave = hashResult.Hash, PasswordSalt = hashResult.Salt, Nombre = "Juan Perez", Correo = "javier.nieves@alumnos.ipleones.cl", TipoUsuario = "Admin" },
+                new Usuarios { CredencialVendedor = 222, Clave = hashResult.Hash, PasswordSalt = hashResult.Salt, Nombre = "Maria Lopez", Correo = "benjamin.sequeida@alumnos.ipleones.cl", TipoUsuario = "Ventas" }
             );
 
             modelBuilder.Entity<Clientes>().HasData(
@@ -77,3 +84,4 @@ namespace EVA2TI_BarPinguino.Data
         }
     }
 }
+
