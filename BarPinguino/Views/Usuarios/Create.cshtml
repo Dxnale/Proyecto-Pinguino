@@ -1,0 +1,46 @@
+﻿@model EVA2TI_BarPinguino.Models.Usuarios
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div id="card-section">
+<h1>Create</h1>
+<h4>Usuarios</h4>
+<hr />
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly"></div>
+            <div>
+                <label asp-for="Clave"></label>
+                <input asp-for="Clave" />
+                <span asp-validation-for="Clave"></span>
+            </div>
+            <div>
+                <label asp-for="Nombre"></label>
+                <input asp-for="Nombre" />
+                <span asp-validation-for="Nombre"></span>
+            </div>
+            <div>
+                <label asp-for="Correo"></label>
+                <input asp-for="Correo" />
+                <span asp-validation-for="Correo"></span>
+            </div>
+            <div>
+                <label asp-for="TipoUsuario"></label>
+                <select asp-for="TipoUsuario">
+                    <option value="Ventas">Ventas</option>
+                    <option value="Preparacion">Preparacion</option>
+                    <option value="Inventario">Inventario</option>
+                    <option value="Admin">Admin</option>
+                </select>
+                <span asp-validation-for="TipoUsuario"></span>
+            </div>
+            <div>
+                <input type="submit" value="Create"/>
+            </div>
+        </form>
+    <a asp-action="Index">Volver</a>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

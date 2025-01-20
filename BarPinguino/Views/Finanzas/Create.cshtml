@@ -1,0 +1,53 @@
+﻿@model EVA2TI_BarPinguino.Models.Finanzas
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div id="card-section">
+<h1>Create</h1>
+<h4>Finanzas</h4>
+<hr />
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly"></div>
+            <fieldset>
+                <label asp-for="InformeDeStock"></label>
+                <input asp-for="InformeDeStock" />
+                <span asp-validation-for="InformeDeStock"></span>
+            </fieldset>
+            <fieldset>
+                <label asp-for="Fecha"></label>
+                <input asp-for="Fecha" />
+                <span asp-validation-for="Fecha"></span>
+            </fieldset>
+            <fieldset>
+                <label asp-for="Gasto"></label>
+                <input asp-for="Gasto" />
+                <span asp-validation-for="Gasto"></span>
+            </fieldset>
+            <fieldset>
+                <label asp-for="Ingreso"></label>
+                <input asp-for="Ingreso" />
+                <span asp-validation-for="Ingreso"></span>
+            </fieldset>
+            <fieldset>
+                <label asp-for="Detalles"></label>
+                <input asp-for="Detalles" />
+                <span asp-validation-for="Detalles"></span>
+            </fieldset>
+            <fieldset>
+                <label asp-for="NDocumento"></label>
+                <input asp-for="NDocumento" />
+                <span asp-validation-for="NDocumento"></span>
+            </fieldset>
+            <fieldset>
+                <label asp-for="TipoDeDocumento"></label>
+                <input asp-for="TipoDeDocumento" />
+                <span asp-validation-for="TipoDeDocumento"></span>
+            </fieldset>
+            <div>
+                <input type="submit" value="Create"/>
+            </div>
+        </form>
+    <a asp-action="Index">Volver</a>
+</div>

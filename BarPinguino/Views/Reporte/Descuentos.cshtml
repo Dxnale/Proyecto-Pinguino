@@ -9,26 +9,9 @@
 
 <div class="desktop-content">
     <div class="side-panel">
-        <h3 class="title">Descuentos</h3>
+        <h3 class="title">@ViewData["Title"]</h3>
         <ul>
-            <li>
-                <a asp-controller="Finanza" asp-action="VentasDia" class="chapter">Ventas del Dia</a>
-            </li>
-            <li>
-                <a asp-controller="Finanza" asp-action="VentasMes" class="chapter">Ventas del mes</a>
-            </li>
-            <li>
-                <a asp-controller="Finanza" asp-action="Proveedores" class="chapter">Proveedores</a>
-            </li>
-            <li>
-                <a asp-controller="Finanza" asp-action="Stock" class="chapter">Stock</a>
-            </li>
-            <li>
-                <a asp-controller="Finanza" asp-action="Descuentos" class="chapter">Descuentos</a>
-            </li>
-            <li>
-                <a asp-controller="Finanza" asp-action="Insumos" class="chapter">Insumos</a>
-            </li>
+            <partial name="_ReporteSidebar" />
         </ul>
     </div>
     <div class="content">

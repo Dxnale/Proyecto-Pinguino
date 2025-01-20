@@ -1,0 +1,47 @@
+﻿@model EVA2TI_BarPinguino.Models.Proveedores
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div id="card-section">
+<h1>Edit</h1>
+<h4>Proveedores</h4>
+<hr />
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Rut" />
+            <div>
+                <label asp-for="Giro"></label>
+                <input asp-for="Giro" />
+                <span asp-validation-for="Giro"></span>
+            </div>
+            <div>
+                <label asp-for="RazonSocial"></label>
+                <input asp-for="RazonSocial" />
+                <span asp-validation-for="RazonSocial"></span>
+            </div>
+            <div>
+                <label asp-for="DatosBanco"></label>
+                <input asp-for="DatosBanco" />
+                <span asp-validation-for="DatosBanco"></span>
+            </div>
+            <div>
+                <label asp-for="Fono"></label>
+                <input asp-for="Fono" />
+                <span asp-validation-for="Fono"></span>
+            </div>
+            <div>
+                <label asp-for="Direccion"></label>
+                <input asp-for="Direccion" />
+                <span asp-validation-for="Direccion"></span>
+            </div>
+            <div>
+                <input type="submit" value="Save"/>
+            </div>
+        </form>
+    <a asp-action="Index">Volver</a>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

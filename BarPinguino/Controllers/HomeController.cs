@@ -33,5 +33,10 @@ namespace EVA2TI_BarPinguino.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        public ActionResult Error404()
+        {
+            Response.StatusCode = 404;
+            return View("Error404");
+        }
     }
 }

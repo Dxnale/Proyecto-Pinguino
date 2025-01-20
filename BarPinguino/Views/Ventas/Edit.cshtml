@@ -1,0 +1,39 @@
+﻿@model EVA2TI_BarPinguino.Models.Venta
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div id="card-section">
+<h1>Edit</h1>
+<h4>Venta</h4>
+<hr />
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly"></div>
+            <input type="hidden" asp-for="NumBoleta" />
+            <fiedlset>
+                <label asp-for="CredencialVendedor"></label>
+                <select asp-for="CredencialVendedor" asp-items="ViewBag.CredencialVendedor"></select>
+                <span asp-validation-for="CredencialVendedor" ></span>
+        </fiedlset>
+            <fiedlset>
+                <label asp-for="Detalles"></label>
+                <input asp-for="Detalles" />
+                <span asp-validation-for="Detalles"></span>
+        </fiedlset>
+            <fiedlset>
+                <label asp-for="ClienteRut"></label>
+                <select asp-for="ClienteRut" asp-items="ViewBag.ClienteRut"></select>
+                <span asp-validation-for="ClienteRut"></span>
+            </fiedlset>
+            <fiedlset>
+                <label asp-for="TotalDelPedido"></label>
+                <input asp-for="TotalDelPedido" />
+                <span asp-validation-for="TotalDelPedido"></span>
+            </fiedlset>
+            <div>
+                <input type="submit" value="Guardar" />
+            </div>
+        </form>
+    <a asp-action="Index">Volver</a>
+</div>

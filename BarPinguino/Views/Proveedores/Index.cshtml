@@ -1,0 +1,76 @@
+﻿@model IEnumerable<EVA2TI_BarPinguino.Models.Proveedores>
+
+@{
+    ViewData["Title"] = "Proveedores";
+}
+
+<div class="mobile-message">
+    <h3>Por favor usar en modo escritorio</h3>
+    <p>Esta vista solo está disponible para pantallas más grandes.</p>
+</div>
+
+<div class="desktop-content">
+    <div class="side-panel">
+        <h3 class="title">@ViewData["Title"]</h3>
+        <ul>
+            <partial name="_MaestroSidebar" />
+        </ul>
+    </div>
+    <div class="content">
+        <div class="grid">
+            <form role="search">
+                <input name="search" type="search" placeholder="Search" />
+                <input type="submit" value="Search" />
+            </form>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Giro)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.RazonSocial)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DatosBanco)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Fono)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Direccion)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Giro)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RazonSocial)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DatosBanco)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Fono)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Direccion)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Rut">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.Rut">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Rut">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <a role="button" asp-action="Create">Crear nuevo</a>
+    </div>

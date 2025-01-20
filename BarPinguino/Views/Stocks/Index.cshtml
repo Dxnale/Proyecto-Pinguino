@@ -1,0 +1,76 @@
+﻿@model IEnumerable<EVA2TI_BarPinguino.Models.Stock>
+
+@{
+    ViewData["Title"] = "Stock";
+}
+
+<div class="mobile-message">
+    <h3>Por favor usar en modo escritorio</h3>
+    <p>Esta vista solo está disponible para pantallas más grandes.</p>
+</div>
+
+<div class="desktop-content">
+    <div class="side-panel">
+        <h3 class="title">@ViewData["Title"]</h3>
+        <ul>
+            <partial name="_MaestroSidebar" />
+        </ul>
+    </div>
+    <div class="content">
+        <div class="grid">
+            <form role="search">
+                <input name="search" type="search" placeholder="Search" />
+                <input type="submit" value="Search" />
+            </form>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NombreProducto)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CantidadStock)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StockCritico)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Precio)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProveedorNavigation)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NombreProducto)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CantidadStock)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StockCritico)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Precio)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProveedorNavigation.Rut)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.SKU">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.SKU">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.SKU">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <a role="button" asp-action="Create">Crear nuevo</a>
+    </div>

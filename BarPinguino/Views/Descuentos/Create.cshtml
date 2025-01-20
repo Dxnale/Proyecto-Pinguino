@@ -1,0 +1,32 @@
+﻿@model EVA2TI_BarPinguino.Models.Descuentos
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div id="card-section">
+<h1>Create</h1>
+<h4>Descuentos</h4>
+<hr />
+<form asp-action="Create">
+            <div asp-validation-summary="ModelOnly"></div>
+            <fiedlset>
+                <label asp-for="SKU"></label>
+                <select asp-for="SKU"ontrol" asp-items="ViewBag.SKU"></select>
+            </fiedlset>
+            <fiedlset>
+                <label asp-for="PrecioOriginal"></label>
+                <input asp-for="PrecioOriginal" />
+                <span asp-validation-for="PrecioOriginal"></span>
+            </fiedlset>
+            <fiedlset>
+                <label asp-for="PrecioConDescuento"></label>
+                <input asp-for="PrecioConDescuento" />
+                <span asp-validation-for="PrecioConDescuento"></span>
+            </fiedlset>
+            <div>
+                <input type="submit" value="Create"/>
+            </div>
+        </form>
+    <a asp-action="Index">Volver</a>
+</div>

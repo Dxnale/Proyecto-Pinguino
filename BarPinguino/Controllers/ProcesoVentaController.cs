@@ -10,11 +10,11 @@ using Microsoft.IdentityModel.Tokens;
 namespace EVA2TI_BarPinguino.Controllers
 {
     [Authorize(Roles = "Admin,Ventas")]
-    public class VentasController : Controller
+    public class ProcesoVentaController : Controller
     {
         private readonly AppDataContext _context;
 
-        public VentasController(AppDataContext context)
+        public ProcesoVentaController(AppDataContext context)
         {
             _context = context;
         }

@@ -1,6 +1,19 @@
+#mobile-navbar-grid {
+    display: none;
+}
+
+@media (max-width: 920px) {
+    #desktop-navbar-grid {
+        display: none;
+    }
+
+    #mobile-navbar-grid {
+        display: grid;
+    }
+}
 .btnRegreso {
-    margin:0 0 0 0;
-    padding:0 0 0 0;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
 }
 .nbar {
     text-decoration: none;

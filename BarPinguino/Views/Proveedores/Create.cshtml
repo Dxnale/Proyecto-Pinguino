@@ -1,0 +1,51 @@
+﻿@model EVA2TI_BarPinguino.Models.Proveedores
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div id="card-section">
+<h1>Create</h1>
+<h4>Proveedores</h4>
+<hr />
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <fieldset>
+                <label asp-for="Rut"></label>
+                <input asp-for="Rut" />
+                <span asp-validation-for="Rut"></span>
+            </fieldset>
+            <fieldset>
+                <label asp-for="Giro"></label>
+                <input asp-for="Giro" />
+                <span asp-validation-for="Giro"></span>
+            </fieldset>
+            <fieldset>
+                <label asp-for="RazonSocial"></label>
+                <input asp-for="RazonSocial" />
+                <span asp-validation-for="RazonSocial"></span>
+            </fieldset>
+            <fieldset>
+                <label asp-for="DatosBanco"></label>
+                <input asp-for="DatosBanco" />
+                <span asp-validation-for="DatosBanco"></span>
+            </fieldset>
+            <fieldset>
+                <label asp-for="Fono"></label>
+                <input asp-for="Fono" />
+                <span asp-validation-for="Fono"></span>
+            </fieldset>
+            <fieldset>
+                <label asp-for="Direccion"></label>
+                <input asp-for="Direccion" />
+                <span asp-validation-for="Direccion"></span>
+            </fieldset>
+            <div>
+                <input type="submit" value="Create"/>
+            </div>
+        </form>
+    <a asp-action="Index">Volver</a>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
