@@ -66,7 +66,6 @@ namespace EVA2TI_BarPinguino.Controllers.Maestro
         {
             try
             {
-                usuario.PasswordSalt = "dummy";
                 await _authService.RegisterUser(usuario);
                 return RedirectToAction(nameof(Index));
             }
