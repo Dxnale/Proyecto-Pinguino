@@ -70,7 +70,8 @@ namespace EVA2TI_BarPinguino.Controllers
                 CredencialVendedor = CredencialVendedor,
                 Detalles = Detalles,
                 ClienteRut = ClienteRut,
-                TotalDelPedido = TotalDelPedido
+                TotalDelPedido = TotalDelPedido,
+                Fecha = DateOnly.FromDateTime(DateTime.Now)
             };
 
             var productos = _context.Stocks.FirstOrDefault(p => p.NombreProducto == producto);
