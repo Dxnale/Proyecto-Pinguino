@@ -1,0 +1,38 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<section class="center" id="card-section">
+    <fieldset style="justify-items:center;"></fieldset>
+    <div style="text-align:center;">
+        <button type="button" onclick="DF()">Ingresar con Mail</button>
+        <button type="button" onclick="RC()">Recuperar Clave</button>
+    </div>
+    <fieldset>
+        <!-- Formulario para DobleFactor -->
+        <form style="display: none;" class="campo-login " id="Mail" asp-controller="Recovery" asp-action="EnvioCorreo" method="post">
+            <label style="text-align:center;">Enviaremos un Mail con un codigo verificador para tu ingreso de doble factor</label>
+            <label style="text-align:center;">Ejemplo: 9 9 9 9</label>
+            <div>
+                <label for="credencial">Credencial</label>
+                <input type="text" id="credencial" name="credencial" placeholder="Ingresa tu credencial" aria-label="Credencial" autocomplete="username" required>
+            </div>
+            <div>
+                <button type="submit">Enviar Código</button>
+            </div>
+        </form>
+        <!-- Formulario para Recuperacion -->
+        <form style="display: none;" class="campo-login " id="Recu" asp-controller="Recovery" asp-action="EnvioCorreorecu" method="post">
+            <label style="text-align:center;">Enviaremos un Mail con un codigo verificador para tu Recuperecion de clave</label>
+            <label style="text-align:center;">Ejemplo: 9 9 9 9</label>
+            <div>
+                <label for="credencial">Credencial</label>
+                <input type="text" id="credencial" name="credencial" placeholder="Ingresa tu credencial" aria-label="Credencial" autocomplete="username" required>
+            </div>
+            <div>
+                <button type="submit">Enviar Código</button>
+            </div>
+        </form>
+    </fieldset>
+</section>

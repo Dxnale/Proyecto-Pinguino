@@ -2,6 +2,7 @@ using EVA2TI_BarPinguino.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using testMail;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,8 +34,10 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
     });
 builder.Services.AddAuthorization();
-
+builder.Services.AddScoped<Correo>();
 builder.Services.AddHostedService<BackupService>();
+
+
 
 var app = builder.Build();
 

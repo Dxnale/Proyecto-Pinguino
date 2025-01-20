@@ -1,0 +1,25 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<section class="center" id="card-section">
+    <form class="campo-login" id="Maildos" asp-controller="Recovery" asp-action="Recuperacion">
+        <div>
+            <label style="text-align:center;">Tu codigo se ah enviado a tu correo, ingresa el codigo qui y podras ingresar a tu cuenta</label>
+            <label for="codigo">CODIGO:</label>
+            <input type="text" id="codigo" name="codigo" placeholder="Ingresa código" aria-label="codigo" autocomplete="username" required>
+        </div>
+        <div>
+            <label for="passN">Nueva Clave:</label>
+            <input type="text" id="passN" name="passN" placeholder="Ingresa nueva clave" aria-label="passN" autocomplete="username" required>
+        </div>
+        <div>
+            <label for="passNdos">Repite la Clave:</label>
+            <input type="text" id="passNdos" name="passNdos" placeholder="confirma la clave" aria-label="passNdos" autocomplete="username" required>
+        </div>
+        <div>
+            <button type="submit">Confirmar</button>
+        </div>
+    </form>
+</section>

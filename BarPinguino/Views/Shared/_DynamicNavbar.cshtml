@@ -1,26 +1,26 @@
-﻿@using System.Security.Claims
-<ul>
+@using System.Security.Claims
+<ul style="list-style:none;">
     @if (User.IsInRole("Ventas"))
     {
-        <li><a asp-controller="Registros" asp-action="RegistrarUser">Registro</a></li>
-        <li><a asp-controller="ProcesoVenta" asp-action="Venta">Venta</a></li>
+        <li><a class="nbar" asp-controller="Registros" asp-action="RegistrarUser">Registro</a></li>
+        <li><a class="nbar" asp-controller="ProcesoVenta" asp-action="Venta">Venta</a></li>
     }
     else if (User.IsInRole("Preparacion"))
     {
-        <li><a asp-controller="Preparacion" asp-action="Index">Preparación</a></li>
+        <li><a class="nbar" asp-controller="Preparacion" asp-action="Index">Preparación</a></li>
     }
     else if (User.IsInRole("Inventario"))
     {
-        <li><a asp-controller="Inventario" asp-action="Index">Inventario</a></li>
+        <li><a class="nbar" asp-controller="Inventario" asp-action="Index">Inventario</a></li>
     }
     else if (User.IsInRole("Admin"))
     {
-        <li><a asp-controller="Registros" asp-action="RegistrarUser">Registro</a></li>
-        <li><a asp-controller="ProcesoVenta" asp-action="Venta">Venta</a></li>
-        <li><a asp-controller="Functions" asp-action="Inventario">Inventario</a></li>
-        <li><a asp-controller="Functions" asp-action="Preparacion">Preparación</a></li>
-        <li><a asp-controller="Reporte" asp-action="VentasMes">Finanzas</a></li>
-        <li><a asp-controller="Maestro" asp-action="Menu">Maestro</a></li>
+        <li><a class="nbar" asp-controller="Registros" asp-action="RegistrarUser">Registro</a></li>
+        <li><a class="nbar" asp-controller="ProcesoVenta" asp-action="Venta">Venta</a></li>
+        <li><a class="nbar" asp-controller="Functions" asp-action="Inventario">Inventario</a></li>
+        <li><a class="nbar" asp-controller="Functions" asp-action="Preparacion">Preparación</a></li>
+        <li><a class="nbar" asp-controller="Reporte" asp-action="VentasMes">Finanzas</a></li>
+        <li><a class="nbar" asp-controller="Maestro" asp-action="Menu">Maestro</a></li>
     }
 </ul>
 
