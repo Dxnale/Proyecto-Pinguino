@@ -23,7 +23,6 @@ namespace EVA2TI_BarPinguino.Services
             var hashResult = _passwordHasher.HashPassword(usuario.Clave);
             var newUser = new Usuarios
             {
-                CredencialVendedor = usuario.CredencialVendedor,
                 Clave = hashResult.Hash,
                 PasswordSalt = hashResult.Salt,
                 Nombre = usuario.Nombre,
