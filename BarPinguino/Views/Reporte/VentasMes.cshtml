@@ -1,6 +1,8 @@
 ﻿@{
 ViewData["Title"] = "Ventas del mes";
 }
+@model IEnumerable<Venta>
+
 
 <div class="mobile-message">
     <h3>Por favor usar en modo escritorio</h3>
@@ -17,138 +19,39 @@ ViewData["Title"] = "Ventas del mes";
     <div class="content">
         <form class="grid">
             <input type="search" name="search" placeholder="Search" aria-label="Search" />
-            <input type="date" name="date" aria-label="Date">
-            <input type="date" name="date" aria-label="Date">
+            <input type="date" name="startDate" aria-label="Date">
+            <input type="date" name="endDate" aria-label="Date">
             <button class="outline contrast" style="height: fit-content" type="submit" value="Search">Filtrar</button>
         </form>
         <table class="sales-table">
             <thead>
                 <tr>
                     <th scope="col">Fecha</th>
-                    <th scope="col">Hora</th>
                     <th scope="col">Cliente</th>
                     <th scope="col">RUT</th>
-                    <th scope="col">Método de pago</th>
                     <th scope="col">Detalles</th>
                     <th scope="col">Ingreso</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td scope="row">06/07/23</td>
-                    <td>06:26</td>
-                    <td>José Martínez</td>
-                    <td>76.888.999-2</td>
-                    <td>Efectivo</td>
-                    <td>1 Pisco 100ml - 2 Ron 2L</td>
-                    <td>$135.000</td>
-                </tr>
-                <tr>
-                    <td scope="row">06/07/23</td>
-                    <td>06:26</td>
-                    <td>José Martínez</td>
-                    <td>76.888.999-2</td>
-                    <td>Efectivo</td>
-                    <td>1 Pisco 100ml - 2 Ron 2L</td>
-                    <td>$135.000</td>
-                </tr>
-                <tr>
-                    <td scope="row">06/07/23</td>
-                    <td>06:26</td>
-                    <td>José Martínez</td>
-                    <td>76.888.999-2</td>
-                    <td>Efectivo</td>
-                    <td>1 Pisco 100ml - 2 Ron 2L</td>
-                    <td>$135.000</td>
-                </tr>
-                <tr>
-                    <td scope="row">06/07/23</td>
-                    <td>06:26</td>
-                    <td>José Martínez</td>
-                    <td>76.888.999-2</td>
-                    <td>Efectivo</td>
-                    <td>1 Pisco 100ml - 2 Ron 2L</td>
-                    <td>$135.000</td>
-                </tr>
-                <tr>
-                    <td scope="row">06/07/23</td>
-                    <td>06:26</td>
-                    <td>José Martínez</td>
-                    <td>76.888.999-2</td>
-                    <td>Efectivo</td>
-                    <td>1 Pisco 100ml - 2 Ron 2L</td>
-                    <td>$135.000</td>
-                </tr>
-                <tr>
-                    <td scope="row">06/07/23</td>
-                    <td>06:26</td>
-                    <td>José Martínez</td>
-                    <td>76.888.999-2</td>
-                    <td>Efectivo</td>
-                    <td>1 Pisco 100ml - 2 Ron 2L</td>
-                    <td>$135.000</td>
-                </tr>
-                <tr>
-                    <td scope="row">06/07/23</td>
-                    <td>06:26</td>
-                    <td>José Martínez</td>
-                    <td>76.888.999-2</td>
-                    <td>Efectivo</td>
-                    <td>1 Pisco 100ml - 2 Ron 2L</td>
-                    <td>$135.000</td>
-                </tr>
-                <tr>
-                    <td scope="row">06/07/23</td>
-                    <td>06:26</td>
-                    <td>José Martínez</td>
-                    <td>76.888.999-2</td>
-                    <td>Efectivo</td>
-                    <td>1 Pisco 100ml - 2 Ron 2L</td>
-                    <td>$135.000</td>
-                </tr>
-                <tr>
-                    <td scope="row">06/07/23</td>
-                    <td>06:26</td>
-                    <td>José Martínez</td>
-                    <td>76.888.999-2</td>
-                    <td>Efectivo</td>
-                    <td>1 Pisco 100ml - 2 Ron 2L</td>
-                    <td>$135.000</td>
-                </tr>
-                <tr>
-                    <td scope="row">06/07/23</td>
-                    <td>06:26</td>
-                    <td>José Martínez</td>
-                    <td>76.888.999-2</td>
-                    <td>Efectivo</td>
-                    <td>1 Pisco 100ml - 2 Ron 2L</td>
-                    <td>$135.000</td>
-                </tr>
-                <tr>
-                    <td scope="row">06/07/23</td>
-                    <td>06:26</td>
-                    <td>José Martínez</td>
-                    <td>76.888.999-2</td>
-                    <td>Transferencia</td>
-                    <td>1 Pisco 100ml - 2 Ron 2L</td>
-                    <td>$135.000</td>
-                </tr>
-                <tr>
-                    <td scope="row">06/07/23</td>
-                    <td>06:26</td>
-                    <td>José Martínez</td>
-                    <td>76.888.999-2</td>
-                    <td>Efectivo</td>
-                    <td>1 Pisco 100ml - 2 Ron 2L</td>
-                    <td>$135.000</td>
-                </tr>
+                @foreach (var venta in Model)
+                {
+                    <tr>
+                        <td scope="row">@venta.Fecha.ToString("dd/MM/yyyy")</td>
+                        <td>@venta.CredencialVendedor</td>
+                        <td>@venta.ClienteRut</td>
+                        <td>@venta.Detalles</td>
+                        <td>@venta.TotalDelPedido.ToString("C")</td>
+                    </tr>
+                }
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="6" style="text-align: right"><strong>TOTAL</strong></td>
-                    <td><strong>$810.000</strong></td>
+                    <td colspan="5" style="text-align: right"><strong>TOTAL</strong></td>
+                    <td><strong>@Model.Sum(v => v.TotalDelPedido).ToString("C")</strong></td>
                 </tr>
             </tfoot>
+
         </table>
     </div>
 </div>

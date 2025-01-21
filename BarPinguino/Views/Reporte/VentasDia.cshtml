@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Ventas del dia";
 }
+@model IEnumerable<Venta>
 
 <div class="mobile-message">
     <h3>Por favor usar en modo escritorio</h3>
@@ -24,47 +25,28 @@
             <thead>
                 <tr>
                     <th scope="col">Fecha</th>
-                    <th scope="col">Hora</th>
                     <th scope="col">Cliente</th>
                     <th scope="col">RUT</th>
-                    <th scope="col">Método de pago</th>
                     <th scope="col">Detalles</th>
                     <th scope="col">Ingreso</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td scope="row">06/07/23</td>
-                    <td>12:30</td>
-                    <td>Nombre</td>
-                    <td>12.345.678-9</td>
-                    <td>Efectivo</td>
-                    <td>2 Ron 2L, 1 Pisco 100ml</td>
-                    <td>$810.000</td>
-                </tr>
-                <tr>
-                    <td scope="row">06/07/23</td>
-                    <td>12:30</td>
-                    <td>Nombre</td>
-                    <td>12.345.678-9</td>
-                    <td>Efectivo</td>
-                    <td>2 Ron 2L, 1 Pisco 100ml</td>
-                    <td>$810.000</td>
-                </tr>
-                <tr>
-                    <td scope="row">06/07/23</td>
-                    <td>12:30</td>
-                    <td>Nombre</td>
-                    <td>12.345.678-9</td>
-                    <td>Efectivo</td>
-                    <td>2 Ron 2L, 1 Pisco 100ml</td>
-                    <td>$810.000</td>
-                </tr>
+                @foreach (var venta in Model)
+                {
+                    <tr>
+                        <td scope="row">@venta.Fecha.ToString("dd/MM/yyyy")</td>
+                        <td>@venta.CredencialVendedor</td>
+                        <td>@venta.ClienteRut</td>
+                        <td>@venta.Detalles</td>
+                        <td>@venta.TotalDelPedido.ToString("C")</td>
+                    </tr>
+                }
             </tbody>
             <tfoot>
                 <tr>
                     <td colspan="6" style="text-align: right"><strong>TOTAL</strong></td>
-                    <td><strong>$2.430.000</strong></td>
+                    <td><strong>@Model.Sum(v => v.TotalDelPedido).ToString("C")</strong></td>
                 </tr>
             </tfoot>
         </table>
