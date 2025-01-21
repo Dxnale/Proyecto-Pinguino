@@ -64,7 +64,7 @@
                     </tr>
                     <tr>
                         <td><strong>DESCUENTO:</strong></td>
-                        <td>-@ViewBag.guid</td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td><strong>TOTAL:</strong></td>
@@ -73,9 +73,9 @@
                 </tbody>
             </table>
             <div class="grid">
-                <button type="button" onclick="window.location.href = '@Url.Action("Venta", "Ventas")'">CANCELAR</button>
+                <button type="button" onclick="window.location.href = '@Url.Action("Venta", "ProcesoVenta")'">CANCELAR</button>
                 <button type="button"
-                        onclick="window.location.href = '@Url.Action("Boleta", "Ventas", new {
+                        onclick="window.location.href = '@Url.Action("Boleta", "ProcesoVenta", new {
                         NumBoleta = ViewBag.guid,
                         CredencialVendedor = User.FindFirst("CredencialVendedor")?.Value,
                         Detalles = ViewBag.Producto + " x " + ViewBag.Cantidad,

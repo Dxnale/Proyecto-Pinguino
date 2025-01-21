@@ -13,15 +13,18 @@ namespace EVA2TI_BarPinguino.Controllers
     public class ProcesoVentaController : Controller
     {
         private readonly AppDataContext _context;
+        private static int incremento;
 
         public ProcesoVentaController(AppDataContext context)
         {
             _context = context;
+            if(incremento == 0)
+                incremento = _context.Ventas.Count();
         }
         [HttpGet]
         public IActionResult Venta(string clienterut)
         {
-            if (string.IsNullOrEmpty(clienterut)) 
+            if (string.IsNullOrEmpty(clienterut))
             {
                 ViewBag.Error = "Debe consultar un rut";
                 return RedirectToAction("Consulta", "Registros");
@@ -51,14 +54,14 @@ namespace EVA2TI_BarPinguino.Controllers
             decimal precio = producto.Precio;
             decimal total = precio * txtcantidad;
 
-            string guid32 = Guid.NewGuid().ToString("N");
+            ++incremento;
 
             ViewBag.Producto = txtproducto;
             ViewBag.Precio = precio;
             ViewBag.Cantidad = txtcantidad;
             ViewBag.Total = total;
             ViewBag.rut = clienterut;
-            ViewBag.guid = guid32;
+            ViewBag.guid = incremento;
 
             return View();
         }
@@ -84,8 +87,5 @@ namespace EVA2TI_BarPinguino.Controllers
 
             return View();
         }
-
-
-
     }
 }
