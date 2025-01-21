@@ -10,14 +10,14 @@
         <div>
             <h1>Consulta</h1>
             <label for="txtRut">RUT:</label>
-            <input type="text" id="txtRut" name="txtRut" required />
+            <input type="text" id="rut" name="txtRut" oninput="activarBtn()" required />
             @if (ViewBag.Error != null)
             {
                 <span>@ViewBag.Error</span>
             }
         </div>
         <div>
-            <button type="submit">Consultar</button>
+            <button id="btncon" type="submit">Consultar</button>
         </div>
     </form>
 

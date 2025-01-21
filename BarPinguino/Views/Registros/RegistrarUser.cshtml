@@ -8,7 +8,7 @@
         <h2>Registro</h2>
         <form method="post" asp-controller="Registros" asp-action="Registrado">
             <label for="rut">RUT</label>
-            <input type="text" id="rut" name="rut" placeholder="Rut" asp-for="Rut"/>
+            <input type="text" id="rut" name="rut" oninput="activarBtn()" placeholder="Rut" asp-for="Rut" />
 
             <label for="nombre">Nombre</label>
             <input type="text" id="nombre" name="nombre" placeholder="Nombre" asp-for="Nombre"/>
@@ -19,8 +19,8 @@
             <label for="frecuencia">Frecuencia</label>
             <input type="text" id="frecuencia" name="frecuente" placeholder="Frecuencia" asp-for="Frecuente" />
 
-            <button type="submit" >Registrar</button>
-            <button type="button" onclick="window.location.href = '@Url.Action("Consulta", "Registros")'" id="btnCstar">Consultar</button>
+            <button id="btnreg" type="submit">Registrar</button>
+            <button type="button" onclick="window.location.href = '@Url.Action("Consulta", "Registros")'" id="btncon" style="width:100%;">Consultar</button>
         </form>
     </div>
 </section>
