@@ -1,17 +1,30 @@
 ﻿@{
     ViewBag.Title = "Venta";
     var venta = new EVA2TI_BarPinguino.Models.Venta();
+    
 }
-@model EVA2TI_BarPinguino.Models.Venta;
+@model EVA2TI_BarPinguino.Models.Venta
+
 <main>
     <div id="main-venta">
     <h1>Venta</h1>
     <form method="post" asp-action="Venta">
             <input type="hidden" id="clienterut" name="clienterut" value="@ViewBag.rut" />
-        <div>
-            <label for="txtProducto">Producto:</label>
-            <input type="text" id="txtProducto" name="txtProducto" />
-        </div>
+            <div>
+                <label for="txtProducto">Producto:</label>
+                <select id="txtproducto" name="txtproducto">
+                    <option value="">Seleccione un producto</option>
+                    @if (ViewBag.ProductosDisponibles != null)
+                    {
+                        foreach (var producto in ViewBag.ProductosDisponibles)
+                        {
+                            <option value="@producto.NombreProducto">@producto.NombreProducto</option>
+                        }
+                    }
+                </select>
+
+            </div>
+
         <div>
             <label for="txtCantidad">Cantidad:</label>
             <input type="number" id="txtCantidad" name="txtCantidad" />

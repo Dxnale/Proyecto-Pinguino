@@ -29,6 +29,8 @@ namespace EVA2TI_BarPinguino.Controllers
                 ViewBag.Error = "Debe consultar un rut";
                 return RedirectToAction("Consulta", "Registros");
             }
+            var productosDisponibles = _context.Stocks.Where(p => p.CantidadStock > 10).ToList();
+            ViewBag.ProductosDisponibles = productosDisponibles;
             ViewBag.rut = clienterut;
             return View();
         }
@@ -42,6 +44,10 @@ namespace EVA2TI_BarPinguino.Controllers
             }
 
             var credencial = User.FindFirst("CredencialVendedor")!.Value;
+
+            var productosDisponibles = _context.Stocks.Where(p => p.CantidadStock > 10).ToList();
+            
+
             if (string.IsNullOrEmpty(txtproducto) || txtcantidad == 0) return View();
 
             var producto = _context.Stocks.FirstOrDefault(p => p.NombreProducto == txtproducto);
@@ -77,9 +83,11 @@ namespace EVA2TI_BarPinguino.Controllers
             ViewBag.guid = incremento;
             ViewBag.descuento = descuentoAplicado;
             ViewBag.product = producto.SKU;
+            ViewBag.ProductosDisponibles = productosDisponibles;
 
             return View();
         }
+
         public IActionResult Boleta(string NumBoleta, int CredencialVendedor, string Detalles, string ClienteRut, decimal TotalDelPedido, string producto, int Cantidad)
         {
             var venta = new Venta
