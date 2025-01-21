@@ -52,48 +52,58 @@
 .TextCritico {
     color: rgb(217, 53, 38);
 }
+/* Contenedor principal del carril */
 .CarrilInv {
-    margin: 0 0 15px 0;
-    backdrop-filter: blur(0.375rem);
-    display: grid;
+    margin: 0 0 50px 0;
+    display: flex; /* Alínea los elementos en una fila horizontal */
+    flex-wrap: nowrap; /* Evita que las tarjetas se ajusten en múltiples filas */
     justify-content: flex-start;
-    align-content: center;
-    align-items: center;
-    border-radius: 15px;
-    height: 150px;
+    align-items: center; /* Centra las tarjetas verticalmente */
+    gap: 10px; /* Espaciado entre tarjetas */
+    height: auto; /* Ajuste automático a la altura del contenido */
+    overflow-x: auto; /* Habilita el desplazamiento horizontal */
+    overflow-y: hidden; /* Previene el desplazamiento vertical */
+    scroll-snap-type: x mandatory; /* Activa el "snap" al hacer scroll */
 }
+
+/* Estilo de las tarjetas comunes */
+.cardInv {
+    flex: 0 0 auto; /* Asegura que no se reduzcan ni se expandan */
+    width: 150px;
+    height: 50px; /* Altura fija */
+    background-color: #f4f4f4;
+    border-radius: 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    scroll-snap-align: center; /* Centra cada tarjeta al hacer scroll */
+    padding: 20px;
+    margin: auto;
+}
+
+/* Estilo de la barra de desplazamiento (solo para WebKit) */
+.CarrilInv::-webkit-scrollbar {
+    width: 8px;
+}
+
+.CarrilInv::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+}
+
+
+/* Colores específicos para los productos */
 .ProductoCritico {
     color: rgb(217, 53, 38);
-    justify-content: flex-start;
-    align-content: center;
-    padding: 20px 0 30px 0px;
-    margin: 0 0 0 0px;
-    text-align: center;
-    flex: none; /* Deshabilita el comportamiento flexible */
-    width: 90px; /* Ancho fijo */
-    height: 90px; /* Altura fija */
 }
+
 .ProductoAceptable {
     color: rgb(5, 134, 134);
-    justify-content: flex-start;
-    align-content: center;
-    padding: 20px 0 30px 0px;
-    margin: 0 0 0 0px;
-    text-align: center;
-    flex: none; /* Deshabilita el comportamiento flexible */
-    width: 90px; /* Ancho fijo */
-    height: 90px; /* Altura fija */
 }
+
 .ProductoNuevo {
     color: rgb(112, 252, 186);
-    justify-content: flex-start;
-    align-content: center;
-    padding: 20px 0 30px 0px;
-    margin: 0 0 0 0px;
-    text-align: center;
-    flex: none; /* Deshabilita el comportamiento flexible */
-    width: 90px; /* Ancho fijo */
-    height: 90px; /* Altura fija */
 }
 .Bstock {
     all: unset; /* Resetea los estilos predeterminados */
@@ -109,7 +119,8 @@
 }
 
 .cardInv {
-    filter: drop-shadow(7px 7px 7px rgba(0, 0, 0, 0.5));
+    margin: 0 0 5px 0;
+    z-index: 10;
     display: flex; /* Usa flexbox para organizar el contenido */
     flex-direction: column; /* Coloca elementos en columna */
     justify-content: space-between; /* El texto arriba, el bot�n abajo */
@@ -117,9 +128,8 @@
     width: 150px;
     height: 150px;
     background-color: rgba(var(--pico-background-color-no-a), 0.7);
-    backdrop-filter: blur(0.375rem);
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0px 4px 6px rgba(0, 0, 0, 0.1);
     padding: 10px; /* Espaciado interno */
     overflow: hidden; /* Asegura que el contenido no se desborde */
 }
@@ -167,23 +177,24 @@
 .Framebody {
     display: flex; /* Activa Flexbox */
     flex-direction: row; /* Distribuye en fila */
-    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    height: 100%; /* Ocupa toda la altura de la pantalla */
     margin: 0; /* Asegura que no haya m�rgenes adicionales */
     padding: 0; /* Asegura que no haya espacio adicional */
     gap: 0; /* Elimina cualquier espacio entre los hijos */
 }
 .derFrame {
-    overflow: hidden;
+    z-index: 1;
+    overflow-y: hidden;
+    overflow-x:hidden;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 15px;
     flex: 1;
     border: none;
-    height: 100%;
-    max-height: 100%; /* Restringe la altura m�xima */
+    height: 640px;
     width: 100%; /* Asegura que no exceda el contenedor */
-    background-color: white;
     box-sizing: border-box;
     margin-left: 20px;
+    margin-top: -100px;
 }
 
 
@@ -193,15 +204,7 @@
 
 
 
-.estado {
-    width: 30px; /* Ancho del cuadrado */
-    height: 30px; /* Altura del cuadrado */
-    background-color: var(--pico-primary); /* Cambia el color si tienes una variable CSS */
-    border-radius: 50%; /* Esquinas ligeramente redondeadas */
-    margin-top:60px;
-    margin-left:120px;
-    margin-right:12px;
-}
+
 
 .cardP h2 {
     padding-top:6px;
@@ -215,6 +218,8 @@
 
 
 .cardP {
+    padding:0 0 10px 10px;
+    margin:5px;
     flex: 1;
     display: flex;
     flex-direction: row;
@@ -223,8 +228,8 @@
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     overflow: hidden;
-    width: 600px; /* Ancho fijo */
-    height: 150px; /* Altura fija */
+    width: 100%; /* Ancho fijo */
+    height: 50px; /* Altura fija */
 }
 
 
@@ -260,8 +265,20 @@
 
 @media (min-width: 1024px) {
     .cardP {
-        width: 600px; /* Dise�o original */
-        height: 150px; /* Altura original */
+        text-align: center;
+        padding: 30px 0 10px 10px;
+        margin: 0 250px 5px 0;
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+        box-shadow: inset 0px 4px 10px rgba(0, 0, 0, 0.5); /* Sombra interna */
+        background-color: rgba(var(--pico-background-color-no-a), 0.7);
+        backdrop-filter: blur(0.375rem);
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        width: 100%; /* Ancho fijo */
+        height: 100px; /* Altura fija */
     }
 
     .imgcard {

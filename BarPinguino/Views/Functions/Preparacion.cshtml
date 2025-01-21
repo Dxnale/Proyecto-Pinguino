@@ -2,15 +2,21 @@
     ViewBag.Title = "Preparacion";
 }
 <main>
-    <h3>Pedido:01</h3>
-    <div class="Framebody">
-        <div class="cardP">
-            <div class="imgcard"></div>
-            <div class="card-content">
-                <h2>MOJITO</h2>
-                <p>Ingredientes:<br>Limon o Lima, Ron blanco, Menta.</p>
-            </div>
-            <div class="estado"></div>
+    <h3 style="margin:-10px 0 0 0;padding: -10px;">PEDIDOS</h3>
+    <form asp-controller="Functions" asp-action="datosCerrados" method="post">
+        <button style="padding: -10px;margin:10px 0 0 0;width:49%; border-radius:10px;" class="buttons">LISTO</button>
+        <input style="display:none;" type="number" name="i" value="1" />
+    </form>
+    <div style="margin:10px 0 -10px 0; padding: -10px;" class="Framebody">
+        <div class="izqFrame">
+            @foreach (var venta in ViewBag.ProductosVenta)
+            {
+                <div style="text-align:center; justify-content:center;" class="cardP">
+                    <div style="text-align:center; justify-content:center;" class="card-content">
+                        <p>@venta.NumBoleta  --  @venta.Detalles  --  @venta.TotalDelPedido</p>
+                    </div>
+                </div>
+            }
         </div>
         <iframe class="derFrame" src="@Url.Action("Procedimiento", "Functions")"></iframe>
     </div>

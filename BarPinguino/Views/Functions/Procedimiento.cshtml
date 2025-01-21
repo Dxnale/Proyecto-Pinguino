@@ -7,11 +7,14 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 <main class="internalView">
-    <div class="Prcard">
-        <h3 class="Ttext">@ViewBag.producto</h3>
-        <div>
-            <p class="Prinfo">PREPARACION:<br>Para poder hacer el mojito nesecitas, aplastar de buena manera las hojas de menta en el fondo del vaso, aplicarle hielo con unas torrejas de limon y un poco de su jugo idealmente un 40% del vaso y luego rellenar con ron blanco, finalizando revuelves un poco y estaria todo Listo.</p>
+    <h3 style="text-align:center;color:white;">En Preparacion</h3>
+    @foreach (var venta in ViewBag.ProductosVenta) 
+    {
+        <div style="padding:5px;margin:5px;" class="Prcard">
+            <h3 class="Ttext"> @venta.NumBoleta</h3>
+            <div>
+                <p class="Prinfo">ESTADO EN PREPARACION<br>Muy pronto podrás disfrutar de tu cóctel en nuestras instalaciones. Aprovecha este momento especial para compartir y disfrutar en compañía de los demás.</p>
+            </div>
         </div>
-        <button class="listo">LISTO</button>
-    </div>
+    }
 </main>
