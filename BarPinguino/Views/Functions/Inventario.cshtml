@@ -2,31 +2,53 @@
     ViewBag.Title = "Inventario";
 }
 <main>
-    <h3 class="EstadoStock">CRITICOS:</h3>
-    <div class="CarrilInv">
-        <div class="cardInv">
-            <p class="ProductoCritico">MENTA</p>
-            <form asp-controller="Functions" asp-action="Restock" method="post">
-                <button type="submit" class="Bstock">RESTOCK</button>
-            </form>
-        </div>
-    </div> <!-- Lista con inventario critico -->
-    <h3 class="EstadoStock">ACEPTABLE PARA EL USO:</h3>
-    <div class="CarrilInv">
-        <div class="cardInv">
-            <p class="ProductoAceptable">MENTA</p>
-            <form asp-controller="Functions" asp-action="Restock" method="post">
-                <button type="submit" class="Bstock">RESTOCK</button>
-            </form>
-        </div>
-    </div> <!-- Lista con inventario aceptable -->
-    <h3 class="EstadoStock">NUEVOS:</h3>
-    <div class="CarrilInv">
-        <div class="cardInv">
-            <p class="ProductoNuevo">MENTA</p>
-            <form asp-controller="Functions" asp-action="Restock" method="post">
-                <button type="submit" class="Bstock">RESTOCK</button>
-            </form>
-        </div>
-    </div> <!-- Lista con inventario nuevo -->
+    <section class="center" id="card-section">
+        <form class="campo-login" asp-controller="Functions" asp-action="Restock" method="post">
+            <div style="justify-items:center;">
+                <h3 class="EstadoStock">CRITICOS</h3><button type="submit" class="Bstock">RESTOCK</button>
+            </div>
+            <div class="CarrilInv">
+                @foreach (var producto in ViewBag.ProductosCriticos)
+                {
+                    <div class="cardInv">
+                        <p>@producto.NombreProducto</p>
+                        <p>@producto.Proveedor</p>
+                        <p>@(@producto.CantidadStock / 1000.0)</p>
+                        <p>@producto.StockCritico</p>
+                        <p>@producto.InformeDeStock</p>
+                    </div>
+                }
+            </div>
+        </form>
+        <form class="campo-login " asp-controller="Functions" asp-action="Restock" method="post">
+            <div style="justify-items:center;"><h3 class="EstadoStock">ACEPTABLE PARA EL USO</h3><button type="submit" class="Bstock">RESTOCK</button></div>
+            <div class="CarrilInv">
+                @foreach (var producto in ViewBag.ProductosAceptables)
+                {
+                    <div class="cardInv">
+                        <p>@producto.NombreProducto</p>
+                        <p>@producto.Proveedor</p>
+                        <p>@(@producto.CantidadStock / 1000.0)</p>
+                        <p>@producto.StockCritico</p>
+                        <p>@producto.InformeDeStock</p>
+                    </div>
+                }
+            </div>
+        </form>
+        <form class="campo-login " asp-controller="Functions" asp-action="Restock" method="post">
+            <div style="justify-items:center;"><h3 class="EstadoStock">NUEVO</h3><button type="submit" class="Bstock">RESTOCK</button></div>
+            <div class="CarrilInv">
+                @foreach (var producto in ViewBag.ProductosNuevos)
+                {
+                    <div class="cardInv">
+                        <p>@producto.NombreProducto</p>
+                        <p>@producto.Proveedor</p>
+                        <p>@(@producto.CantidadStock / 1000.0)</p>
+                        <p>@producto.StockCritico</p>
+                        <p>@producto.InformeDeStock</p>
+                    </div>
+                }
+            </div>
+        </form>
+    </section>
 </main>

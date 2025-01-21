@@ -2,12 +2,12 @@
     ViewBag.Title = "CorreoProveedores";
 }
 <main>
-    <div class="cardCorreo">
+    <div class="cardCorreo" id="card-section">
         <label class="labelCorreo">
             Estimado usuario, le informamos que su correo de informacion de restablecimiento de insumos hacia el administrador ha sido enviado correctamente <br> Esperamos con ansias recibir tus productos de manera correcta. Atentamente, Bar Pingüino Spa.<h1 class ="emojicorr">🥂🐧🥂</h1>
             Gracias por seguir mantentiendo esto en pie.<a href="#"></a>
         </label>
-        <form asp-controller="Home" asp-action="Menu" method="post">
+        <form asp-controller="Functions" asp-action="Inventario" method="post">
             <button type="submit" class="btnRegreso">Regresar.</button>
         </form>
     </div>
