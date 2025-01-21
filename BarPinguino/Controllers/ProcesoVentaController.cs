@@ -54,6 +54,19 @@ namespace EVA2TI_BarPinguino.Controllers
             decimal precio = producto.Precio;
             decimal total = precio * txtcantidad;
 
+            var descuento = _context.Descuentos.FirstOrDefault(d => d.SKU == producto.SKU);
+            decimal descuentoAplicado = 0;
+
+            if (descuento != null && !string.IsNullOrEmpty(descuento.PrecioConDescuento))
+            {
+                decimal precioConDescuento;
+                if (decimal.TryParse(descuento.PrecioConDescuento, out precioConDescuento))
+                {
+                    descuentoAplicado = (precio - precioConDescuento) * txtcantidad;
+                    total = precioConDescuento * txtcantidad;
+                }
+            }
+
             ++incremento;
 
             ViewBag.Producto = txtproducto;
@@ -62,6 +75,8 @@ namespace EVA2TI_BarPinguino.Controllers
             ViewBag.Total = total;
             ViewBag.rut = clienterut;
             ViewBag.guid = incremento;
+            ViewBag.descuento = descuentoAplicado;
+            ViewBag.product = producto.SKU;
 
             return View();
         }
@@ -76,7 +91,6 @@ namespace EVA2TI_BarPinguino.Controllers
                 TotalDelPedido = TotalDelPedido,
                 Fecha = DateOnly.FromDateTime(DateTime.Now)
             };
-
             var productos = _context.Stocks.FirstOrDefault(p => p.NombreProducto == producto);
 
             productos.CantidadStock -= Cantidad;
@@ -84,6 +98,15 @@ namespace EVA2TI_BarPinguino.Controllers
 
             _context.Ventas.Add(venta);
             _context.SaveChanges();
+
+            ViewBag.Vendedor = CredencialVendedor;
+            ViewBag.Cliente = ClienteRut;
+            ViewBag.Boleta = NumBoleta;
+            ViewBag.Productos = new List<dynamic>
+    {
+            new { Nombre = producto, Cantidad }
+    };
+            ViewBag.Total = TotalDelPedido;
 
             return View();
         }
