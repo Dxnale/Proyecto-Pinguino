@@ -96,10 +96,10 @@ namespace EVA2TI_BarPinguino.Controllers
             // Enviar correo
             string asunto = "Código de Doble Factor";
             string cuerpoHtml = $@"
-        <body style='background-color: #0606271b;'>
+        <body style='text-align: center;'>
             <div>
-                <h1 style='color:#f5f5f5;font-family:sans-serif; text-align: center;'>RECUPERACIÓN DE CLAVE</h1>
-                <p style='color:#f5f5f5;font-family:sans-serif; text-align: center;'>
+                <h1 style='color:#f39c12;font-family:sans-serif; text-align: center;'>RECUPERACIÓN DE CLAVE</h1>
+                <p style='color:#f39c12;font-family:sans-serif; text-align: center;'>
                 Aquí está tu clave para el acceso: <strong>{clave}</strong>
                 </p>
             </div>
@@ -124,10 +124,10 @@ namespace EVA2TI_BarPinguino.Controllers
             // Enviar correo
             string asunto = "Código de Recuperacion";
             string cuerpoHtml = $@"
-        <body style='background-color: #0606271b;'>
+        <body style='text-align: center;'>
             <div>
-                <h1 style='color:#f5f5f5;font-family:sans-serif; text-align: center;'>RECUPERACIÓN DE CLAVE</h1>
-                <p style='color:#f5f5f5;font-family:sans-serif; text-align: center;'>
+                <h1 style='color:#f39c12;font-family:sans-serif; text-align: center;'>RECUPERACIÓN DE CLAVE</h1>
+                <p style='color:#f39c12;font-family:sans-serif; text-align: center;'>
                 Aquí está tu clave para el acceso: <strong>{clave}</strong>
                 </p>
             </div>

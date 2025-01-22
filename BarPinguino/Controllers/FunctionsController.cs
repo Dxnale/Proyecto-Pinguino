@@ -131,20 +131,20 @@ namespace EVA2TI_BarPinguino.Controllers
             if (string.IsNullOrEmpty(productos) && (cantidad == 0) && string.IsNullOrEmpty(proveedor))
             {
                 _correo.EnvMail(usuario!.Correo, "REESTOCK PRODUCTOS CRITICOS", $@"
-        <body style='background-color: #0606271b;'>
+        <body style='text-align: center;'>
             <div>
-                <h1 style='color:#f5f5f5;font-family:sans-serif; text-align: center;'>FALTA DE INSUMOS Y/O STOCK.</h1>
-                <p style='color:#f5f5f5;font-family:sans-serif; text-align: center;'>INFORMO SOBRE FALTA DE STOCK, SE SOLICITA STOCK DE ABSOLUTAMENTE TODOS LOS PRODUCTOS CRITICOS, POR FAVOR REVISAR INVENTARIO</p>
+                <h1 style='color:#f39c12;font-family:sans-serif; text-align: center;'>FALTA DE INSUMOS Y/O STOCK.</h1>
+                <p style='color:#f39c12;font-family:sans-serif; text-align: center;'>INFORMO SOBRE FALTA DE STOCK, SE SOLICITA STOCK DE ABSOLUTAMENTE TODOS LOS PRODUCTOS CRITICOS, POR FAVOR REVISAR INVENTARIO</p>
             </div>
         </body>");
             }
             else
             {
                 _correo.EnvMail(usuario!.Correo, "REESTOCK PRODUCTOS CRITICOS", $@"
-        <body style='background-color: #0606271b;'>
+        <body style='text-align: center;'>
             <div>
-                <h1 style='color:#f5f5f5;font-family:sans-serif; text-align: center;'>FALTA DE INSUMOS Y/O STOCK.</h1>
-                <p style='color:#f5f5f5;font-family:sans-serif; text-align: center;'>INFORMO SOBRE FALTA DE STOCK, SE SOLICITA STOCK DE LOS SIGUIENTES PRODUCTOS CRITICOS {productos} , POR FAVOR REVISAR INVENTARIO</p>
+                <h1 style='color:#f39c12;font-family:sans-serif; text-align: center;'>FALTA DE INSUMOS Y/O STOCK.</h1>
+                <p style='color:#f39c12;font-family:sans-serif; text-align: center;'>INFORMO SOBRE FALTA DE STOCK, SE SOLICITA STOCK DE LOS SIGUIENTES PRODUCTOS CRITICOS {productos} , POR FAVOR REVISAR INVENTARIO</p>
             </div>
         </body>");
             }
