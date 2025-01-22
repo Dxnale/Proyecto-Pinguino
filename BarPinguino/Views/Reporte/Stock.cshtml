@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Reporte de stock";
 }
-
+@model IEnumerable<Stock>
 <div class="mobile-message">
     <h3>Por favor usar en modo escritorio</h3>
     <p>Esta vista solo está disponible para pantallas más grandes.</p>
@@ -26,66 +26,28 @@
                 <tr>
                     <th scope="col">Producto</th>
                     <th scope="col">Stock actual</th>
-                    <th scope="col">Cantidad ideal</th>
+                    <th scope="col">Informe Stock</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td scope="row">Campanario Sour</td>
-                    <td>143.3L</td>
-                    <td>200.0L</td>
-                </tr>
-                <tr>
-                    <td scope="row">Campanario Sour</td>
-                    <td>143.3L</td>
-                    <td>200.0L</td>
-                </tr><tr>
-                    <td scope="row">Campanario Sour</td>
-                    <td>143.3L</td>
-                    <td>200.0L</td>
-                </tr>
-                <tr>
-                    <td scope="row">Campanario Sour</td>
-                    <td>143.3L</td>
-                    <td>200.0L</td>
-                </tr><tr>
-                    <td scope="row">Campanario Sour</td>
-                    <td>143.3L</td>
-                    <td>200.0L</td>
-                </tr>
-                <tr>
-                    <td scope="row">Campanario Sour</td>
-                    <td>143.3L</td>
-                    <td>200.0L</td>
-                </tr>
-                <tr>
-                    <td scope="row">Campanario Sour</td>
-                    <td>143.3L</td>
-                    <td>200.0L</td>
-                </tr>
-                <tr>
-                    <td scope="row">Campanario Sour</td>
-                    <td>143.3L</td>
-                    <td>200.0L</td>
-                </tr><tr>
-                    <td scope="row">Campanario Sour</td>
-                    <td>143.3L</td>
-                    <td>200.0L</td>
-                </tr><tr>
-                    <td scope="row">Campanario Sour</td>
-                    <td>143.3L</td>
-                    <td>200.0L</td>
-                </tr>
-                <tr>
-                    <td scope="row">Campanario Sour</td>
-                    <td>143.3L</td>
-                    <td>200.0L</td>
-                </tr>
-                <tr>
-                    <td scope="row">Campanario Sour</td>
-                    <td>143.3L</td>
-                    <td>200.0L</td>
-                </tr>
+                @if (Model.Any())
+                {
+                    @foreach (var producto in Model)
+                    {
+                        <tr>
+                            <td scope="row">@producto.NombreProducto</td>
+                            <td>@producto.CantidadStock.ToString("N1")</td>
+                            <td>@producto.InformeDeStock.ToString()</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="3" style="text-align: center">No se encontraron productos.</td>
+                    </tr>
+                }
+            </tbody>
         </table>
     </div>
 </div>

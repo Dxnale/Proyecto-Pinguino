@@ -10,6 +10,10 @@
             <table role="grid">
                 <tbody>
                     <tr>
+                        <td><strong>NUMEROBOLETA:</strong></td>
+                        <td>@ViewBag.Boleta</td>
+                    </tr>
+                    <tr>
                         <td><strong>VENDEDOR:</strong></td>
                         <td>@ViewBag.Vendedor</td>
                     </tr>
@@ -21,9 +25,10 @@
                         <td><strong>PRODUCTOS:</strong></td>
                         <td>
                             <ul>
-                                
-                                    <li>@ViewBag.producto</li>
-                                
+                                @foreach (var producto in ViewBag.Productos)
+                                {
+                                    <li>@producto.Nombre (@producto.Cantidad)</li>
+                                }
                             </ul>
                         </td>
                     </tr>
@@ -36,8 +41,8 @@
         </article>
 
         <div class="grid">
-            <button onclick="window.print()" >Imprimir</button>
-            <button onclick="mostrarFormulario()" >Enviar por Correo</button>
+            <button onclick="window.print()">Imprimir</button>
+            <button onclick="mostrarFormulario()">Enviar por Correo</button>
         </div>
 
         <dialog id="emailDialog">
@@ -67,4 +72,3 @@
         document.getElementById('emailDialog').close();
     }
 </script>
-

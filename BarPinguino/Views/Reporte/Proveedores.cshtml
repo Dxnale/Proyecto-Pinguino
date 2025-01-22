@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Proveedores";
 }
+@model IEnumerable<Proveedores>
 
 <div class="mobile-message">
     <h3>Por favor usar en modo escritorio</h3>
@@ -29,54 +30,30 @@
                     <th scope="col">Giro</th>
                     <th scope="col">Datos Bancarios</th>
                     <th scope="col">Fono</th>
-                    <th scope="col">Contacto</th>
+                    <th scope="col">Direccion</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td scope="row">Licores Pepe</td>
-                    <td>78.234.564-3</td>
-                    <td>Venta al mayor de licores</td>
-                    <td>1-5634-8890-0 Falabella</td>
-                    <td>+56 9 1234 5678</td>
-                    <td>José</td>
-                </tr>                <tr>
-                    <td scope="row">Licores Pepe</td>
-                    <td>78.234.564-3</td>
-                    <td>Venta al mayor de licores</td>
-                    <td>1-5634-8890-0 Falabella</td>
-                    <td>+56 9 1234 5678</td>
-                    <td>José</td>
-                </tr>                <tr>
-                    <td scope="row">Licores Pepe</td>
-                    <td>78.234.564-3</td>
-                    <td>Venta al mayor de licores</td>
-                    <td>1-5634-8890-0 Falabella</td>
-                    <td>+56 9 1234 5678</td>
-                    <td>José</td>
-                </tr>                <tr>
-                    <td scope="row">Licores Pepe</td>
-                    <td>78.234.564-3</td>
-                    <td>Venta al mayor de licores</td>
-                    <td>1-5634-8890-0 Falabella</td>
-                    <td>+56 9 1234 5678</td>
-                    <td>José</td>
-                </tr>                <tr>
-                    <td scope="row">Licores Pepe</td>
-                    <td>78.234.564-3</td>
-                    <td>Venta al mayor de licores</td>
-                    <td>1-5634-8890-0 Falabella</td>
-                    <td>+56 9 1234 5678</td>
-                    <td>José</td>
-                </tr>
-                <tr>
-                    <td scope="row">Licores Pepe</td>
-                    <td>78.234.564-3</td>
-                    <td>Venta al mayor de licores</td>
-                    <td>1-5634-8890-0 Falabella</td>
-                    <td>+56 9 1234 5678</td>
-                    <td>José</td>
-                </tr>
+                @if (Model.Any())
+                {
+                    @foreach (var proveedor in Model)
+                    {
+                        <tr>
+                            <td scope="row">@proveedor.RazonSocial</td>
+                            <td>@proveedor.Rut</td>
+                            <td>@proveedor.Giro</td>
+                            <td>@proveedor.DatosBanco</td>
+                            <td>@proveedor.Fono</td>
+                            <td>@proveedor.Direccion</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="6" style="text-align: center">No se encontraron proveedores.</td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>

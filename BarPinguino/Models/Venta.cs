@@ -10,6 +10,7 @@ namespace EVA2TI_BarPinguino.Models
         private string _detalles;
         private string _clienteRut;
         private decimal _totalDelPedido;
+        private DateOnly _fecha;
         private Usuarios _usuario;
         private Clientes _cliente;
 
@@ -45,6 +46,12 @@ namespace EVA2TI_BarPinguino.Models
         {
             get => _totalDelPedido;
             set => _totalDelPedido = value;
+        }
+
+        public DateOnly Fecha
+        {
+            get => _fecha;
+            set => _fecha = value;
         }
 
         [ForeignKey("CredencialVendedor")]
