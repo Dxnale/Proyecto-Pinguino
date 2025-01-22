@@ -1,0 +1,66 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<h1>Resultados de RUTs</h1>
+<fieldset class="center" id="card-section">
+    <div id="resultados" style="justify-content:space-between;color:#f39c12;">
+        <!-- Los resultados aparecerán aquí -->
+    </div>
+</fieldset>
+
+<script>
+    // Función para consultar la API para un único RUT
+    async function fetchRutData(rut) {
+        try {
+            const apiUrl = `https://api.luyanez.cl?rut=${rut}`;
+            const response = await fetch(apiUrl);
+
+            if (response.ok) {
+                const data = await response.json();
+                return {
+                    rut: rut,
+                    nombre: data.nombre || "N/A",
+                    estado: data.estado || "N/A"
+                };
+            } else {
+                console.error("Error al consultar la API:", response.statusText);
+                return { rut: rut, nombre: "Error", estado: "Error" };
+            }
+        } catch (error) {
+            console.error("Error al realizar la consulta:", error);
+            return { rut: rut, nombre: "Error", estado: "Error" };
+        }
+    }
+
+    // Función para consultar varios RUTs
+    async function fetchMultipleRuts(ruts) {
+        const resultadosContainer = document.getElementById("resultados");
+        resultadosContainer.innerHTML = ""; // Limpiar resultados previos
+
+        for (const rut of ruts) {
+            const data = await fetchRutData(rut);
+
+            // Crear elementos HTML para mostrar el resultado
+            const resultDiv = document.createElement("div");
+            resultDiv.innerHTML = `
+                <p><strong>RUT:</strong> ${data.rut.toString()}</p>
+                <p><strong>Nombre:</strong> ${data.nombre.toString()}</p>
+                <p><strong>Estado:</strong> ${data.estado}</p>
+                <hr>
+            `;
+
+            resultadosContainer.appendChild(resultDiv);
+        }
+    }
+
+    // Lista de RUTs
+    const ruts = [
+        "11111111-1", "22222222-2", "33333333-3", "44444444-4",
+        "55555555-5", "66666666-6", "77777777-7", "88888888-8", "99999999-9"
+    ];
+
+    // Ejecutar la consulta cuando se cargue la página
+    fetchMultipleRuts(ruts);
+</script>

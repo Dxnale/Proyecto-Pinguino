@@ -69,4 +69,4 @@ nbars.forEach(nbar => {
     nbar.addEventListener('mouseout', () => {
         nbar.style.color = '';  // Restaurar el color original
     });
-});
+})
