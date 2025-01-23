@@ -12,22 +12,22 @@
             <div asp-validation-summary="ModelOnly"></div>
             <div>
                 <label asp-for="Nombre"></label>
-                <input asp-for="Nombre" />
+                <input asp-for="Nombre" required />
                 <span asp-validation-for="Nombre"></span>
             </div>
             <div>
                 <label asp-for="Correo"></label>
-                <input asp-for="Correo" />
+                <input asp-for="Correo" required />
                 <span asp-validation-for="Correo"></span>
             </div>
             <div>
                 <label asp-for="Clave"></label>
-                <input asp-for="Clave" />
+                <input asp-for="Clave" required />
                 <span asp-validation-for="Clave"></span>
             </div>
             <div>
                 <label asp-for="TipoUsuario"></label>
-                <select asp-for="TipoUsuario">
+                <select asp-for="TipoUsuario" required>
                     <option value="Ventas">Ventas</option>
                     <option value="Preparacion">Preparacion</option>
                     <option value="Inventario">Inventario</option>

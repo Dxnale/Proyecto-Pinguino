@@ -10,35 +10,35 @@
 <hr />
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly"></div>
-            <input type="hidden" asp-for="SKU" />
+            <input type="hidden" asp-for="SKU" required />
             <fieldset>
                 <label asp-for="NombreProducto"></label>
-                <input asp-for="NombreProducto" />
+                <input asp-for="NombreProducto" required />
                 <span asp-validation-for="NombreProducto"></span>
             </fieldset>
             <fieldset>
                 <label asp-for="Proveedor"></label>
-                <select asp-for="Proveedor" asp-items="ViewBag.Proveedor"></select>
+                <select asp-for="Proveedor" asp-items="ViewBag.Proveedor" required></select>
                 <span asp-validation-for="Proveedor"></span>
             </fieldset>
             <fieldset>
                 <label asp-for="CantidadStock"></label>
-                <input asp-for="CantidadStock" />
+                <input asp-for="CantidadStock" required />
                 <span asp-validation-for="CantidadStock"></span>
             </fieldset>
             <fieldset>
                 <label asp-for="StockCritico"></label>
-                <input asp-for="StockCritico" />
+                <input asp-for="StockCritico" required />
                 <span asp-validation-for="StockCritico"></span>
             </fieldset>
             <fieldset>
                 <label asp-for="Precio"></label>
-                <input asp-for="Precio" />
+                <input asp-for="Precio" required />
                 <span asp-validation-for="Precio"></span>
             </fieldset>
             <fieldset>
                 <label asp-for="InformeDeStock"></label>
-                <input asp-for="InformeDeStock" />
+                <input asp-for="InformeDeStock" required />
                 <span asp-validation-for="InformeDeStock"></span>
             </fieldset>
             <div>

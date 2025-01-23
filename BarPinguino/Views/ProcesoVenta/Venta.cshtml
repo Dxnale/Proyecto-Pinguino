@@ -1,4 +1,4 @@
-﻿@{
+@{
     ViewBag.Title = "Venta";
     var venta = new EVA2TI_BarPinguino.Models.Venta();
     
@@ -9,10 +9,10 @@
     <div id="main-venta">
     <h1>Venta</h1>
     <form method="post" asp-action="Venta">
-            <input type="hidden" id="clienterut" name="clienterut" value="@ViewBag.rut" />
+            <input type="hidden" id="clienterut" name="clienterut" value="@ViewBag.rut" required />
             <div>
                 <label for="txtProducto">Producto:</label>
-                <select id="txtproducto" name="txtproducto">
+                <select id="txtproducto" name="txtproducto" required>
                     <option value="">Seleccione un producto</option>
                     @if (ViewBag.ProductosDisponibles != null)
                     {
@@ -22,12 +22,15 @@
                         }
                     }
                 </select>
-
+            @if (!string.IsNullOrEmpty(ViewData["Error"] as string))
+            {
+                <p>@ViewData["Error"]</p>
+            }
             </div>
 
         <div>
             <label for="txtCantidad">Cantidad:</label>
-            <input type="number" id="txtCantidad" name="txtCantidad" />
+            <input type="number" id="txtCantidad" name="txtCantidad" required />
         </div>
         <div>
             <button type="submit">Vender</button>

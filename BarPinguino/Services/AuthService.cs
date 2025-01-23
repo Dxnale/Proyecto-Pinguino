@@ -57,7 +57,7 @@ namespace EVA2TI_BarPinguino.Services
             using HttpClient client = new HttpClient();
             JObject res = JObject.Parse(await client.GetStringAsync(apiURL));
 
-            if (res["status"]?.ToString() != "200") return false;
+            if (Int32.Parse((string)res["status"]!) > 200) return true;
 
             LuyanezApiResponse response = new LuyanezApiResponse(res);
 

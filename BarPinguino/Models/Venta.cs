@@ -13,6 +13,7 @@ namespace EVA2TI_BarPinguino.Models
         private DateOnly _fecha;
         private Usuarios _usuario;
         private Clientes _cliente;
+        private bool _enPreparacion;
 
         [Key]
         public string NumBoleta
@@ -66,6 +67,12 @@ namespace EVA2TI_BarPinguino.Models
         {
             get => _cliente;
             set => _cliente = value;
+        }
+
+        public bool EnPreparacion
+        {
+            get => _enPreparacion;
+            set => _enPreparacion = value;
         }
     }
 }

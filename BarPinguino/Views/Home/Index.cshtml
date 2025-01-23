@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Inicio";
 }
 
 <div id="home-container">
@@ -16,7 +16,7 @@
                 </p>
                 <div class="hero-buttons">
                     <a asp-controller="Forms" asp-action="Contacto" role="button" class="primary">Reservar Mesa</a>
-                    <a asp-controller="Home" asp-action="Menu" role="button" class="outline">Ver Menú</a>
+                    <a asp-controller="Forms" asp-action="Contacto" role="button" class="outline">Conoce más</a>
                 </div>
         </div>
     </div>
@@ -24,14 +24,8 @@
     <section id="features-section">
         <div class="grid">
             <article class="feature-card">
-                <h3>Menú Digital</h3>
-                <p>Explora nuestra carta completa con precios actualizados y fotos de nuestros platillos.</p>
-                <a asp-controller="Ventas" asp-action="Venta" role="button" class="outline">Ver Menú</a>
-            </article>
-
-            <article class="feature-card">
-                <h3>Reservaciones</h3>
-                <p>Asegura tu mesa para una noche especial. Reserva fácil y rápido.</p>
+                <h3>Contactanos</h3>
+                <p>Asegura tu mesa para una noche especial. Nos pondremos en contacto contigo.</p>
                 <a asp-controller="Forms" asp-action="Contacto" role="button" class="outline">Reservar</a>
             </article>
 
@@ -39,6 +33,12 @@
                 <h3>Eventos</h3>
                 <p>Celebra tus momentos especiales con nosotros. Organizamos eventos personalizados.</p>
                 <a asp-controller="Forms" asp-action="Contacto" role="button" class="outline">Consultar</a>
+            </article>
+
+            <article class="feature-card">
+                <h3>Privacidad</h3>
+                <p>Conoce nuestras políticas de privacidad y protección de datos.</p>
+                <a asp-controller="Home" asp-action="Privacy" role="button" class="outline">Leer Articulo</a>
             </article>
         </div>
     </section>

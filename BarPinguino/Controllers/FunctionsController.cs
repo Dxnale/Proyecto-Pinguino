@@ -63,7 +63,7 @@ namespace EVA2TI_BarPinguino.Controllers
         public IActionResult DatosPreparacion()
         {
             // Obtén todos los productos
-            var productosVenta = _context.Ventas.ToList();
+            var productosVenta = _context.Ventas.Where(v => v.EnPreparacion).ToList();
 
             // Pasa los datos al ViewBag
             ViewBag.ProductosVenta = productosVenta;
@@ -72,21 +72,27 @@ namespace EVA2TI_BarPinguino.Controllers
         }
         public IActionResult DatosProcedimiento(int numero)
         {
-            // Obtén todos los productos
-            var productosVenta = _context.Ventas.ToList();
+            // Obtén todos los productos en preparación
+            var productosEnPreparacion = _context.Ventas.Where(v => v.EnPreparacion).ToList();
 
-            // Si se recibe un parámetro y es 1, elimina el primer elemento
-            if (numero == 1)
+            // Si se recibe un parámetro válido
+            if (numero > 0 && numero <= productosEnPreparacion.Count)
             {
-                // Elimina el primer elemento de la lista
-                var productoAEliminar = productosVenta[0];
-                _context.Ventas.Remove(productoAEliminar);  // Elimina el producto de la base de datos
-                _context.SaveChanges();  // Guarda los cambios en la base de datos
+                // Obtiene el producto seleccionado
+                var productoSeleccionado = productosEnPreparacion[numero - 1];
+                
+                // Cambia el estado a false
+                productoSeleccionado.EnPreparacion = false;
+                
+                // Actualiza el producto en la base de datos
+                _context.Ventas.Update(productoSeleccionado);
+                _context.SaveChanges();
+
                 return View("/Views/Functions/Procedimiento.cshtml");
             }
 
             // Pasa los datos al ViewBag
-            ViewBag.ProductosVenta = productosVenta;
+            ViewBag.ProductosVenta = productosEnPreparacion;
 
             return View();
         }

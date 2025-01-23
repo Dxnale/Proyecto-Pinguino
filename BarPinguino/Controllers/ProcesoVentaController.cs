@@ -54,6 +54,8 @@ namespace EVA2TI_BarPinguino.Controllers
             if (producto == null || producto.CantidadStock < txtcantidad)
             {
                 ViewBag.Error = "Bebida agotada o no disponible";
+                ViewBag.ProductosDisponibles = _context.Stocks.Where(p => p.CantidadStock > 10).ToList();
+                ViewBag.rut = clienterut;
                 return View();
             }
 
@@ -97,7 +99,8 @@ namespace EVA2TI_BarPinguino.Controllers
                 Detalles = Detalles,
                 ClienteRut = ClienteRut,
                 TotalDelPedido = TotalDelPedido,
-                Fecha = DateOnly.FromDateTime(DateTime.Now)
+                Fecha = DateOnly.FromDateTime(DateTime.Now),
+                EnPreparacion = true
             };
             var productos = _context.Stocks.FirstOrDefault(p => p.NombreProducto == producto);
 

@@ -8,16 +8,23 @@
         <h2>Registro</h2>
         <form method="post" asp-controller="Registros" asp-action="Registrado">
             <label for="rut">RUT</label>
-            <input type="text" id="rut" name="rut" oninput="activarBtn()" placeholder="Rut" asp-for="Rut" />
+            <input type="text" id="rut" name="rut" oninput="activarBtn()" placeholder="Rut" asp-for="Rut" required />
+            @if (!string.IsNullOrEmpty(ViewData["Error"] as string))
+            {
+                @ViewData["Error"]
+            }
 
             <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" name="nombre" placeholder="Nombre" asp-for="Nombre"/>
+            <input type="text" id="nombre" name="nombre" placeholder="Nombre" asp-for="Nombre" required/>
 
             <label for="apellido">Apellido</label>
-            <input type="text" id="apellido" name="apellido" placeholder="Apellido" asp-for="Apellido" />
+            <input type="text" id="apellido" name="apellido" placeholder="Apellido" asp-for="Apellido" required/>
 
             <label for="frecuencia">Frecuencia</label>
-            <input type="text" id="frecuencia" name="frecuente" placeholder="Frecuencia" asp-for="Frecuente" />
+            <select id="frecuencia" name="frecuente" asp-for="Frecuente">
+                <option value="si">Si</option>
+                <option value="no">No</option>
+            </select>
 
             <button id="btnreg" type="submit">Registrar</button>
             <button type="button" onclick="window.location.href = '@Url.Action("Consulta", "Registros")'" id="btncon" style="width:100%;">Consultar</button>

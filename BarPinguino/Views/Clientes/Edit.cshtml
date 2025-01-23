@@ -10,20 +10,20 @@
 <hr />
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly"></div>
-            <input type="hidden" asp-for="Rut" />
+            <input type="hidden" asp-for="Rut" required />
             <fieldset>
                 <label asp-for="Nombre"></label>
-                <input asp-for="Nombre" />
+                <input asp-for="Nombre" required />
                 <span asp-validation-for="Nombre"></span>
             </fieldset>
             <fieldset>
                 <label asp-for="Apellido"></label>
-                <input asp-for="Apellido" />
+                <input asp-for="Apellido" required />
                 <span asp-validation-for="Apellido"></span>
             </fieldset>
             <fieldset>
                 <label asp-for="Frecuente"></label>
-                <input asp-for="Frecuente" />
+                <input asp-for="Frecuente" required />
                 <span asp-validation-for="Frecuente"></span>
             </fieldset>
             <div>

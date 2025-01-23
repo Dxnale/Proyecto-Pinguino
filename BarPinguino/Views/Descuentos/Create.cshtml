@@ -10,20 +10,20 @@
 <hr />
 <form asp-action="Create">
             <div asp-validation-summary="ModelOnly"></div>
-            <fiedlset>
+            <fieldset>
                 <label asp-for="SKU"></label>
-                <select asp-for="SKU"ontrol" asp-items="ViewBag.SKU"></select>
-            </fiedlset>
-            <fiedlset>
+                <select asp-for="SKU" asp-items="ViewBag.SKU" required></select>
+            </fieldset>
+            <fieldset>
                 <label asp-for="PrecioOriginal"></label>
-                <input asp-for="PrecioOriginal" />
+                <input asp-for="PrecioOriginal" required />
                 <span asp-validation-for="PrecioOriginal"></span>
-            </fiedlset>
-            <fiedlset>
+            </fieldset>
+            <fieldset>
                 <label asp-for="PrecioConDescuento"></label>
-                <input asp-for="PrecioConDescuento" />
+                <input asp-for="PrecioConDescuento" required />
                 <span asp-validation-for="PrecioConDescuento"></span>
-            </fiedlset>
+            </fieldset>
             <div>
                 <input type="submit" value="Create"/>
             </div>

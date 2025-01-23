@@ -1,4 +1,4 @@
-﻿@model EVA2TI_BarPinguino.Models.Venta
+@model EVA2TI_BarPinguino.Models.Venta
 
 @{
     ViewData["Title"] = "Edit";
@@ -10,27 +10,27 @@
 <hr />
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly"></div>
-            <input type="hidden" asp-for="NumBoleta" />
-            <fiedlset>
+            <input type="hidden" asp-for="NumBoleta" required />
+            <fieldset>
                 <label asp-for="CredencialVendedor"></label>
-                <select asp-for="CredencialVendedor" asp-items="ViewBag.CredencialVendedor"></select>
+                <select asp-for="CredencialVendedor" asp-items="ViewBag.CredencialVendedor" required></select>
                 <span asp-validation-for="CredencialVendedor" ></span>
-        </fiedlset>
-            <fiedlset>
+            </fieldset>
+            <fieldset>
                 <label asp-for="Detalles"></label>
-                <input asp-for="Detalles" />
+                <input asp-for="Detalles" required />
                 <span asp-validation-for="Detalles"></span>
-        </fiedlset>
-            <fiedlset>
+            </fieldset>
+            <fieldset>
                 <label asp-for="ClienteRut"></label>
-                <select asp-for="ClienteRut" asp-items="ViewBag.ClienteRut"></select>
+                <select asp-for="ClienteRut" asp-items="ViewBag.ClienteRut" required></select>
                 <span asp-validation-for="ClienteRut"></span>
-            </fiedlset>
-            <fiedlset>
+            </fieldset>
+            <fieldset>
                 <label asp-for="TotalDelPedido"></label>
-                <input asp-for="TotalDelPedido" />
+                <input asp-for="TotalDelPedido" required />
                 <span asp-validation-for="TotalDelPedido"></span>
-            </fiedlset>
+            </fieldset>
             <div>
                 <input type="submit" value="Guardar" />
             </div>

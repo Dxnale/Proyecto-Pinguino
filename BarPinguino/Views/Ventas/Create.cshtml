@@ -12,25 +12,25 @@
             <div asp-validation-summary="ModelOnly"></div>
             <div>
                 <label asp-for="NumBoleta"></label>
-                <input asp-for="NumBoleta" />
+                <input asp-for="NumBoleta" required />
                 <span asp-validation-for="NumBoleta"></span>
             </div>
             <div>
                 <label asp-for="CredencialVendedor"></label>
-                <select asp-for="CredencialVendedor"ontrol" asp-items="ViewBag.CredencialVendedor"></select>
+                <select asp-for="CredencialVendedor"ontrol" asp-items="ViewBag.CredencialVendedor" required></select>
             </div>
             <div>
                 <label asp-for="Detalles"></label>
-                <input asp-for="Detalles" />
+                <input asp-for="Detalles" required />
                 <span asp-validation-for="Detalles"></span>
             </div>
             <div>
                 <label asp-for="ClienteRut"></label>
-                <select asp-for="ClienteRut"ontrol" asp-items="ViewBag.ClienteRut"></select>
+                <select asp-for="ClienteRut"ontrol" asp-items="ViewBag.ClienteRut" required></select>
             </div>
             <div>
                 <label asp-for="TotalDelPedido"></label>
-                <input asp-for="TotalDelPedido" />
+                <input asp-for="TotalDelPedido" required />
                 <span asp-validation-for="TotalDelPedido"></span>
             </div>
             <div>

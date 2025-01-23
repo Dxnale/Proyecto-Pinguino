@@ -1,4 +1,4 @@
-﻿@{
+@{
     ViewBag.Title = "Registro de Usuario Empleado";
 }
 @model EVA2TI_BarPinguino.Models.Usuarios;
@@ -8,19 +8,19 @@
         <h2>Registro</h2>
         <form method="post" asp-controller="Registros" asp-action="UserRegistrado">
             <label for="credencial_vendedor">Credencial Vendedor</label>
-            <input type="text" id="CredencialVendedor" name="credencialVendedor" placeholder="CredencialVendedor" asp-for="CredencialVendedor" />
+            <input type="text" id="CredencialVendedor" name="credencialVendedor" placeholder="CredencialVendedor" asp-for="CredencialVendedor" required />
 
             <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" name="nombre" placeholder="Nombre" asp-for="Nombre" />
+            <input type="text" id="nombre" name="nombre" placeholder="Nombre" asp-for="Nombre" required />
 
             <label for="correo">Correo</label>
-            <input type="email" id="correo" name="correo" placeholder="Correo" asp-for="Correo" />
+            <input type="email" id="correo" name="correo" placeholder="Correo" asp-for="Correo" required />
 
             <label for="clave">Clave</label>
-            <input type="password" id="clave" name="clave" placeholder="Clave" asp-for="Clave" />
+            <input type="password" id="clave" name="clave" placeholder="Clave" asp-for="Clave" required />
 
             <label for="tipoDeUsuario">Tipo de Usuario</label>
-            <input type="text" id="tipoUsuario" name="tipoUsuario" placeholder="Tipo de Usuario" asp-for="TipoUsuario" />
+            <input type="text" id="tipoUsuario" name="tipoUsuario" placeholder="Tipo de Usuario" asp-for="TipoUsuario" required />
 
             <button type="submit">Registrar</button>
             @if (ViewData["Error"] != null)

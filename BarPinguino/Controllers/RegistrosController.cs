@@ -49,7 +49,11 @@ namespace EVA2TI_BarPinguino.Controllers
         {
             if (clientes.Rut == null) return View("RegistrarUser");
             bool personaAutorizada = await _authService.ValidateRutByApi(clientes.Rut);
-            if (!personaAutorizada) return View("RegistrarUser");
+            if (!personaAutorizada)
+            {
+                ViewData["Error"] = "Persona no autorizada";
+                return View("RegistrarUser");
+            };
 
             var newuser = new Clientes
             {

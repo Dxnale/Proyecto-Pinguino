@@ -12,22 +12,22 @@
             <div asp-validation-summary="ModelOnly"></div>
             <fieldset>
                 <label asp-for="Rut"></label>
-                <input asp-for="Rut" />
+                <input asp-for="Rut" required />
                 <span asp-validation-for="Rut"></span>
-        </fieldset>
-        <fieldset>
+            </fieldset>
+            <fieldset>
                 <label asp-for="Nombre"></label>
-                <input asp-for="Nombre" />
+                <input asp-for="Nombre" required />
                 <span asp-validation-for="Nombre"></span>
             </fieldset>
         <fieldset>
                 <label asp-for="Apellido"></label>
-                <input asp-for="Apellido" />
+                <input asp-for="Apellido" required />
                 <span asp-validation-for="Apellido"></span>
             </fieldset>
         <fieldset>
                 <label asp-for="Frecuente"></label>
-                <select asp-for="Frecuente">
+                <select asp-for="Frecuente" required>
                     <option value="Si">Si</option>
                     <option value="No">No</option>
                 </select>
