@@ -3,6 +3,7 @@ using EVA2TI_BarPinguino.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Client.Platforms.Features.DesktopOs.Kerberos;
+using Newtonsoft.Json.Linq;
 
 namespace EVA2TI_BarPinguino.Services
 {
@@ -47,6 +48,22 @@ namespace EVA2TI_BarPinguino.Services
                 usuario.Clave,
                 usuario.PasswordSalt
             );
+        }
+
+        public async Task<bool> ValidateRutByApi(string rut)
+        {
+            string apiURL = $"https://api.luyanez.cl/?rut={rut}";
+
+            using HttpClient client = new HttpClient();
+            JObject res = JObject.Parse(await client.GetStringAsync(apiURL));
+
+            if (res["status"]?.ToString() != "200") return false;
+
+            LuyanezApiResponse response = new LuyanezApiResponse(res);
+
+            if (!response.EsValidoSegunListaNegra()) return false;
+
+            return true;
         }
     }
 }

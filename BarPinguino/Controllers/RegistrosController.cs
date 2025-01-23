@@ -45,8 +45,11 @@ namespace EVA2TI_BarPinguino.Controllers
         }
         [Authorize(Roles = "Admin,Ventas")]
         [HttpPost]
-        public IActionResult Registrado(Clientes clientes)
+        public async Task<IActionResult> Registrado(Clientes clientes)
         {
+            if (clientes.Rut == null) return View("RegistrarUser");
+            bool personaAutorizada = await _authService.ValidateRutByApi(clientes.Rut);
+            if (!personaAutorizada) return View("RegistrarUser");
 
             var newuser = new Clientes
             {
