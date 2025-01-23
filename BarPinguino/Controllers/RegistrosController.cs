@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using EVA2TI_BarPinguino.Services;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace EVA2TI_BarPinguino.Controllers
@@ -54,6 +55,14 @@ namespace EVA2TI_BarPinguino.Controllers
                 ViewData["Error"] = "Persona no autorizada";
                 return View("RegistrarUser");
             };
+
+            var existeCliente = await _context.Clientes.AnyAsync(c => c.Rut == clientes.Rut);
+
+            if (existeCliente)
+            {
+                ViewData["Error"] = "Cliente ya registrado";
+                return View("RegistrarUser");
+            }
 
             var newuser = new Clientes
             {
