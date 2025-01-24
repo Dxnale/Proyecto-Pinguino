@@ -5,6 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
+using EVA2TI_BarPinguino.Services;
+using EVA2TI_BarPinguino.Migrations;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 
 namespace EVA2TI_BarPinguino.Controllers
@@ -13,13 +16,13 @@ namespace EVA2TI_BarPinguino.Controllers
     public class ProcesoVentaController : Controller
     {
         private readonly AppDataContext _context;
+        private readonly Correo _correo;
         private static int incremento;
 
-        public ProcesoVentaController(AppDataContext context)
+        public ProcesoVentaController(AppDataContext context, Correo correo)
         {
             _context = context;
-            if(incremento == 0)
-                incremento = _context.Ventas.Count();
+            _correo = correo;
         }
         [HttpGet]
         public IActionResult Venta(string clienterut)
@@ -37,7 +40,7 @@ namespace EVA2TI_BarPinguino.Controllers
         [HttpPost]
         public IActionResult Venta(string clienterut, string txtproducto, int txtcantidad)
         {
-            if (string.IsNullOrEmpty(clienterut))
+                if (string.IsNullOrEmpty(clienterut))
             {
                 ViewBag.Error = "Debe consultar un rut";
                 return RedirectToAction("Consulta", "Registros");
@@ -75,6 +78,9 @@ namespace EVA2TI_BarPinguino.Controllers
                 }
             }
 
+            if (incremento == 0)
+                incremento = _context.Ventas.Count();
+
             ++incremento;
 
             ViewBag.Producto = txtproducto;
@@ -90,8 +96,11 @@ namespace EVA2TI_BarPinguino.Controllers
             return View();
         }
 
-        public IActionResult Boleta(string NumBoleta, int CredencialVendedor, string Detalles, string ClienteRut, decimal TotalDelPedido, string producto, int Cantidad)
+        public IActionResult Boleta(int CredencialVendedor, string Detalles, string ClienteRut, decimal TotalDelPedido, string producto, int Cantidad)
         {
+            // Generar un NumBoleta único
+            string NumBoleta = Guid.NewGuid().ToString();
+
             var venta = new Venta
             {
                 NumBoleta = NumBoleta,
@@ -102,10 +111,15 @@ namespace EVA2TI_BarPinguino.Controllers
                 Fecha = DateOnly.FromDateTime(DateTime.Now),
                 EnPreparacion = true
             };
+            TempData["bol"] = NumBoleta.ToString() + Detalles.ToString() + ClienteRut.ToString() + TotalDelPedido.ToString();
+
             var productos = _context.Stocks.FirstOrDefault(p => p.NombreProducto == producto);
 
-            productos.CantidadStock -= Cantidad;
-            _context.Stocks.Update(productos);
+            if (productos != null)
+            {
+                productos.CantidadStock -= Cantidad;
+                _context.Stocks.Update(productos);
+            }
 
             _context.Ventas.Add(venta);
             _context.SaveChanges();
@@ -114,12 +128,26 @@ namespace EVA2TI_BarPinguino.Controllers
             ViewBag.Cliente = ClienteRut;
             ViewBag.Boleta = NumBoleta;
             ViewBag.Productos = new List<dynamic>
-    {
-            new { Nombre = producto, Cantidad }
-    };
+            {
+                new { Nombre = producto, Cantidad }
+            };
             ViewBag.Total = TotalDelPedido;
 
             return View();
         }
+        [HttpPost]
+        public ActionResult EnviarBoleta(string email)
+        {
+            var bol = TempData["bol"]?.ToString();
+            _correo.EnvMail(email, "BOLETA DE COMPRA, BAR PINGUINO", $@"
+        <body style='text-align: center;'>
+            <div>
+                <h1 style='color:#f39c12;font-family:sans-serif; text-align: center;'>BOLETA:</h1>
+                <p style='color:#f39c12;font-family:sans-serif; text-align: center;'>" + bol + "</p></ div ></ body >");
+
+
+        return RedirectToAction("Home", "Index");
+        }
     }
+
 }

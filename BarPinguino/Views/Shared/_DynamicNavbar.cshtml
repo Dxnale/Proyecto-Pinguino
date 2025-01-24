@@ -7,11 +7,11 @@
     }
     else if (User.IsInRole("Preparacion"))
     {
-        <li><a class="nbar" asp-controller="Preparacion" asp-action="Index">Preparación</a></li>
+        <li><a class="nbar" asp-controller="Functions" asp-action="Preparacion">Preparación</a></li>
     }
-    else if (User.IsInRole("Inventario"))
+    else if (User.IsInRole("Stock"))
     {
-        <li><a class="nbar" asp-controller="Inventario" asp-action="Index">Inventario</a></li>
+        <li><a class="nbar" asp-controller="Functions" asp-action="Inventario">Inventario</a></li>
     }
     else if (User.IsInRole("Admin"))
     {

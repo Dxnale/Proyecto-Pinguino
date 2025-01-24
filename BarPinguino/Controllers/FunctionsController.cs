@@ -21,6 +21,8 @@ namespace EVA2TI_BarPinguino.Controllers
             _correo = correo;
             _context = context;
         }
+
+        [Authorize(Roles ="Admin, Ventas, Stock")]
         public IActionResult DatosInventario()
         {
             // Obtén todos los productos
@@ -94,7 +96,7 @@ namespace EVA2TI_BarPinguino.Controllers
             // Pasa los datos al ViewBag
             ViewBag.ProductosVenta = productosEnPreparacion;
 
-            return View();
+            return View("/Views/Functions/Inventario.cshtml");
         }
 
 
