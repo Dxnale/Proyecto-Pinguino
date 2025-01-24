@@ -98,7 +98,7 @@ namespace EVA2TI_BarPinguino.Controllers.Maestro
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Edit(int id, [Bind("CredencialVendedor,Clave,Nombre,Correo,TipoUsuario")] Usuarios usuarios)
+        public async Task<IActionResult> Edit(int id, [Bind("CredencialVendedor,Clave,PasswordSalt,Nombre,Correo,TipoUsuario")] Usuarios usuarios)
         {
             if (id != usuarios.CredencialVendedor)
             {

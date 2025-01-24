@@ -12,6 +12,8 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly"></div>
             <input type="hidden" asp-for="CredencialVendedor" />
+            <input type="hidden" asp-for="Clave" />
+            <input type="hidden" asp-for="PasswordSalt" />
             <fieldset>
                 <label asp-for="Nombre"></label>
                 <input asp-for="Nombre" />
@@ -38,6 +40,3 @@
         </form>
     <a asp-action="Index">Volver</a>
 </div>
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
