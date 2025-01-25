@@ -61,13 +61,10 @@ namespace EVA2TI_BarPinguino.Controllers.Maestro
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("InformeDeStock,Fecha,Gasto,Ingreso,Detalles,NDocumento,TipoDeDocumento")] Finanzas finanzas)
         {
-            if (ModelState.IsValid)
-            {
+
                 _context.Add(finanzas);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
-            return View(finanzas);
         }
 
         // GET: Finanzas/Edit/5
@@ -100,8 +97,7 @@ namespace EVA2TI_BarPinguino.Controllers.Maestro
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
+
                 try
                 {
                     _context.Update(finanzas);
@@ -119,8 +115,6 @@ namespace EVA2TI_BarPinguino.Controllers.Maestro
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            }
-            return View(finanzas);
         }
 
         // GET: Finanzas/Delete/5

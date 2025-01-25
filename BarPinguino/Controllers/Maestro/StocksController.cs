@@ -64,14 +64,10 @@ namespace EVA2TI_BarPinguino.Controllers.Maestro
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("SKU,NombreProducto,Proveedor,CantidadStock,StockCritico,Precio,InformeDeStock")] Stock stock)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(stock);
+            _context.Add(stock);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
-            ViewData["Proveedor"] = new SelectList(_context.Proveedores, "Rut", "Rut", stock.Proveedor);
-            return View(stock);
+            
         }
 
         // GET: Stocks/Edit/5
@@ -105,9 +101,7 @@ namespace EVA2TI_BarPinguino.Controllers.Maestro
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
-                try
+            try
                 {
                     _context.Update(stock);
                     await _context.SaveChangesAsync();
@@ -124,9 +118,7 @@ namespace EVA2TI_BarPinguino.Controllers.Maestro
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            }
-            ViewData["Proveedor"] = new SelectList(_context.Proveedores, "Rut", "Rut", stock.Proveedor);
-            return View(stock);
+
         }
 
         // GET: Stocks/Delete/5

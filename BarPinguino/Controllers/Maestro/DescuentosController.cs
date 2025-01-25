@@ -68,14 +68,11 @@ namespace EVA2TI_BarPinguino.Controllers.Maestro
 
         public async Task<IActionResult> Create([Bind("SKU,PrecioOriginal,PrecioConDescuento")] Descuentos descuentos)
         {
-            if (ModelState.IsValid)
-            {
+            
                 _context.Add(descuentos);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
-            ViewData["SKU"] = new SelectList(_context.Stocks, "SKU", "NombreProducto", descuentos.SKU);
-            return View(descuentos);
+
         }
 
         // GET: Descuentos/Edit/5
@@ -111,8 +108,6 @@ namespace EVA2TI_BarPinguino.Controllers.Maestro
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
                 try
                 {
                     _context.Update(descuentos);
@@ -130,9 +125,6 @@ namespace EVA2TI_BarPinguino.Controllers.Maestro
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            }
-            ViewData["SKU"] = new SelectList(_context.Stocks, "SKU", "NombreProducto", descuentos.SKU);
-            return View(descuentos);
         }
 
         // GET: Descuentos/Delete/5

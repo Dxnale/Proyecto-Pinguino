@@ -66,15 +66,9 @@ namespace EVA2TI_BarPinguino.Controllers.Maestro
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("NumBoleta,CredencialVendedor,Detalles,ClienteRut,TotalDelPedido")] Venta venta)
         {
-            if (ModelState.IsValid)
-            {
                 _context.Add(venta);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
-            ViewData["ClienteRut"] = new SelectList(_context.Clientes, "Rut", "Rut", venta.ClienteRut);
-            ViewData["CredencialVendedor"] = new SelectList(_context.Usuarios, "CredencialVendedor", "Clave", venta.CredencialVendedor);
-            return View(venta);
         }
 
         // GET: Ventas1/Edit/5
@@ -109,8 +103,6 @@ namespace EVA2TI_BarPinguino.Controllers.Maestro
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
                 try
                 {
                     _context.Update(venta);
@@ -128,10 +120,6 @@ namespace EVA2TI_BarPinguino.Controllers.Maestro
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            }
-            ViewData["ClienteRut"] = new SelectList(_context.Clientes, "Rut", "Rut", venta.ClienteRut);
-            ViewData["CredencialVendedor"] = new SelectList(_context.Usuarios, "CredencialVendedor", "Clave", venta.CredencialVendedor);
-            return View(venta);
         }
 
         // GET: Ventas1/Delete/5

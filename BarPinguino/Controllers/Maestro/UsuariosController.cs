@@ -105,8 +105,6 @@ namespace EVA2TI_BarPinguino.Controllers.Maestro
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
                 try
                 {
                     _context.Update(usuarios);
@@ -124,8 +122,6 @@ namespace EVA2TI_BarPinguino.Controllers.Maestro
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            }
-            return View(usuarios);
         }
 
         // GET: Usuarios/Delete/5

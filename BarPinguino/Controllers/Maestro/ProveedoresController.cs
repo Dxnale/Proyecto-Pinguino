@@ -61,13 +61,9 @@ namespace EVA2TI_BarPinguino.Controllers.Maestro
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("Rut,Giro,RazonSocial,DatosBanco,Fono,Direccion")] Proveedores proveedores)
         {
-            if (ModelState.IsValid)
-            {
                 _context.Add(proveedores);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
-            return View(proveedores);
         }
 
         // GET: Proveedores/Edit/5
@@ -100,8 +96,6 @@ namespace EVA2TI_BarPinguino.Controllers.Maestro
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
                 try
                 {
                     _context.Update(proveedores);
@@ -119,8 +113,6 @@ namespace EVA2TI_BarPinguino.Controllers.Maestro
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            }
-            return View(proveedores);
         }
 
         // GET: Proveedores/Delete/5

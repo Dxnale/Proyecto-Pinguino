@@ -11,6 +11,8 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly"></div>
             <input type="hidden" asp-for="SKU" required />
+        <input type="hidden" asp-for="ProveedorNavigation" required />
+
             <fieldset>
                 <label asp-for="NombreProducto"></label>
                 <input asp-for="NombreProducto" required />

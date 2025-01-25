@@ -64,13 +64,10 @@ namespace EVA2TI_BarPinguino.Controllers.Maestro
 
         public async Task<IActionResult> Create([Bind("Rut,Nombre,Apellido,Frecuente")] Clientes clientes)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(clientes);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(clientes);
+            _context.Add(clientes);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+
         }
 
         // GET: Clientes/Edit/5
@@ -103,8 +100,6 @@ namespace EVA2TI_BarPinguino.Controllers.Maestro
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
                 try
                 {
                     _context.Update(clientes);
@@ -122,8 +117,7 @@ namespace EVA2TI_BarPinguino.Controllers.Maestro
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            }
-            return View(clientes);
+
         }
 
         // GET: Clientes/Delete/5
